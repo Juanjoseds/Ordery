@@ -1,0 +1,22 @@
+{
+    "menu": [
+        {
+            "name": "Dashboard",
+            "url": "dashboard",
+            "icon": "home",
+            "slug": "dashboard",
+            "mostrar_siempre": true
+        },
+        {
+            "name": "Empleados",
+            "url": "empleado",
+            "icon": "user",
+            "slug": "",
+            "mostrar_siempre": true
+        },
+        {
+            "navheader": "Apps & Pages",
+            "slug": ""
+        }
+    ]
+}
