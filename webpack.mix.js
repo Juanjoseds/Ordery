@@ -92,6 +92,49 @@ mix.then(() => {
   }
 })
 
+/*** FICHEROS DE LA PÁGINA WEB */
+mixAssetsDir('scss/web/pages/**/**/!(_)*.scss', (src, dest) =>
+    mix.sass(src, dest.replace(/(\\|\/)scss(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), {sassOptions})
+        //.purgeCss({
+        //    enabled: purge_enabled,
+        //}) // Agregar esta línea
+);
+
+mixAssetsDir('scss/web/layout/**/**/!(_)*.scss', (src, dest) =>
+    mix.sass(src, dest.replace(/(\\|\/)scss(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), {sassOptions})
+        //.purgeCss({
+        //    enabled: purge_enabled,
+        //}) // Agregar esta línea
+);
+
+mixAssetsDir('scss/web/core/**/**/!(_)*.scss', (src, dest) =>
+    mix.sass(src, dest.replace(/(\\|\/)scss(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), {sassOptions})
+        //.purgeCss() // Agregar esta línea
+);
+
+// script js
+mixAssetsDir('js/web/pages/*.js', (src, dest) => mix.scripts(src, dest))
+mixAssetsDir('js/web/layout/*.js', (src, dest) => mix.scripts(src, dest))
+
+mix.copyDirectory('resources/js/web/core', 'public/js/web/core')
+/***  */
+
+/*** FICHEROS DEL BACK PANEL */
+mixAssetsDir('scss/panel/!(_)*.scss', (src, dest) =>
+    mix.sass(src, dest.replace(/(\\|\/)scss(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), {sassOptions})
+        //.purgeCss({
+        //    enabled: purge_enabled,
+        //}) // Agregar esta línea
+);
+
+/*** FICHEROS DE EXTENSIONES */
+mixAssetsDir('scss/extensions/!(_)*.scss', (src, dest) =>
+    mix.sass(src, dest.replace(/(\\|\/)scss(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), {sassOptions})
+        //.purgeCss({
+        //    enabled: purge_enabled,
+        //}) // Agregar esta línea
+);
+
 // if (mix.inProduction()) {
 //   mix.version()
 //   mix.webpackConfig({

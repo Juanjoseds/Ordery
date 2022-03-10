@@ -16,7 +16,7 @@
 {{--    <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">--}}
 {{--    <link rel="stylesheet" href="{{ asset(mix('vendors/css/file-uploaders/dropzone.min.css')) }}">--}}
 {{--    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-file-uploader.css')) }}">--}}
-{{--    <link rel="stylesheet" href="{{ asset(mix('css/base/pages/ui-feather.css')) }}">--}}
+    <link rel="stylesheet" href="{{ asset(mix('css/base/pages/ui-feather.css')) }}">
 @endsection
 
 @section('crud-scripts')

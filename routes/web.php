@@ -18,15 +18,14 @@ use App\Http\Controllers\DashboardController;
 */
 
 Auth::routes();
-// Main Page Route
+
 Route::get('/', [WebpagesController::class, 'home'])->name('home');
 
-Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/admin/empleados', [UserController::class, 'index'])->name('empleados');
-Route::post('/admin/empleados/json', [UserController::class, 'getDataJson']);
+Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-/* Route Dashboards */
-Route::group(['prefix' => 'dashboard'], function () {
-    Route::get('analytics', [DashboardController::class, 'dashboardAnalytics'])->name('dashboard-analytics');
-    Route::get('ecommerce', [DashboardController::class, 'dashboardEcommerce'])->name('dashboard-ecommerce');
+    Route::prefix('empleados')->group(function () {
+        Route::get('pizarra', [UserController::class, 'index'])->name('pizarraEmpleados');
+        Route::post('json', [UserController::class, 'getDataJson']);
+    });
 });

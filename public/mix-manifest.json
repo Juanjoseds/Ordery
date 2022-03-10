@@ -6,6 +6,9 @@
     "/css/base/plugins/extensions/ext-component-media-player.css": "/css/base/plugins/extensions/ext-component-media-player.css",
     "/css/base/plugins/extensions/ext-component-drag-drop.css": "/css/base/plugins/extensions/ext-component-drag-drop.css",
     "/css/base/plugins/extensions/ext-component-context-menu.css": "/css/base/plugins/extensions/ext-component-context-menu.css",
+    "/css/panel/global.css": "/css/panel/global.css",
+    "/css/web/core/font-awesome.css": "/css/web/core/font-awesome.css",
+    "/css/web/core/bootstrap.css": "/css/web/core/bootstrap.css",
     "/css/style.css": "/css/style.css",
     "/css-rtl/style-rtl.css": "/css-rtl/style-rtl.css",
     "/css-rtl/custom-rtl.css": "/css-rtl/custom-rtl.css",
@@ -594,5 +597,11 @@
     "/data/search.json": "/data/search.json",
     "/data/table-datatable.json": "/data/table-datatable.json",
     "/data/user-list.json": "/data/user-list.json",
-    "/lang/.DS_Store": "/lang/.DS_Store"
+    "/lang/.DS_Store": "/lang/.DS_Store",
+    "/js/web/core/aframe.min.js": "/js/web/core/aframe.min.js",
+    "/js/web/core/aos.js": "/js/web/core/aos.js",
+    "/js/web/core/bootstrap.bundle.min.js": "/js/web/core/bootstrap.bundle.min.js",
+    "/js/web/core/floating-wpp.min.js": "/js/web/core/floating-wpp.min.js",
+    "/js/web/core/jquery2.min.js": "/js/web/core/jquery2.min.js",
+    "/js/web/core/select2.min.js": "/js/web/core/select2.min.js"
 }

@@ -22,7 +22,7 @@ class UserController extends Controller
     public function index()
     {
         $nameCrud = 'empleados';
-        return view('/content/empleados/empleados', compact('nameCrud'));
+        return view('/content/empleados/pizarra', compact('nameCrud'));
     }
 
     public function new() {

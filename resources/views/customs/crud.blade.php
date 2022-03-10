@@ -13,20 +13,20 @@
 {{--    <link rel="stylesheet" href="{{ asset(mix('vendors/css/editors/quill/quill.snow.css')) }}">--}}
 {{--    <link rel="stylesheet" href="{{ asset(mix('vendors/css/editors/quill/quill.bubble.css')) }}">--}}
 {{--    <!-- vendor css files -->--}}
-{{--    <link rel="stylesheet" href="{{ asset(mix('vendors/css/animate/animate.min.css')) }}">--}}
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/animate/animate.min.css')) }}">
 {{--    --}}{{-- Flatpicker --}}
 {{--    <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/pickadate/pickadate.css')) }}">--}}
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
 @endsection
 
-{{--@section('page-style')--}}
-{{--    --}}{{-- Page Css files --}}
+@section('page-style')
+{{-- Page Css files --}}
     <link rel="stylesheet" href="{{ asset(mix('css/base/pages/custom-datatable.css')) }}">
 {{--    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-quill-editor.css')) }}">--}}
 {{--    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">--}}
 {{--    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-pickadate.css')) }}">--}}
-{{--    @yield('crud-styles')--}}
-{{--@endsection--}}
+    @yield('crud-styles')
+@endsection
 
 @section('content')
     <!-- users list start -->
@@ -88,9 +88,9 @@
 {{--    <script src="{{ asset(mix('vendors/js/editors/quill/katex.min.js')) }}"></script>--}}
 {{--    <script src="{{ asset(mix('vendors/js/editors/quill/highlight.min.js')) }}"></script>--}}
 {{--    <script src="{{ asset(mix('vendors/js/editors/quill/quill.min.js')) }}"></script>--}}
-{{--    --}}{{-- Sweet Alert --}}
-{{--    <script src="{{ asset(mix('vendors/js/extensions/sweetalert2.all.min.js')) }}"></script>--}}
-{{--    <script src="{{ asset(mix('vendors/js/extensions/polyfill.min.js')) }}"></script>--}}
+{{--     Sweet Alert --}}
+    <script src="{{ asset(mix('vendors/js/extensions/sweetalert2.all.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/extensions/polyfill.min.js')) }}"></script>
 {{--    --}}{{-- Flatpicker --}}
 {{--    <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.js')) }}"></script>--}}
 {{--    <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.date.js')) }}"></script>--}}
