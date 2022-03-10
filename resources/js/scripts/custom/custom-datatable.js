@@ -493,8 +493,8 @@ function initDatatable(columns, columnDefs, nameCrud, tableClass, options = null
       if (options.addButton && options.addButton.active) {
         let sAnadir = (typeof datatable != 'undefined') && datatable.hasOwnProperty('anadir') ? datatable.anadir : 'Añadir';
         let attr = {
-          'data-toggle': 'modal',
-          'data-target': '#modals-slide-' + nameCrud,
+          'data-bs-toggle': 'modal',
+          'data-bs-target': '#modals-slide-' + nameCrud,
           'option' : options.addButton.showModal
         };
         if (options.addButton.showModal !== true) { // Mostramos el modal

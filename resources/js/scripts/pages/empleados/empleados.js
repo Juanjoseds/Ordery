@@ -91,7 +91,7 @@ $(function () {
 
                 return (
                     '<div class="btn-group">' +
-                    '<a class="btn btn-sm dropdown-toggle hide-arrow" data-toggle="dropdown">' +
+                    '<a class="btn btn-sm dropdown-toggle hide-arrow" data-bs-toggle="dropdown">' +
                     feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
                     '</a>' +
                     '<div class="dropdown-menu dropdown-menu-right">' +
