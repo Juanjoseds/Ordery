@@ -58,7 +58,7 @@
 
 .header-navbar{
     #navbar-enlaces{
-        li{
+        li.active{
             background: linear-gradient(118deg, #7367f0, rgba(115, 103, 240, 0.7));
             box-shadow: 0 0 10px 1px rgb(115 103 240 / 70%);
             border-radius: 4px;
@@ -66,7 +66,7 @@
             color: white;
             padding: 2px;
 
-            a{
+            a.active{
                 color: white!important;
                 text-shadow: 2px 2px 4px rgba(20, 20, 20, 0.75);
             }

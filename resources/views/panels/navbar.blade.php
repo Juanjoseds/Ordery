@@ -86,8 +86,8 @@
 
         @foreach ($menuData[1]->menu as $menu)
             @if (isset($menu->mostrar_siempre) || ($menu->permiso_nombre != '' && $user_auth->hasPermiso($menu->permiso_modulo, $menu->permiso_nombre)))
-                <li class="nav-item">
-                    <a class="nav-link @if(Route::currentRouteName() == $menu->routeName) text-primary @endif" href="{{strlen($menu->routeName) > 0 ? route($menu->routeName, ['lang' => $lang]) : "/$lang/$menu->url"}}">{{__('backpanel/menu.'.$menu->name)}}</a>
+                <li class="nav-item @if(Route::currentRouteName() == $menu->routeName) active @endif">
+                    <a class="nav-link @if(Route::currentRouteName() == $menu->routeName) active @endif" href="{{strlen($menu->routeName) > 0 ? route($menu->routeName, ['lang' => $lang]) : "/$lang/$menu->url"}}">{{__('backpanel/menu.'.$menu->name)}}</a>
                 </li>
             @endif
             {{-- <li>
