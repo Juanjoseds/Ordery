@@ -24,6 +24,9 @@
 @endsection
 
 @section('content')
+    <div class="w-100">
+        <img src="{{asset('images/web/home/banner.svg')}}" alt="waves">
+    </div>
     <p>Home :)</p>
 
     <a href="/login">Login</a>

@@ -177,6 +177,7 @@ return [
         // custom theme menu provider
         App\Providers\MenuServiceProvider::class,
         Yajra\DataTables\DatatablesServiceProvider::class,
+        Laravolt\Avatar\ServiceProvider::class,
     ],
 
     /*
