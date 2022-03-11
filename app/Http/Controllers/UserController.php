@@ -198,23 +198,21 @@ class UserController extends Controller
         }
     }
     public function getDataJson(Request $request) {
-        $admins = User::query()->where('tipo','admin');
-//        $permisoLeer = \auth()->user()->hasPermiso('Empleados','Leer');
-//        $permisoEditar = \auth()->user()->hasPermiso('Empleados','Editar');
-//        $permisoBorrar = \auth()->user()->hasPermiso('Empleados','Borrar');
-        return DataTables::eloquent($admins)
-//            ->addColumn('permiso_leer', function ($model) use($permisoLeer){
-//                return $permisoLeer;
-//            })
-//            ->addColumn('permiso_borrar', function ($model) use($permisoBorrar){
-//                return $permisoBorrar;
-//            })
-//            ->addColumn('permiso_editar', function ($model) use($permisoEditar){
-//                return $permisoEditar;
-//            })
-//            ->editColumn('users_id', function ($model){
-//                return User::find(intval($model->users_id), 'id')->value('name');
-//            })
+        $empleados = User::query();
+        $permisoLeer = $this->user->hasPermiso('Empleados','Leer');
+        $permisoEditar = $this->user->hasPermiso('Empleados','Editar');
+        $permisoBorrar = $this->user->hasPermiso('Empleados','Borrar');
+
+        return DataTables::eloquent($empleados)
+            ->addColumn('permiso_leer', function ($model) use($permisoLeer){
+                return $permisoLeer;
+            })
+            ->addColumn('permiso_borrar', function ($model) use($permisoBorrar){
+                return $permisoBorrar;
+            })
+            ->addColumn('permiso_editar', function ($model) use($permisoEditar){
+                return $permisoEditar;
+            })
             ->editColumn('created_at', function ($model){
                 return Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d-m-Y');
             })
