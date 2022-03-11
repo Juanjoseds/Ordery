@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EmpleadoUpdateRequest;
 use App\Models\Expediente;
 use App\Models\ExpedienteArchivo;
+use App\Models\Permiso;
 use App\Notifications\NewEmpleadoNotify;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -19,6 +20,13 @@ use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
+    public function __construct(Request $request)
+    {
+        parent::__construct($request);
+        $this->nameCrud = 'empleados';
+        //$this->crudTranslated = __('backpanel/pizarra.empleados');
+    }
+
     public function index()
     {
         $nameCrud = 'empleados';
@@ -26,64 +34,34 @@ class UserController extends Controller
     }
 
     public function new() {
-        $permisos = Permisos::where('rol_admin', 1)->get()->toArray();
-        $permisos_normales = array_filter($permisos, function($permiso) {
-            return ($permiso['especial'] == 0);
-        });
-        $permisos_especiales = array_filter($permisos, function($permiso) {
-            return ($permiso['especial'] == 1);
-        });
-        return view('content.empleados.formulario', [
-            'permisos' => $permisos_normales,
-            'permisos_especiales' => $permisos_especiales,
-            'method' => 'Nuevo'
-        ]);
+        $method = 'Nuevo';
+        $permisos = Permiso::where('rol', 'admin')->get();
+        return view('/content/empleados/formulario', ['nameCrud' => $this->nameCrud, 'method' => $method, 'permisos'=>$permisos]);
     }
 
     public function edit($id)
     {
         $empleado = User::query()->where('id', $id)->first();
-
-        $allPermisos = Permisos::with(['users' => function($query) use($id){
+        $permisos = Permiso::with(['users' => function($query) use($id){
             $query->where('users.id', $id);
-        }])->where('rol_admin', 1)->get()->toArray();
-
-        $permisos_normales = array_filter($allPermisos, function($permiso) {
-            return ($permiso['especial'] == 0);
-        });
-        $permisos_especiales = array_filter($allPermisos, function($permiso) {
-            return ($permiso['especial'] == 1);
-        });
-
+        }])->get()->toArray();
 
         return view('content.empleados.formulario', [
-            'permisos' => $permisos_normales,
-            'permisos_especiales' => $permisos_especiales,
+            'permisos' => $permisos,
             'empleado' => $empleado,
             'method' => 'Editar'
         ]);
-
     }
 
     public function show($id)
     {
         $empleado = User::query()->where('id', $id)->first();
-
-        $allPermisos = Permisos::with(['users' => function($query) use($id){
+        $permisos = Permiso::with(['users' => function($query) use($id){
             $query->where('users.id', $id);
-        }])->where('rol_admin', 1)->get()->toArray();
-
-        $permisos_normales = array_filter($allPermisos, function($permiso) {
-            return ($permiso['especial'] == 0);
-        });
-        $permisos_especiales = array_filter($allPermisos, function($permiso) {
-            return ($permiso['especial'] == 1);
-        });
-
+        }])->get()->toArray();
 
         return view('content.empleados.formulario', [
-            'permisos' => $permisos_normales,
-            'permisos_especiales' => $permisos_especiales,
+            'permisos' => $permisos,
             'empleado' => $empleado,
             'method' => 'Ver'
         ]);
@@ -95,36 +73,27 @@ class UserController extends Controller
         return response($user, 200);
     }
 
-    /**
-     * Store a new blog post.
-     *
-     * @param  \App\Http\Requests\UserRequest  $request
-     * @return Illuminate\Http\Response
-     */
-    public function store(UserRequest $request, $id = null) {
+    public function store(Request $request, $id = null) {
         try {
             DB::beginTransaction();
-            $is_portada = (is_null($request->is_portada) || $request->is_portada == 'false') ? 0 : 1;
-            $mensaje = 'creado';
+
             if ($id === null) {
                 $user = new User();
+                $mensaje = 'creado';
+
             } else {
                 $user = User::find($id);
                 if ($user === null) {
                     return response('No se pudo encontrar el usuario', 400);
                 }
+                $mensaje = 'editado';
+
             }
 
-            if(($request->tipo == 'admin') ) {
-                $usersPortada = User::query()->where('is_portada', 1)->where('tipo', 'admin')->where('id', '!=', $id)->count();
-
-                if (($is_portada && ((is_null($id) && $usersPortada == 2) || (!is_null($id) && $usersPortada > 1)))) {
-                    return response(['errors' => ['usuario_portada' => ['Ya existen dos empleados en portada']]], 400);
-                }
-            }
             $fields = $request->only($user->getFillable());
             $passActual = $user->password;
-            $fields = $request->only($user->getFillable());
+            $user->fill($fields);
+            //$fields = $request->only($user->getFillable());
             $user->is_blocked = 0;
             $user->tipo = is_null($request->tipo) ? 'admin' : $request->tipo;
 
@@ -134,21 +103,19 @@ class UserController extends Controller
                 $user->password = $passActual;
             }
 
-            $user->is_portada = $is_portada;
             $user->imagen = is_null($request->imagen) ? null : $request->imagen;
 //            dd(($request->all()), $user);
 
             if ($id === null) {
                 $user->save();
-                $user->nuevoPass = $request->password;
+                //$user->nuevoPass = $request->password;
 
-                try {
-                    $user->notify(new NewEmpleadoNotify());
-                }catch (\Exception $e){
-
-                }
+//                try {
+//                    $user->notify(new NewEmpleadoNotify());
+//                }catch (\Exception $e){
+//
+//                }
             } else {
-                $mensaje = 'editado';
                 $user->update();
             }
             if (!is_null($request->permisos)) {
@@ -159,7 +126,7 @@ class UserController extends Controller
                 'user' => $user], 200);
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json("'No se ha  $mensaje el usuario", 500);
+            return response()->json("No se ha $mensaje el usuario", 500);
         }
     }
 
@@ -191,7 +158,7 @@ class UserController extends Controller
             'leer' => 0,
             'editar' => 0,
             'borrar' => 0,
-            'especial' => 0,
+            //'especial' => 0,
             'updated_at' => Carbon::now()
         ];
         foreach ($permisos as $key => $permiso) {

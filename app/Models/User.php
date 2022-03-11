@@ -17,9 +17,17 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name',
+        'nombre',
+        'apellidos',
+        'dni',
+        'telefono',
+        'tipo',
+        'imagen',
         'email',
+        'email_verified_at',
         'password',
+        'is_blocked',
+        'tienda_id',
     ];
 
     /**
@@ -30,6 +38,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
+        'email_verify_token'
     ];
 
     /**
@@ -40,4 +49,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function permisos()
+    {
+        return $this->belongsToMany(Permiso::class, 'users_has_permisos', 'users_id', 'permisos_id')->withPivot('leer', 'editar', 'borrar');
+    }
 }

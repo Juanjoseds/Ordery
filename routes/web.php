@@ -27,5 +27,10 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
     Route::prefix('empleados')->group(function () {
         Route::get('pizarra', [UserController::class, 'index'])->name('pizarraEmpleados');
         Route::post('json', [UserController::class, 'getDataJson']);
+        Route::get('new', [UserController::class, 'new'])->name('createEmpleado');
+        Route::post('store', [UserController::class, 'store']);
+        Route::put('store/{id?}', [UserController::class, 'store']);
+        Route::get('edit/{id}', [UserController::class, 'edit']);
+        Route::get('show/{id}', [UserController::class, 'show']);
     });
 });

@@ -13,14 +13,15 @@
     <input type="hidden" id="tipo" name="tipo" value="admin">
     <div class="col-lg-3 col-12">
       <div class="form-group col-12">
-        <label class="form-label">Imagen del agente</label>
+        <label class="form-label">Imagen del empleado</label>
         <div class="w-100 text-center">
           <img id="display_uploaded" class="img-fluid cursor-pointer"
+               style="width: 10em;"
                alt="Imagen agente"
                @if($method != 'Nuevo')
-               src="{{!is_null($empleado->imagen) ? $empleado->imagen : asset('images/pages/upload.png')}}"
+               src="{{!is_null($empleado->imagen) ? $empleado->imagen : asset('images/assets/upload.svg')}}"
                @else
-               src="{{asset('images/pages/upload.png')}}"
+               src="{{asset('images/assets/upload.svg')}}"
                   @endif
           >
           <br>
@@ -34,7 +35,7 @@
         <input type="file" hidden id="image_upload">
       </div>
     </div>
-    <div class="col-9 d-flex flex-wrap align-content-start">
+    <div class="col-9 row align-content-start">
       <div class="col-lg-4 col-md-6 col-12">
         <div class="form-group">
           <label for="nombre">Nombre</label>
@@ -70,16 +71,6 @@
            data-required="El campo teléfono es requerido"
            @if($method != 'Nuevo') value="{{$empleado->telefono}}"@endif
           />
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 col-12 pt-2">
-        <div class="form-group">
-          <div class="custom-control custom-control-primary custom-switch">
-            <input type="checkbox" class="custom-control-input" id="activoPortada" name="is_portada"
-             @if($method != 'Nuevo') {{($empleado->is_portada) ? 'checked' : ''}} @endif
-            />
-            <label class="custom-control-label" for="activoPortada">Activo en portada</label>
-          </div>
         </div>
       </div>
       <div class="col-lg-4 col-md-6 col-12">

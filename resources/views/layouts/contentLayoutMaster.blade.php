@@ -33,6 +33,7 @@ data-textdirection="{{ env('MIX_CONTENT_DIRECTION') === 'rtl' ? 'rtl' : 'ltr' }}
 <!-- END: Head-->
 
 <!-- BEGIN: Body-->
+@include('panels.loading')
 @isset($configData["mainLayoutType"])
 @extends((( $configData["mainLayoutType"] === 'horizontal') ? 'layouts.horizontalLayoutMaster' :
 'layouts.verticalLayoutMaster' ))

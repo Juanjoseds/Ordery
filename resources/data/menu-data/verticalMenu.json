@@ -21,6 +21,16 @@
                     "permiso_nombre": "",
                     "permiso_modulo": "",
                     "mostrar_siempre": true
+                },
+                {
+                    "routeName": "admin.createEmpleado",
+                    "url": "",
+                    "name": "Nuevo empleado",
+                    "icon": "circle",
+                    "slug": "admin.createEmpleado",
+                    "permiso_nombre": "",
+                    "permiso_modulo": "",
+                    "mostrar_siempre": true
                 }
             ]
         },

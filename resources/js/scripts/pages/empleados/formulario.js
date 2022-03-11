@@ -169,6 +169,7 @@ function resultCreando(response){
     confirmButtonClass: 'btn btn-primary',
     buttonsStyling: !1
   }).then(function (value){
-    window.location = `/admin/empleados/edit/${response.user.id}`
+    //
+      window.location = `/admin/empleados/edit/${response.user.id}`
   });
 }
