@@ -2,6 +2,7 @@
 
 return [
 
+    'email_web' => 'diazsantanajuanjose@gmail.com',
     /*
     |--------------------------------------------------------------------------
     | Application Name

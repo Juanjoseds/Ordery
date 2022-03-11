@@ -19,9 +19,10 @@ use App\Http\Controllers\DashboardController;
 
 Auth::routes();
 
+Route::get('/maintenance', [WebpagesController::class, 'maintenance'])->name('maintenance');
 Route::get('/', [WebpagesController::class, 'home'])->name('home');
 
-Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
+Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware'=> ['rol:admin'] ], function () {
     Route::get('dashboard', [DashboardController::class, 'indexAdmin'])->name('dashboard');
 
     Route::prefix('empleados')->group(function () {
