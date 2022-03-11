@@ -82,6 +82,20 @@
 {{--      </li>--}}
 {{--    </ul>--}}
   </div>
+    <ul class="nav navbar-nav align-items-center" id="navbar-enlaces">
+
+        @foreach ($menuData[1]->menu as $menu)
+            @if (isset($menu->mostrar_siempre) || ($menu->permiso_nombre != '' && $user_auth->hasPermiso($menu->permiso_modulo, $menu->permiso_nombre)))
+                <li class="nav-item">
+                    <a class="nav-link @if(Route::currentRouteName() == $menu->routeName) text-primary @endif" href="{{strlen($menu->routeName) > 0 ? route($menu->routeName, ['lang' => $lang]) : "/$lang/$menu->url"}}">{{__('backpanel/menu.'.$menu->name)}}</a>
+                </li>
+            @endif
+            {{-- <li>
+              <a href="{{strlen($menu->routeName) > 0 ? route($menu->routeName, ['lang' => $lang]) : "/$lang/$menu->url"}}">{{__('backpanel/menu.'.$menu->name)}}</a>
+            </li> --}}
+        @endforeach
+
+    </ul>
   <ul class="nav navbar-nav align-items-center ms-auto">
     <li class="nav-item dropdown dropdown-language">
       <a class="nav-link dropdown-toggle" id="dropdown-flag" href="#" data-bs-toggle="dropdown" aria-haspopup="true">

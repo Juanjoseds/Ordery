@@ -50,8 +50,25 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public $permisos_usuario = [];
+
     public function permisos()
     {
         return $this->belongsToMany(Permiso::class, 'users_has_permisos', 'users_id', 'permisos_id')->withPivot('leer', 'editar', 'borrar');
+    }
+
+    public function hasPermiso($modulo, $permiso)
+    {
+         if (count($this->permisos_usuario) == 0){
+             $permisos = [];
+             $permisos_user = $this->permisos;
+
+             foreach ($permisos_user as $permiso_user) {
+                 $permisos[strtolower($permiso_user->modulo)] = $permiso_user->toArray()['pivot'];
+             }
+             $this->permisos_usuario =  $permisos;
+         }
+
+         return (isset($this->permisos_usuario[strtolower($modulo)]) && $this->permisos_usuario[strtolower($modulo)][strtolower($permiso)] == 1);
     }
 }

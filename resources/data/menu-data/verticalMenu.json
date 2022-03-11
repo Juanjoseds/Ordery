@@ -1,10 +1,11 @@
 {
     "menu": [
         {
+            "routeName": "admin.dashboard",
             "name": "Dashboard",
-            "url": "dashboard",
+            "url": "",
             "icon": "home",
-            "slug": "dashboard",
+            "slug": "admin.dashboard",
             "mostrar_siempre": true
         },
         {

@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/', [WebpagesController::class, 'home'])->name('home');
 
 Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('dashboard', [DashboardController::class, 'indexAdmin'])->name('dashboard');
 
     Route::prefix('empleados')->group(function () {
         Route::get('pizarra', [UserController::class, 'index'])->name('pizarraEmpleados');
