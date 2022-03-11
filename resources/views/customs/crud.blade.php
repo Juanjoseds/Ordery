@@ -103,7 +103,7 @@
     {{-- Page js files --}}
     <script src="{{ asset(mix('js/scripts/custom/custom-datatable.js')) }}"></script>
     <script src="{{ asset(mix('js/scripts/custom/custom-form.js')) }}"></script>
-{{--    <script src="{{ asset('lang/en/backpanel/alertas.js') }}"></script>--}}
-    <script src="{{ asset(('lang/en/backpanel/datatable.js')) }}"></script>
+    <script src="{{ asset('lang/es/backpanel/alertas.js') }}"></script>
+    <script src="{{ asset(('lang/es/backpanel/datatable.js')) }}"></script>
     @yield('crud-scripts')
 @endsection

@@ -170,9 +170,8 @@ $(function () {
     const userTipo = $('#tipo').val();
 
     const options = {
-        order: [2, 'asc'],
+        order: [3, 'asc'],
         exportOptions: {
-            name: datatable.opciones,
             exportButtonPrint: {active: true, exportOptions: {columns: ":visible:not(.not-export-col)"}},
             exportButtonCSV: {active: true, exportOptions: {columns: ":visible:not(.not-export-col)"}},
             exportButtonExcel: {active: true, exportOptions: {columns: ":visible:not(.not-export-col)"}},
