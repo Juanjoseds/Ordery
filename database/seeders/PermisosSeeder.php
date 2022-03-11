@@ -31,7 +31,7 @@ class PermisosSeeder extends Seeder
 
         foreach (Permiso::all() as $permiso){
             PermisoUser::create([
-                'users_id' => null,
+                'users_id' => 1,
                 'permisos_id' => $permiso->id,
             ]);
         }

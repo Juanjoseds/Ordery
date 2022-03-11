@@ -95,7 +95,7 @@ class UserController extends Controller
             $user->fill($fields);
             //$fields = $request->only($user->getFillable());
             $user->is_blocked = 0;
-            $user->tipo = is_null($request->tipo) ? 'admin' : $request->tipo;
+            $user->tipo = is_null($request->tipo) ? 'empleado' : $request->tipo;
 
             if(!is_null($request->password)){
                 $user->password = bcrypt($request->password);
@@ -223,7 +223,7 @@ class UserController extends Controller
         try {
             DB::beginTransaction();
             $user = User::find($id);
-            if ($user === null) {
+            if (!isset($user)) {
                 return response('No se pudo encontrar el usuario', 400);
             }
             $user->is_blocked = !$user->is_blocked;
@@ -236,7 +236,7 @@ class UserController extends Controller
             ], 200);
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json("'No se ha podido actualizar los permisos del usuario el usuario", 500);
+            return response()->json("No se ha podido actualizar los permisos del usuario el usuario", 500);
         }
     }
 

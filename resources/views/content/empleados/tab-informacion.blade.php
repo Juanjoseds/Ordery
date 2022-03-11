@@ -10,7 +10,7 @@
       </h4>
     </div>
     @if($method != 'Nuevo') <input type="hidden" id="userId" value="{{$empleado->id}}"> @endif
-    <input type="hidden" id="tipo" name="tipo" value="admin">
+    <input type="hidden" id="tipo" name="tipo" value="empleado">
     <div class="col-lg-3 col-12">
       <div class="form-group col-12">
         <label class="form-label">Imagen del empleado</label>

@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('dni');
             $table->string('telefono');
             $table->string('tipo')->default('empleado');
+            $table->string('cargo_empresa')->nullable();
             $table->longText('imagen')->nullable();
             $table->string('email')->unique();
             $table->string('email_verify_token')->nullable();

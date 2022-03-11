@@ -33,5 +33,6 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware'=> ['rol:admin'] 
         Route::put('store/{id?}', [UserController::class, 'store']);
         Route::get('edit/{id}', [UserController::class, 'edit']);
         Route::get('show/{id}', [UserController::class, 'show']);
+        Route::post('block/{id}', [UserController::class, 'block']);
     });
 });

@@ -12,16 +12,16 @@ $(function () {
 
     const columns = [
         // columns according to JSON RESPONSE
-        { data: 'id' },//Este sólo aparece en la vista movil
-        { data: 'id' },//Este es para el checkbox
-        { data: 'imagen',className:'not-export-col'  },
-        { data: 'nombre' },
-        { data: 'apellidos' },
-        { data: 'dni' },
-        { data: 'email' },
-        { data: 'telefono' },
-        { data: 'tipo' },
-        { data: 'id',className:'not-export-col'  },//Este es para las acciones
+        {data: 'id'},//Este sólo aparece en la vista movil
+        {data: 'id'},//Este es para el checkbox
+        {data: 'imagen', className: 'not-export-col'},
+        {data: 'nombre'},
+        {data: 'apellidos'},
+        {data: 'dni'},
+        {data: 'email'},
+        {data: 'telefono'},
+        {data: 'tipo'},
+        {data: 'id', className: 'not-export-col'},//Este es para las acciones
     ];
 
     const columnDefs = [
@@ -52,7 +52,7 @@ $(function () {
             }
         },
         {
-            // For Checkboxes
+            // Imagen
             targets: 2,
             orderable: false,
             responsivePriority: 3,
@@ -60,9 +60,8 @@ $(function () {
                 if (data != null) {
                     return `<img height="80px" width="auto" src="${data}" alt="Ziegel Foto Empleado"/>`
                 } else {
-                    return `Sin imagen`
+                    return `Sin imagen`;
                 }
-                ;
             },
         },
 
@@ -73,35 +72,38 @@ $(function () {
             className: 'not-export-col',
             orderable: false,
             render: function (data, type, full, meta) {
-                let verHTML = (full.permiso_leer) ? '<a href="javascript:void(0)" class="dropdown-item read-record" data-record="' + full.id + '">' +
-                    feather.icons['eye'].toSvg({ class: 'font-small-4 me-50' }) +
-                    `${datatable.ver}</a>` : '';
-                let editarHTML = (full.permiso_editar) ? `<a href="javascript:void(0)" class="dropdown-item edit-record" data-record="' + full.id + '">` +
-                    feather.icons['archive'].toSvg({ class: 'font-small-4 me-50' }) +
-                    `${datatable.editar}</a>` : ''
-                let borrarHTML = (full.permiso_borrar) ? '<a href="javascript:void(0)" class="dropdown-item delete-record" data-record="' + full.id + '">' +
-                    feather.icons['trash-2'].toSvg({ class: 'font-small-4 me-50' }) +
-                    `${datatable.borrar}</a>` : '';
+                let html = ``;
+
+                if (full.permiso_leer) {
+                    html += `<a href="javascript:void(0)" class="dropdown-item read-record" data-record="${full.id}">
+                    ${feather.icons['eye'].toSvg({class: 'font-small-4 me-50'})} ${datatable.ver}</a>`;
+                }
+
+                if (full.permiso_editar) {
+                    html += `<a href="javascript:void(0)" class="dropdown-item edit-record" data-record="${full.id}">
+                    ${feather.icons['archive'].toSvg({class: 'font-small-4 me-50'})} ${datatable.editar}</a>`;
+                }
+
+                if (full.permiso_borrar) {
+                    html += `<a href="javascript:void(0)" class="dropdown-item delete-record" data-record="'${full.id}">
+                    ${feather.icons['trash-2'].toSvg({class: 'font-small-4 me-50'})} ${datatable.borrar}</a>`
+                }
 
                 let textBloquear = (full.is_blocked) ? datatable.desbloquear : datatable.bloquear;
 
-                let bloquearHTML = (full.permiso_editar) ? '<a href="javascript:void(0)" onclick="blockUser(' + full.id + ')" class="dropdown-item block-record" data-record="' + full.id + '">' +
-                    feather.icons['alert-octagon'].toSvg({ class: 'font-small-4 me-50' }) +
-                    textBloquear + '</a>' : '';
+                if (full.permiso_editar) {
+                    html += `<a href="javascript:void(0)" onclick="blockUser('${full.id}')" class="dropdown-item block-record" data-record="${full.id}">
+                    ${feather.icons['alert-octagon'].toSvg({class: 'font-small-4 me-50'})} ${textBloquear}</a>`;
+                }
 
                 return (
-                    '<div class="btn-group">' +
-                    '<a class="btn btn-sm dropdown-toggle hide-arrow" data-bs-toggle="dropdown">' +
-                    feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
-                    '</a>' +
-                    '<div class="dropdown-menu dropdown-menu-right">' +
-                    verHTML +
-                    editarHTML +
-                    bloquearHTML +
-                    borrarHTML +
-                    '</div>' +
-                    '</div>' +
-                    '</div>'
+                    `<div class="btn-group">
+                        <a class="btn btn-sm dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                        ${feather.icons['more-vertical'].toSvg({class: 'font-small-4'})}
+                        </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                    ${html}
+                    </div></div></div>`
                 );
             }
         }
@@ -171,12 +173,15 @@ $(function () {
         order: [2, 'asc'],
         exportOptions: {
             name: datatable.opciones,
-            exportButtonPrint: { active: true, exportOptions: { columns: ":visible:not(.not-export-col)" } },
-            exportButtonCSV: { active: true, exportOptions: { columns: ":visible:not(.not-export-col)" } },
-            exportButtonExcel: { active: true, exportOptions: { columns: ":visible:not(.not-export-col)" } },
-            exportButtonPdf: { active: true, exportOptions: { columns: ":visible:not(.not-export-col)" } },
-            exportButtonCopy: { active: true, exportOptions: { columns: ":visible:not(.not-export-col)" } },
-            exportButtonBorrar: { active: userTipo=='admin'? true : false, exportOptions: { columns: ":visible:not(.not-export-col)" } },
+            exportButtonPrint: {active: true, exportOptions: {columns: ":visible:not(.not-export-col)"}},
+            exportButtonCSV: {active: true, exportOptions: {columns: ":visible:not(.not-export-col)"}},
+            exportButtonExcel: {active: true, exportOptions: {columns: ":visible:not(.not-export-col)"}},
+            exportButtonPdf: {active: true, exportOptions: {columns: ":visible:not(.not-export-col)"}},
+            exportButtonCopy: {active: true, exportOptions: {columns: ":visible:not(.not-export-col)"}},
+            exportButtonBorrar: {
+                active: true,
+                exportOptions: {columns: ":visible:not(.not-export-col)"}
+            },
 
         },
         addButton: {
@@ -191,26 +196,19 @@ $(function () {
             data: ['nombre', 'apellidos']
         },
         filtros: filtros,
-        drawCallback: rowDrawCallback
+        rowCallback: rowDrawCallback
     }
 
     // Inicializamos el datatable
     initDatatable(columns, columnDefs, nameCrud, tableClass, options);
-    // Inicializamos el formulario
-    //initForm(nameCrud, tableClass);
-
-    //initCanvas('canvasFirma');
-    //initFlatPicker('flatpickr-basic');
-    // initSelectAgentes('users_id');
-    // initDropzone('dpz-multiple-files', `/${nameCrud}/upload`);
-    //initQuillEditor();
 });
 
-function rowDrawCallback(row, data) {
-    // let blocked = data.is_blocked;
-    // if (blocked) {
-    //     $(row).addClass('bg-gris');
-    // }
+function rowDrawCallback(row, data, index) {
+    let blocked = data.is_blocked;
+    console.log(blocked);
+    if (blocked) {
+        $(row).addClass('bg-cancelado');
+    }
 }
 
 function blockUser(id) {
@@ -222,16 +220,9 @@ function blockUser(id) {
         url: url,
         method: method,
     }).done(response => {
-        console.log(response)
-        Swal.fire({
-            title: '¡Actualizado/a!',
-            text: response.mensaje,
-            confirmButtonClass: 'btn btn-primary',
-            type: 'success',
-            buttonsStyling: !1
-        });
+        standardAjaxResponse('¡Actualizado/a!', response.mensaje)
         let dataTable = $(`.${tableClass}`);
-        dataTable.DataTable().draw();
+        dataTable.DataTable().ajax.reload();
     }).fail(error => {
         let errores = error.responseJSON.errors;
         let textoErrores = ``;

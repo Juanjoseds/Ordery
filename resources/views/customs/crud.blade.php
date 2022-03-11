@@ -34,7 +34,7 @@
         <!-- list section start -->
         <div class="card">
             @yield('content-top')
-            <div id="{{$nameCrud}}-parent-table" class="card-datatable table-responsive pt-0">
+            <div id="{{$nameCrud}}-parent-table" class="card-datatable table-responsive pt-0" style="overflow: inherit;">
                 <table id="{{$nameCrud}}-table" class="user-list-table table">
                     <thead class="thead-light">
                     <tr>

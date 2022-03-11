@@ -23,7 +23,7 @@
 {{--    <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>--}}
 {{--    <script src="{{ asset(mix('vendors/js/extensions/dropzone.min.js')) }}"></script>--}}
     <script src="{{ asset(mix('js/scripts/pages/empleados/empleados.js')). '?v='.$APP_VERSION }}"></script>
-{{--    <script src="{{ asset(mix('js/scripts/custom/custom-canvas.js')). '?v='.$APP_VERSION }}"></script>--}}
+    <script src="{{ asset(mix('js/scripts/custom/custom-form-ajax-response.js')). '?v='.$APP_VERSION }}"></script>
 {{--    <script src="{{asset(mix('js/scripts/ui/ui-feather.js'))}}"></script>--}}
 
 @endsection
