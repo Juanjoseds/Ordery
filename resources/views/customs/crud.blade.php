@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Manage ' . $nameCrud)
+@section('title', 'Gestionar ' . $nameCrud)
 
 @section('vendor-style')
     {{-- Vendor Css files --}}

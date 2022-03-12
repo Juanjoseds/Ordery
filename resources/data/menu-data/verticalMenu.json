@@ -19,9 +19,8 @@
                     "name": "Ver empleados",
                     "icon": "circle",
                     "slug": "admin.pizarraEmpleados",
-                    "permiso_nombre": "",
-                    "permiso_modulo": "",
-                    "mostrar_siempre": true
+                    "permiso_nombre": "Leer",
+                    "permiso_modulo": "Empleados"
                 },
                 {
                     "routeName": "admin.createEmpleado",
@@ -29,9 +28,8 @@
                     "name": "Nuevo empleado",
                     "icon": "circle",
                     "slug": "admin.createEmpleado",
-                    "permiso_nombre": "",
-                    "permiso_modulo": "",
-                    "mostrar_siempre": true
+                    "permiso_nombre": "Editar",
+                    "permiso_modulo": "Empleados"
                 }
             ]
         },
