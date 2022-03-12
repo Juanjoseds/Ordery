@@ -44,6 +44,7 @@
 @section('page-script')
     {{-- Page js files --}}
     <script src="{{ asset(mix('js/scripts/custom/custom-form.js')). '?v='.$APP_VERSION }}"></script>
+    <script src="{{ asset(mix('js/scripts/custom/custom-form-ajax-response.js')). '?v='.$APP_VERSION }}"></script>
     <script src="{{ asset(mix('js/scripts/pages/empleados/formulario.js')). '?v='.$APP_VERSION }}"></script>
     <script src="{{ asset(mix('js/scripts/components/components-navs.js')) . '?v='.$APP_VERSION}}"></script>
     {{-- Sweet Alert --}}
