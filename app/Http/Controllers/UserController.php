@@ -353,4 +353,8 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function perfil(Request $request){
+        return view('/content/perfil/page-profile');
+    }
 }

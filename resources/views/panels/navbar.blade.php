@@ -367,20 +367,20 @@
         </span>
       </a>
       <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
-        <h6 class="dropdown-header">Manage Profile</h6>
+        <h6 class="dropdown-header">Gestionar perfil</h6>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item"
-          href="{{ Route::has('profile.show') ? route('profile.show') : 'javascript:void(0)' }}">
-          <i class="me-50" data-feather="user"></i> Profile
+          href="{{route('admin.perfil')}}">
+          <i class="me-50" data-feather="user"></i> Perfil
         </a>
 {{--        @if (Auth::check() && Laravel\Jetstream\Jetstream::hasApiFeatures())--}}
 {{--          <a class="dropdown-item" href="{{ route('api-tokens.index') }}">--}}
 {{--            <i class="me-50" data-feather="key"></i> API Tokens--}}
 {{--          </a>--}}
 {{--        @endif--}}
-        <a class="dropdown-item" href="#">
-          <i class="me-50" data-feather="settings"></i> Settings
-        </a>
+{{--        <a class="dropdown-item" href="#">--}}
+{{--          <i class="me-50" data-feather="settings"></i> Settings--}}
+{{--        </a>--}}
 
 {{--        @if (Auth::User() && Laravel\Jetstream\Jetstream::hasTeamFeatures())--}}
 {{--          <div class="dropdown-divider"></div>--}}

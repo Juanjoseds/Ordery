@@ -25,6 +25,7 @@ Route::get('/', [WebpagesController::class, 'home'])->name('home');
 // 'middleware'=> ['rol:admin']
 Route::group(['prefix' => 'admin', 'as'=>'admin.' ], function () {
     Route::get('dashboard', [DashboardController::class, 'indexAdmin'])->name('dashboard');
+    Route::get('perfil', [UserController::class, 'perfil'])->name('perfil');
 
     Route::prefix('empleados')->group(function () {
         Route::group(['middleware' => ['permission:Empleados,Leer']], function () {
