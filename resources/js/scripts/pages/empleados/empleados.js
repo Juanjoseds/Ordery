@@ -210,7 +210,6 @@ $(function () {
 
 function rowDrawCallback(row, data, index) {
     let blocked = data.is_blocked;
-    console.log(blocked);
     if (blocked) {
         $(row).addClass('bg-cancelado');
     }
