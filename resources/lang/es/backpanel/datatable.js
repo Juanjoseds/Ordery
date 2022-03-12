@@ -26,12 +26,14 @@ const datatable = {
     'editar': 'Editar',
     'ver': 'Ver',
     'borrar': 'Borrar',
-    'desactivar': 'Desactivar',
     'activar': 'Activar',
     'activo': 'Activo',
     'inactivo': 'Inactivo',
     'pendiente': 'Pendiente',
     'finalizado': 'Finalizado',
+    'bloquear': 'Bloquear',
+    'desbloquear': 'Desbloquear',
+    'desactivar': 'Desactivar',
 
     /* Filtros */
     'buscarPor': 'Buscar por',

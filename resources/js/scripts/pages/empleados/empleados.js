@@ -74,37 +74,43 @@ $(function () {
             render: function (data, type, full, meta) {
                 let html = ``;
 
-                if (full.permiso_leer) {
-                    html += `<a href="javascript:void(0)" class="dropdown-item read-record" data-record="${full.id}">
+                if(full.tipo === 'empleado'){
+                    if (full.permiso_leer) {
+                        html += `<a href="javascript:void(0)" class="dropdown-item read-record" data-record="${full.id}">
                     ${feather.icons['eye'].toSvg({class: 'font-small-4 me-50'})} ${datatable.ver}</a>`;
-                }
+                    }
 
-                if (full.permiso_editar) {
-                    html += `<a href="javascript:void(0)" class="dropdown-item edit-record" data-record="${full.id}">
+                    if (full.permiso_editar) {
+                        html += `<a href="javascript:void(0)" class="dropdown-item edit-record" data-record="${full.id}">
                     ${feather.icons['archive'].toSvg({class: 'font-small-4 me-50'})} ${datatable.editar}</a>`;
-                }
+                    }
 
-                if (full.permiso_borrar) {
-                    html += `<a href="javascript:void(0)" class="dropdown-item delete-record" data-record="'${full.id}">
+                    if (full.permiso_borrar) {
+                        html += `<a href="javascript:void(0)" class="dropdown-item delete-record" data-record="'${full.id}">
                     ${feather.icons['trash-2'].toSvg({class: 'font-small-4 me-50'})} ${datatable.borrar}</a>`
-                }
+                    }
 
-                let textBloquear = (full.is_blocked) ? datatable.desbloquear : datatable.bloquear;
+                    let textBloquear = (full.is_blocked) ? datatable.desbloquear : datatable.bloquear;
 
-                if (full.permiso_editar) {
-                    html += `<a href="javascript:void(0)" onclick="blockUser('${full.id}')" class="dropdown-item block-record" data-record="${full.id}">
+                    if (full.permiso_editar) {
+                        html += `<a href="javascript:void(0)" onclick="blockUser('${full.id}')" class="dropdown-item block-record" data-record="${full.id}">
                     ${feather.icons['alert-octagon'].toSvg({class: 'font-small-4 me-50'})} ${textBloquear}</a>`;
-                }
+                    }
 
-                return (
-                    `<div class="btn-group">
+                    return (
+                        `<div class="btn-group">
                         <a class="btn btn-sm dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                         ${feather.icons['more-vertical'].toSvg({class: 'font-small-4'})}
                         </a>
                     <div class="dropdown-menu dropdown-menu-right">
                     ${html}
                     </div></div></div>`
-                );
+                    );
+                }
+
+                return '';
+
+
             }
         }
     ];

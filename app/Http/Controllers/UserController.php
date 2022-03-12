@@ -2,20 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EmpleadoUpdateRequest;
-use App\Models\Expediente;
-use App\Models\ExpedienteArchivo;
 use App\Models\Permiso;
-use App\Notifications\NewEmpleadoNotify;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\UserRequest;
-use App\Models\Permisos;
+use Laravolt\Avatar\Avatar;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
@@ -198,7 +192,14 @@ class UserController extends Controller
         }
     }
     public function getDataJson(Request $request) {
-        $empleados = User::query();
+        // Traemos todos los usuarios admins (tando admin como empleados)
+        $empleados = User::query()
+            ->where(function ($q) {
+                $q->orWhere('tipo', 'admin')
+                    ->orWhere('tipo', 'empleado');
+            })
+            ->where('tienda_id', null);
+
         $permisoLeer = $this->user->hasPermiso('Empleados','Leer');
         $permisoEditar = $this->user->hasPermiso('Empleados','Editar');
         $permisoBorrar = $this->user->hasPermiso('Empleados','Borrar');
@@ -212,6 +213,9 @@ class UserController extends Controller
             })
             ->addColumn('permiso_editar', function ($model) use($permisoEditar){
                 return $permisoEditar;
+            })
+            ->editColumn('imagen', function ($model){
+                return $model->imagen ?? (new Avatar)->create($model->nombre . ' ' . $model->apellidos)->toBase64();
             })
             ->editColumn('created_at', function ($model){
                 return Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d-m-Y');
@@ -348,114 +352,5 @@ class UserController extends Controller
                 'message'=>'Error al actualizar datos.'
             ]);
         }
-    }
-
-    /** AGENTES */
-    //getAgents de los selects 2
-    public function getAgents(Request $request){
-        $patron = " ";
-        if(isset($request->term)){
-            $patron = $request->term;
-        }
-        $searchValues = preg_split('/\s+/', $patron, -1, PREG_SPLIT_NO_EMPTY);
-        return DB::table('users')
-            ->where('tipo', 'agente')
-            ->where(function ($q) use ($searchValues) {
-            foreach ($searchValues as $value) {
-                $q->orWhere('users.nombre', 'LIKE', "%{$value}%");
-            }
-        })->select('users.id', 'users.nombre', 'users.apellidos', 'users.email' )->limit(20)->get();
-    }
-
-    public function indexAgentes()
-    {
-        $nameCrud = 'agentes';
-        return view('/content/agentes/agentes', compact('nameCrud'));
-    }
-    public function getDataJsonAgentes(Request $request) {
-        $agentes = User::query()->where('tipo','agente');
-        $permisoLeer = \auth()->user()->hasPermiso('Empleados','Leer');
-        $permisoEditar = \auth()->user()->hasPermiso('Agentes','Editar');
-        $permisoBorrar = \auth()->user()->hasPermiso('Agentes','Borrar');
-        return DataTables::eloquent($agentes)
-            ->addColumn('permiso_leer', function ($model) use($permisoLeer){
-                return $permisoLeer;
-            })
-            ->addColumn('permiso_borrar', function ($model) use($permisoBorrar){
-                return $permisoBorrar;
-            })
-            ->addColumn('permiso_editar', function ($model) use($permisoEditar){
-                return $permisoEditar;
-            })
-//            ->editColumn('users_id', function ($model){
-//                return User::find(intval($model->users_id), 'id')->value('name');
-//            })
-            ->editColumn('created_at', function ($model){
-                return Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d-m-Y');
-            })
-            ->toJson();
-    }
-    public function newAgente(Request $request) {
-        $permisos = Permisos::where('rol_agente', 1)->get()->toArray();
-        $permisos_normales = array_filter($permisos, function($permiso) {
-            return ($permiso['especial'] == 0);
-        });
-        $permisos_especiales = array_filter($permisos, function($permiso) {
-            return ($permiso['especial'] == 1);
-        });
-        return view('content.agentes.formulario', [
-            'permisos' => $permisos_normales,
-            'permisos_especiales' => $permisos_especiales,
-            'method' => 'Nuevo'
-        ]);
-    }
-    public function editAgente($id)
-    {
-        $empleado = User::query()->where('id', $id)->first();
-
-        $allPermisos = Permisos::with(['users' => function($query) use($id){
-            $query->where('users.id', $id);
-        }])->where('rol_agente', 1)->get()->toArray();
-
-        $permisos_normales = array_filter($allPermisos, function($permiso) {
-            return ($permiso['especial'] == 0);
-        });
-        $permisos_especiales = array_filter($allPermisos, function($permiso) {
-            return ($permiso['especial'] == 1);
-        });
-
-
-        return view('content.agentes.formulario', [
-            'permisos' => $permisos_normales,
-            'permisos_especiales' => $permisos_especiales,
-            'empleado' => $empleado,
-            'method' => 'Editar'
-        ]);
-
-    }
-
-    public function showAgente($id)
-    {
-        $empleado = User::query()->where('id', $id)->first();
-
-        $allPermisos = Permisos::with(['users' => function($query) use($id){
-            $query->where('users.id', $id);
-        }])->where('rol_agente', 1)->get()->toArray();
-
-        $permisos_normales = array_filter($allPermisos, function($permiso) {
-            return ($permiso['especial'] == 0);
-        });
-        $permisos_especiales = array_filter($allPermisos, function($permiso) {
-            return ($permiso['especial'] == 1);
-        });
-
-
-        return view('content.agentes.formulario', [
-            'permisos' => $permisos_normales,
-            'permisos_especiales' => $permisos_especiales,
-            'empleado' => $empleado,
-            'method' => 'Ver'
-        ]);
-
     }
 }
