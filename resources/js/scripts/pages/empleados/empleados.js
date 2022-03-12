@@ -39,7 +39,7 @@ $(function () {
             responsivePriority: 3,
             render: function (data, type, full, meta) {
                 return (
-                    '<div class="custom-control custom-checkbox"> <input class="custom-control-input dt-checkboxes" type="checkbox" value="" id="checkbox' +
+                    '<div class="form-check form-check-primary custom-checkbox"> <input class="form-check-input dt-checkboxes" type="checkbox" value="" id="checkbox' +
                     data +
                     '" /><label class="custom-control-label" for="checkbox' +
                     data +
@@ -48,7 +48,7 @@ $(function () {
             },
             checkboxes: {
                 selectAllRender:
-                    '<div class="custom-control custom-checkbox"> <input class="custom-control-input" type="checkbox" value="" id="checkboxSelectAll" /><label class="custom-control-label" for="checkboxSelectAll"></label></div>'
+                    '<div class="form-check form-check-primary custom-checkbox"> <input class="form-check-input" type="checkbox" value="" id="checkboxSelectAll" /><label class="custom-control-label" for="checkboxSelectAll"></label></div>'
             }
         },
         {

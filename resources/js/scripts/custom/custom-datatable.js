@@ -637,7 +637,7 @@ function initDatatable(columns, columnDefs, nameCrud, tableClass, options = null
     let contentActions = (options !== null && options.hasOwnProperty('contentActionsStyle')) ? options.contentActionsStyle : 'col-md-12 col-lg-8 pl-xl-75 pl-0';
 
     let domHTML = `
-        <"d-flex justify-content-between align-items-center header-actions mx-1 row mt-75"`;
+        <"d-flex justify-content-between align-items-center header-actions mx-1 row my-75"`;
 
     if (options !== undefined && options.domRows) {
       domHTML += `<"col-md-12 col-lg-4" l>`;

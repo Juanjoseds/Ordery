@@ -88,7 +88,7 @@ class UserController extends Controller
             $passActual = $user->password;
             $user->fill($fields);
             //$fields = $request->only($user->getFillable());
-            $user->is_blocked = 0;
+            $user->is_blocked = isset($request->is_blocked) ? 1 : 0;
             $user->tipo = is_null($request->tipo) ? 'empleado' : $request->tipo;
 
             if(!is_null($request->password)){
