@@ -1,4 +1,7 @@
 // User profile Scss
+@import '../bootstrap-extended/include'; // Bootstrap includes
+@import '../components/include'; // Components includes
+
 #user-profile {
   /*-------------profile header section---------*/
   .profile-header {

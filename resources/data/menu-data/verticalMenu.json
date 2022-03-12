@@ -33,6 +33,39 @@
                 }
             ]
         },
+        {
+            "name": "Tiendas",
+            "icon": "briefcase",
+            "slug": "",
+            "submenu": [
+                {
+                    "routeName": "admin.pizarraTiendas",
+                    "url": "",
+                    "name": "Ver tiendas",
+                    "icon": "circle",
+                    "slug": "admin.pizarraTiendas",
+                    "permiso_nombre": "Leer",
+                    "permiso_modulo": "Tiendas"
+                },
+                {
+                    "routeName": "admin.createTiendas",
+                    "url": "",
+                    "name": "Nueva tienda",
+                    "icon": "circle",
+                    "slug": "admin.createTiendas",
+                    "permiso_nombre": "Editar",
+                    "permiso_modulo": "Tiendas"
+                }
+            ]
+        },
+        {
+            "routeName": "",
+            "name": "Métodos de pago",
+            "icon": "credit-card",
+            "slug": "admin.dashboard",
+            "permiso_nombre": "Leer",
+            "permiso_modulo": "Metodos de pago"
+        },
 
 
         {

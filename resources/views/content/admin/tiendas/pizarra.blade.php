@@ -22,7 +22,7 @@
 @section('crud-scripts')
 {{--    <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>--}}
 {{--    <script src="{{ asset(mix('vendors/js/extensions/dropzone.min.js')) }}"></script>--}}
-    <script src="{{ asset(mix('js/scripts/pages/empleados/pizarra.js')). '?v='.$APP_VERSION }}"></script>
+    <script src="{{ asset(mix('js/scripts/pages/tiendas/pizarra.js')). '?v='.$APP_VERSION }}"></script>
 {{--    <script src="{{asset(mix('js/scripts/ui/ui-feather.js'))}}"></script>--}}
 
 @endsection

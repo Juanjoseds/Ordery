@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TiendaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebpagesController;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +28,7 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.' ], function () {
     Route::get('dashboard', [DashboardController::class, 'indexAdmin'])->name('dashboard');
     Route::get('perfil', [UserController::class, 'perfil'])->name('perfil');
 
+    /** EMPLEADOS **/
     Route::prefix('empleados')->group(function () {
         Route::group(['middleware' => ['permission:Empleados,Leer']], function () {
             Route::get('pizarra', [UserController::class, 'index'])->name('pizarraEmpleados');
@@ -40,6 +42,25 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.' ], function () {
             Route::put('store/{id?}', [UserController::class, 'store']);
             Route::get('edit/{id}', [UserController::class, 'edit']);
             Route::post('block/{id}', [UserController::class, 'block']);
+        });
+
+
+    });
+
+    /** TIENDAS **/
+    Route::prefix('tiendas')->group(function () {
+        Route::group(['middleware' => ['permission:Tiendas,Leer']], function () {
+            Route::get('pizarra', [TiendaController::class, 'index'])->name('pizarraTiendas');
+            Route::post('json', [TiendaController::class, 'getDataJson']);
+            Route::get('show/{id}', [TiendaController::class, 'show']);
+        });
+
+        Route::group(['middleware' => ['permission:Tiendas,Editar']], function () {
+            Route::get('new', [TiendaController::class, 'new'])->name('createTiendas');
+            Route::post('store', [TiendaController::class, 'store']);
+            Route::put('store/{id?}', [TiendaController::class, 'store']);
+            Route::get('edit/{id}', [TiendaController::class, 'edit']);
+            Route::post('block/{id}', [TiendaController::class, 'block']);
         });
 
 

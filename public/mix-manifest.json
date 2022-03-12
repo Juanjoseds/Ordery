@@ -31,7 +31,6 @@
     "/css/base/core/colors/palette-noui.css": "/css/base/core/colors/palette-noui.css",
     "/css/base/core/colors/palette-gradient.css": "/css/base/core/colors/palette-gradient.css",
     "/css/base/pages/ui-feather.css": "/css/base/pages/ui-feather.css",
-    "/css/base/pages/page-profile.css": "/css/base/pages/page-profile.css",
     "/css/base/pages/page-pricing.css": "/css/base/pages/page-pricing.css",
     "/css/base/pages/page-misc.css": "/css/base/pages/page-misc.css",
     "/css/base/pages/page-knowledge-base.css": "/css/base/pages/page-knowledge-base.css",
@@ -166,6 +165,8 @@
     "/js/scripts/pages/page-knowledge-base.js": "/js/scripts/pages/page-knowledge-base.js",
     "/js/scripts/pages/page-pricing.js": "/js/scripts/pages/page-pricing.js",
     "/js/scripts/pages/page-profile.js": "/js/scripts/pages/page-profile.js",
+    "/js/scripts/pages/tiendas/formulario.js": "/js/scripts/pages/tiendas/formulario.js",
+    "/js/scripts/pages/tiendas/pizarra.js": "/js/scripts/pages/tiendas/pizarra.js",
     "/js/scripts/pagination/components-pagination.js": "/js/scripts/pagination/components-pagination.js",
     "/js/scripts/tables/table-datatables-advanced.js": "/js/scripts/tables/table-datatables-advanced.js",
     "/js/scripts/tables/table-datatables-basic.js": "/js/scripts/tables/table-datatables-basic.js",
@@ -609,5 +610,6 @@
     "/js/web/core/bootstrap.bundle.min.js": "/js/web/core/bootstrap.bundle.min.js",
     "/js/web/core/floating-wpp.min.js": "/js/web/core/floating-wpp.min.js",
     "/js/web/core/jquery2.min.js": "/js/web/core/jquery2.min.js",
-    "/js/web/core/select2.min.js": "/js/web/core/select2.min.js"
+    "/js/web/core/select2.min.js": "/js/web/core/select2.min.js",
+    "/css/base/pages/page-profile.css": "/css/base/pages/page-profile.css"
 }
