@@ -58,7 +58,7 @@ $(function () {
             responsivePriority: 3,
             render: function (data, type, full, meta) {
                 if (data != null) {
-                    return `<img height="80px" width="auto" src="${data}" alt="Ziegel Foto Empleado"/>`
+                    return `<img height="80px" width="auto" src="${data}" alt="Imagen empleado"/>`
                 } else {
                     return `Sin imagen`;
                 }
