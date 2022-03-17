@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Permiso;
+use App\Models\Tienda;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Carbon\Carbon;
@@ -181,29 +182,25 @@ class TiendaController extends Controller
             return response()->json("'No se ha podido actualizar los permisos del usuario el usuario", 500);
         }
     }
-    public function destroyAll(Request  $request)
-    {
-        try {
-            $agentes = User::whereIn('id', $request->ids)->delete();
-            return response('Los agentes se han borrado correctamente', 200);
-        } catch (\Exception $e) {
-            dd($e);
-        }
-    }
+//    public function destroyAll(Request  $request)
+//    {
+//        try {
+//            $agentes = User::whereIn('id', $request->ids)->delete();
+//            return response('Los agentes se han borrado correctamente', 200);
+//        } catch (\Exception $e) {
+//            dd($e);
+//        }
+//    }
+
     public function getDataJson(Request $request) {
         // Traemos todos los usuarios admins (tando admin como empleados)
-        $empleados = User::query()
-            ->where(function ($q) {
-                $q->orWhere('tipo', 'admin')
-                    ->orWhere('tipo', 'empleado');
-            })
-            ->where('tienda_id', null);
+        $tiendas = Tienda::query();
 
-        $permisoLeer = $this->user->hasPermiso('Empleados','Leer');
-        $permisoEditar = $this->user->hasPermiso('Empleados','Editar');
-        $permisoBorrar = $this->user->hasPermiso('Empleados','Borrar');
+        $permisoLeer = $this->user->hasPermiso('Tiendas','Leer');
+        $permisoEditar = $this->user->hasPermiso('Tiendas','Editar');
+        $permisoBorrar = $this->user->hasPermiso('Tiendas','Borrar');
 
-        return DataTables::eloquent($empleados)
+        return DataTables::eloquent($tiendas)
             ->addColumn('permiso_leer', function ($model) use($permisoLeer){
                 return $permisoLeer;
             })
@@ -212,9 +209,6 @@ class TiendaController extends Controller
             })
             ->addColumn('permiso_editar', function ($model) use($permisoEditar){
                 return $permisoEditar;
-            })
-            ->editColumn('imagen', function ($model){
-                return $model->imagen ?? (new Avatar)->create($model->nombre . ' ' . $model->apellidos)->toBase64();
             })
             ->editColumn('created_at', function ($model){
                 return Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d-m-Y');

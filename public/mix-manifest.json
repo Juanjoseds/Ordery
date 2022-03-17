@@ -31,6 +31,7 @@
     "/css/base/core/colors/palette-noui.css": "/css/base/core/colors/palette-noui.css",
     "/css/base/core/colors/palette-gradient.css": "/css/base/core/colors/palette-gradient.css",
     "/css/base/pages/ui-feather.css": "/css/base/pages/ui-feather.css",
+    "/css/base/pages/page-profile.css": "/css/base/pages/page-profile.css",
     "/css/base/pages/page-pricing.css": "/css/base/pages/page-pricing.css",
     "/css/base/pages/page-misc.css": "/css/base/pages/page-misc.css",
     "/css/base/pages/page-knowledge-base.css": "/css/base/pages/page-knowledge-base.css",
@@ -145,8 +146,8 @@
     "/js/scripts/pages/auth-two-steps.js": "/js/scripts/pages/auth-two-steps.js",
     "/js/scripts/pages/dashboard-analytics.js": "/js/scripts/pages/dashboard-analytics.js",
     "/js/scripts/pages/dashboard-ecommerce.js": "/js/scripts/pages/dashboard-ecommerce.js",
-    "/js/scripts/pages/empleados/empleados.js": "/js/scripts/pages/empleados/empleados.js",
     "/js/scripts/pages/empleados/formulario.js": "/js/scripts/pages/empleados/formulario.js",
+    "/js/scripts/pages/empleados/pizarra.js": "/js/scripts/pages/empleados/pizarra.js",
     "/js/scripts/pages/modal-add-new-address.js": "/js/scripts/pages/modal-add-new-address.js",
     "/js/scripts/pages/modal-add-new-cc.js": "/js/scripts/pages/modal-add-new-cc.js",
     "/js/scripts/pages/modal-add-permission.js": "/js/scripts/pages/modal-add-permission.js",
@@ -610,6 +611,5 @@
     "/js/web/core/bootstrap.bundle.min.js": "/js/web/core/bootstrap.bundle.min.js",
     "/js/web/core/floating-wpp.min.js": "/js/web/core/floating-wpp.min.js",
     "/js/web/core/jquery2.min.js": "/js/web/core/jquery2.min.js",
-    "/js/web/core/select2.min.js": "/js/web/core/select2.min.js",
-    "/css/base/pages/page-profile.css": "/css/base/pages/page-profile.css"
+    "/js/web/core/select2.min.js": "/js/web/core/select2.min.js"
 }

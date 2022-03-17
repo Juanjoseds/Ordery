@@ -62,7 +62,7 @@
             "routeName": "",
             "name": "Métodos de pago",
             "icon": "credit-card",
-            "slug": "admin.dashboard",
+            "slug": "",
             "permiso_nombre": "Leer",
             "permiso_modulo": "Metodos de pago"
         },
