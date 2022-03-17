@@ -192,13 +192,8 @@ class UserController extends Controller
         }
     }
     public function getDataJson(Request $request) {
-        // Traemos todos los usuarios admins (tando admin como empleados)
-        $empleados = User::query()
-            ->where(function ($q) {
-                $q->orWhere('tipo', 'admin')
-                    ->orWhere('tipo', 'empleado');
-            })
-            ->where('tienda_id', null);
+        // Traemos todos los usuarios admins
+        $empleados = User::query()->where('rol', 'admin');
 
         $permisoLeer = $this->user->hasPermiso('Empleados','Leer');
         $permisoEditar = $this->user->hasPermiso('Empleados','Editar');

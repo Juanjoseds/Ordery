@@ -31,7 +31,7 @@ class UserFactory extends Factory
             'tipo' => 'admin',
             'email' => 'admin@gmail.com',
             'descripcion' => 'Me encanta el chocolate. ¡Qué bien sienta desayunar chocolate caliente!',
-            'rol' => 'Admin',
+            'rol' => 'admin',
             'email_verified_at' => now(),
             'email_verify_token' => Hash::make('admin@gmail.com'),
             'password' => '$2y$10$t1BD1uLo7T9lz5MgwllVd.maotIJLYN/byf8gzxc91PRXgCVi7OW2', // password

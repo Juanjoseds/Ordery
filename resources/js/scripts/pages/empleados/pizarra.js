@@ -9,6 +9,7 @@ $(function () {
     'use strict';
 
     const nameCrud = "empleados";
+    const user_tipo = $('#tipo_user').val();
 
     const columns = [
         // columns according to JSON RESPONSE
@@ -58,7 +59,7 @@ $(function () {
             responsivePriority: 3,
             render: function (data, type, full, meta) {
                 if (data != null) {
-                    return `<img height="80px" width="auto" src="${data}" alt="Imagen empleado"/>`
+                    return `<img height="50px" width="auto" src="${data}" alt="Imagen empleado"/>`
                 } else {
                     return `Sin imagen`;
                 }
@@ -74,7 +75,7 @@ $(function () {
             render: function (data, type, full, meta) {
                 let html = ``;
 
-                if(full.tipo === 'empleado'){
+                if(full.tipo === 'empleado' || user_tipo === 'admin'){
                     if (full.permiso_leer) {
                         html += `<a href="javascript:void(0)" class="dropdown-item read-record" data-record="${full.id}">
                     ${feather.icons['eye'].toSvg({class: 'font-small-4 me-50'})} ${datatable.ver}</a>`;

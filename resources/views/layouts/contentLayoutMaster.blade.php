@@ -32,6 +32,9 @@ data-textdirection="{{ env('MIX_CONTENT_DIRECTION') === 'rtl' ? 'rtl' : 'ltr' }}
 </head>
 <!-- END: Head-->
 
+<input type="hidden" id="tipo_user" value="{{$user_auth->tipo}}">
+<input type="hidden" id="method" value="{{ @$method }}">
+
 <!-- BEGIN: Body-->
 @include('panels.loading')
 @isset($configData["mainLayoutType"])
