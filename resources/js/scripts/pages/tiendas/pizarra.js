@@ -16,11 +16,12 @@ $(function () {
         {data: 'id'},//Este es para el checkbox
         {data: 'imagen', className: 'not-export-col'},
         {data: 'nombre'},
-        {data: 'apellidos'},
-        {data: 'dni'},
+        {data: 'nombre_legal'},
+        {data: 'cif'},
         {data: 'email'},
         {data: 'telefono'},
-        {data: 'tipo'},
+        {data: 'url'},
+        {data: 'created_at'},
         {data: 'id', className: 'not-export-col'},//Este es para las acciones
     ];
 
@@ -74,42 +75,38 @@ $(function () {
             render: function (data, type, full, meta) {
                 let html = ``;
 
-                if(full.tipo === 'empleado'){
-                    if (full.permiso_leer) {
-                        html += `<a href="javascript:void(0)" class="dropdown-item read-record" data-record="${full.id}">
-                    ${feather.icons['eye'].toSvg({class: 'font-small-4 me-50'})} ${datatable.ver}</a>`;
-                    }
-
-                    if (full.permiso_editar) {
-                        html += `<a href="javascript:void(0)" class="dropdown-item edit-record" data-record="${full.id}">
-                    ${feather.icons['archive'].toSvg({class: 'font-small-4 me-50'})} ${datatable.editar}</a>`;
-                    }
-
-                    if (full.permiso_borrar) {
-                        html += `<a href="javascript:void(0)" class="dropdown-item delete-record" data-record="'${full.id}">
-                    ${feather.icons['trash-2'].toSvg({class: 'font-small-4 me-50'})} ${datatable.borrar}</a>`
-                    }
-
-                    let textBloquear = (full.is_blocked) ? datatable.desbloquear : datatable.bloquear;
-
-                    if (full.permiso_editar) {
-                        html += `<a href="javascript:void(0)" onclick="blockUser('${full.id}')" class="dropdown-item block-record" data-record="${full.id}">
-                    ${feather.icons['alert-octagon'].toSvg({class: 'font-small-4 me-50'})} ${textBloquear}</a>`;
-                    }
-
-                    return (
-                        `<div class="btn-group">
-                        <a class="btn btn-sm dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                        ${feather.icons['more-vertical'].toSvg({class: 'font-small-4'})}
-                        </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                    ${html}
-                    </div></div></div>`
-                    );
+                if (full.permiso_leer) {
+                    html += `<a href="javascript:void(0)" class="dropdown-item read-record" data-record="${full.id}">
+                ${feather.icons['eye'].toSvg({class: 'font-small-4 me-50'})} ${datatable.ver}</a>`;
                 }
 
-                return '';
+                if (full.permiso_editar) {
+                    html += `<a href="javascript:void(0)" class="dropdown-item edit-record" data-record="${full.id}">
+                ${feather.icons['archive'].toSvg({class: 'font-small-4 me-50'})} ${datatable.editar}</a>`;
+                }
 
+                if (full.permiso_borrar) {
+                    html += `<a href="javascript:void(0)" class="dropdown-item delete-record" data-record="${full.id}">
+                ${feather.icons['trash-2'].toSvg({class: 'font-small-4 me-50'})} ${datatable.borrar}</a>`
+                }
+
+                let textBloquear = (full.is_blocked) ? datatable.desbloquear : datatable.bloquear;
+
+                if (full.permiso_editar) {
+                    html += `<a href="javascript:void(0)" onclick="blockUser('${full.id}')" class="dropdown-item block-record" data-record="${full.id}">
+                ${feather.icons['alert-octagon'].toSvg({class: 'font-small-4 me-50'})} ${textBloquear}</a>`;
+                }
+
+                if(html === '') return '';
+                return (
+                    `<div class="btn-group">
+                    <a class="btn btn-sm dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                    ${feather.icons['more-vertical'].toSvg({class: 'font-small-4'})}
+                    </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                ${html}
+                </div></div></div>`
+                );
 
             }
         }
@@ -147,25 +144,17 @@ $(function () {
             type: 'text',
         },
         {
-            title: 'Tipo',
+            title: 'URL',
             column: 8,
             className: 'col-2 px-50',
-            type: 'select',
-            opcionesSelect: [
-                {
-                    text: 'Selecciona un tipo',
-                    valor: '',
-                },
-                {
-                    text: 'Admin',
-                    valor: 'admin',
-                },
-                {
-                    text: 'Agente',
-                    valor: 'agente',
-                }
-            ]
-        }
+            type: 'text',
+        },
+        {
+            title: 'Fecha creación',
+            column: 9,
+            className: 'col-2 px-50',
+            type: 'flatpickr',
+        },
     ];
     /**
      * Opciones disponibles:

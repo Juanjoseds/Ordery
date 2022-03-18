@@ -63,6 +63,11 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.' ], function () {
             Route::post('block/{id}', [TiendaController::class, 'block']);
         });
 
+        Route::group(['middleware' => ['permission:Empleados,Borrar']], function () {
+            Route::delete('delete/{id}', [TiendaController::class, 'destroy']);
+            Route::delete('delete-multiple', [TiendaController::class, 'destroyAll']);
+        });
+
 
     });
 });

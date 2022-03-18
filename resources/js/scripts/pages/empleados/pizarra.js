@@ -87,7 +87,7 @@ $(function () {
                     }
 
                     if (full.permiso_borrar) {
-                        html += `<a href="javascript:void(0)" class="dropdown-item delete-record" data-record="'${full.id}">
+                        html += `<a href="javascript:void(0)" class="dropdown-item delete-record" data-record="${full.id}">
                     ${feather.icons['trash-2'].toSvg({class: 'font-small-4 me-50'})} ${datatable.borrar}</a>`
                     }
 

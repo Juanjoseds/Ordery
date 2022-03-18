@@ -21,6 +21,8 @@ class Tienda extends Model
         'cif',
         'telefono',
         'email',
+        'url',
+        'is_blocked'
     ];
 
 }
