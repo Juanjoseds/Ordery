@@ -10,22 +10,24 @@
 @section('page-style')
     {{-- Page Css files --}}
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('fonts/font-awesome/css/font-awesome.min.css')) }}">
 @endsection
 
 @section('form')
-    <form class="{{$nameCrud}}-form pt-0" @if(isset($pregunta->id)) data-record="{{$pregunta->id}}" @endif>
+    <form class="{{$nameCrud}}-form pt-0" @if(isset($tienda->id)) data-record="{{$tienda->id}}" @endif>
         @csrf
         @if(@$method === 'Ver') <fieldset disabled> @endif
+            <h3><i class="fa fa-info-circle"></i> Información básica</h3>
             <div class="row">
                 <div class="col-lg-3 col-12">
                     <div class="form-group col-12">
-                        <label class="form-label">Imagen del empleado</label>
+                        <label for="nombre">Imagen de la tienda</label>
                         <div class="w-100 text-center">
                             <img id="display_uploaded" class="img-fluid cursor-pointer"
                                  style="width: 10em;"
                                  alt="Imagen agente"
                                  @if($method != 'Nuevo')
-                                 src="{{isset($tienda->imagen) ? $tienda->imagen : asset('images/assets/upload.svg')}}"
+                                 src="{{isset($tienda->imagenes) ? $tienda->imagenes : asset('images/assets/upload.svg')}}"
                                  @else
                                  src="{{asset('images/assets/upload.svg')}}"
                                 @endif
@@ -35,13 +37,13 @@
                         </div>
                         <input type="text" id="image_uploaded" name="imagen" style="position: absolute;z-index: -1;"
                                @if($method != 'Nuevo')
-                               value="{{isset($tienda->imagen) ? $tienda->imagen : ''}}"
+                               value="{{isset($tienda->imagenes) ? $tienda->imagenes : ''}}"
                             @endif
                         >
                         <input type="file" hidden id="image_upload">
                     </div>
                 </div>
-                <div class="col-lg-8 col-12 row align-content-start">
+                <div class="col-lg-9 col-12 row align-content-start">
 
                     <div class="col-lg-4 col-md-6 col-12 mb-1">
                         <div class="form-group">
@@ -95,11 +97,63 @@
                     </div>
                     <div class="col-lg-4 col-md-6 col-12 mb-1">
                         <div class="form-group">
-                            <label for="url">URL</label>
+                            <label for="url">URL de acceso</label>
                             <input id="url" name="url" type="text" class="form-control"
                                    data-required="El campo url es requerido"
                                    data-minlength="3"
                                    @if($method != 'Nuevo') value="{{$tienda->url}}"@endif
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-12 mb-1">
+                        <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <textarea id="descripcion" name="descripcion" type="text" class="form-control">{{@$tienda->descripcion}}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="mt-1"><i class="fa fa-info-circle"></i> Datos necesarios</h3>
+            <div class="row">
+                <div class="col-lg-12 col-12 row align-content-start">
+                    <div class="col-lg-3 col-md-6 col-12 mb-1">
+                        <div class="form-group">
+                            <label for="direccion">Dirección</label>
+                            <input id="direccion" name="direccion" type="text" class="form-control"
+                                   data-required="El campo dirección es requerido"
+                                   data-minlength="3"
+                                   @if($method != 'Nuevo') value="{{$tienda->direccion}}"@endif
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12 mb-1">
+                        <div class="form-group">
+                            <label for="codigo_postal">Código postal</label>
+                            <input id="codigo_postal" name="codigo_postal" type="text" class="form-control"
+                                   data-required="El campo código postal es requerido"
+                                   data-minlength="3"
+                                   @if($method != 'Nuevo') value="{{$tienda->codigo_postal}}"@endif
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12 mb-1">
+                        <div class="form-group">
+                            <label for="ciudad">Ciudad</label>
+                            <input id="ciudad" name="ciudad" type="text" class="form-control"
+                                   data-required="El campo ciudad es requerido"
+                                   data-minlength="3"
+                                   @if($method != 'Nuevo') value="{{$tienda->ciudad}}"@endif
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12 mb-1">
+                        <div class="form-group">
+                            <label for="provincia">Provincia</label>
+                            <input id="provincia" name="provincia" type="text" class="form-control"
+                                   data-required="El campo provincia es requerido"
+                                   data-minlength="3"
+                                   @if($method != 'Nuevo') value="{{$tienda->provincia}}"@endif
                             />
                         </div>
                     </div>

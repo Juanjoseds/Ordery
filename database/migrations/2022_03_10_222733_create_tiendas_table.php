@@ -20,14 +20,14 @@ class CreateTiendasTable extends Migration
             $table->string('cif');
             $table->string('telefono');
             $table->string('email');
-            $table->longText('imagenes');
+            $table->longText('imagenes')->nullable();
             $table->longText('direccion');
             $table->longText('codigo_postal');
             $table->longText('ciudad');
             $table->longText('provincia');
             $table->longText('descripcion');
             $table->string('url');
-            $table->tinyInteger('is_blocked');
+            $table->tinyInteger('is_blocked')->default(0);
             $table->timestamps();
         });
     }

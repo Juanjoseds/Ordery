@@ -22,7 +22,13 @@ class Tienda extends Model
         'telefono',
         'email',
         'url',
-        'is_blocked'
+        'is_blocked',
+        'imagenes',
+        'ciudad',
+        'provincia',
+        'descripcion',
+        'codigo_postal',
+        'direccion',
     ];
 
 }

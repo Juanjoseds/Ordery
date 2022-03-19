@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use App\Models\Permiso;
 use App\Models\Tienda;
 use Illuminate\Http\Request;
@@ -10,6 +11,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Laravolt\Avatar\Avatar;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -35,6 +38,7 @@ class TiendaController extends Controller
     public function edit(Request $request, $id) {
         $method = 'Editar';
         $tienda = Tienda::query()->where('id', $id)->first();
+        $tienda->imagenes = Helper::getStoredImage($tienda->imagenes);
         return view('/content/admin/tiendas/formulario', ['nameCrud' => $this->nameCrud, 'method' => $method, 'tienda' => $tienda]);
     }
 
@@ -51,6 +55,7 @@ class TiendaController extends Controller
     }
 
     public function store(Request $request, $id = null) {
+
         try {
             DB::beginTransaction();
 
@@ -67,12 +72,18 @@ class TiendaController extends Controller
 
             $fields = $request->only($tienda->getFillable());
             $tienda->fill($fields);
+
+            // Guardamos la imagen
+            $img = Helper::base64toStore($request->imagen);
+            Storage::disk('tiendas')->put($img[0], base64_decode($img[2]));
+            $tienda->imagenes = $img[0];
             $tienda->save();
 
             DB::commit();
             return response(['mensaje' => 'La tienda se ha ' . $mensaje . ' correctamente', 'tienda' => $tienda], 200);
         } catch (\Exception $e) {
             DB::rollBack();
+            dd($e->getMessage());
             return response()->json("Se ha producido un error al guardar la tienda", 500);
         }
     }
@@ -132,6 +143,9 @@ class TiendaController extends Controller
             })
             ->addColumn('permiso_editar', function ($model) use($permisoEditar){
                 return $permisoEditar;
+            })
+            ->editColumn('imagen', function ($model){
+                return Helper::getStoredImage($model->imagenes);
             })
             ->editColumn('created_at', function ($model){
                 return Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y');
