@@ -6,11 +6,11 @@
     <th>Nombre</th>
     <th>Nombre Legal</th>
     <th>CIF</th>
-    <th>Correo electrónico</th>
+    <th>Email</th>
     <th>Teléfono</th>
     <th>Url</th>
-    <th>Fecha creación</th>
-    <th>Actions</th>
+    <th>Fecha</th>
+    <th>Acciones</th>
 @endsection
 
 @section('crud-styles')

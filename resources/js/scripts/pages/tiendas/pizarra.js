@@ -69,7 +69,6 @@ $(function () {
         {
             // Actions
             targets: -1,
-            title: 'Acciones',
             className: 'not-export-col',
             orderable: false,
             render: function (data, type, full, meta) {
