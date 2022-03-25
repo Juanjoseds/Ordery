@@ -605,7 +605,7 @@ function initDatatable(columns, columnDefs, nameCrud, tableClass, options = null
                   }).fail((message) => {
                     Swal.fire({
                       title: '¡Error!',
-                      text: 'Ha ocurrido un error al borrar los registros.',
+                      text: 'Ha ocurrido un error al borrar los registros',
                       type: 'warning'
                     })
                   });

@@ -92,7 +92,7 @@ $(function () {
                 let textBloquear = (full.is_blocked) ? datatable.desbloquear : datatable.bloquear;
 
                 if (full.permiso_editar) {
-                    html += `<a href="javascript:void(0)" onclick="blockUser('${full.id}')" class="dropdown-item block-record" data-record="${full.id}">
+                    html += `<a href="javascript:void(0)" onclick="blockUser('${full.id}', '${full.is_blocked}')" class="dropdown-item block-record" data-record="${full.id}">
                 ${feather.icons['alert-octagon'].toSvg({class: 'font-small-4 me-50'})} ${textBloquear}</a>`;
                 }
 
@@ -203,32 +203,23 @@ function rowDrawCallback(row, data, index) {
     }
 }
 
-function blockUser(id) {
-    let url = `/admin/empleados/block/${id}`
-    let method = `post`;
+function blockUser(id, estadoActual) {
+    let url = `/admin/tiendas/block/${id}`
 
     $('#spinner-loading').fadeIn();
     $.ajax({
         url: url,
-        method: method,
+        method: 'post',
+        data:{
+            id: id,
+            estado: estadoActual
+        }
     }).done(response => {
-        standardAjaxResponse('¡Actualizado/a!', response.mensaje)
+        standardAjaxResponse('¡Actualizado/a!', response.mensaje, null, 'success')
         let dataTable = $(`.${tableClass}`);
         dataTable.DataTable().ajax.reload();
     }).fail(error => {
-        let errores = error.responseJSON.errors;
-        let textoErrores = ``;
-        $.each(errores, function (key, error) {
-            $.each(error, function (key1, errorVal) {
-                textoErrores += `${errorVal} <br>`
-            })
-            // $(`#${key}`).addClass('bg-danger')
-        })
-        Swal.fire({
-            title: '¡Error!',
-            html: textoErrores,
-            type: 'error'
-        })
+        customFormAjaxResponse(error);
     }).always(() => {
         $('#spinner-loading').fadeOut();
     })

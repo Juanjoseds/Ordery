@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
+use App\Http\Requests\TiendaRequest;
 use App\Models\Permiso;
 use App\Models\Tienda;
 use Illuminate\Http\Request;
@@ -38,13 +39,14 @@ class TiendaController extends Controller
     public function edit(Request $request, $id) {
         $method = 'Editar';
         $tienda = Tienda::query()->where('id', $id)->first();
-        $tienda->imagenes = Helper::getStoredImage($tienda->imagenes);
+        $tienda->imagenes = isset($tienda->imagenes) ? Helper::getStoredImage($tienda->imagenes) : null;
         return view('/content/admin/tiendas/formulario', ['nameCrud' => $this->nameCrud, 'method' => $method, 'tienda' => $tienda]);
     }
 
     public function show(Request $request, $id)
     {
         $tienda = Tienda::query()->where('id', $id)->first();
+        $tienda->imagenes = isset($tienda->imagenes) ? Helper::getStoredImage($tienda->imagenes) : null;
 
         return view('content.admin.tiendas.formulario', [
             'method' => 'Ver',
@@ -54,8 +56,7 @@ class TiendaController extends Controller
 
     }
 
-    public function store(Request $request, $id = null) {
-
+    public function store(TiendaRequest $request, $id = null) {
         try {
             DB::beginTransaction();
 
@@ -73,6 +74,9 @@ class TiendaController extends Controller
             $fields = $request->only($tienda->getFillable());
             $tienda->fill($fields);
 
+            // Borramos la imagen si ya tenía una
+            Storage::disk('tiendas')->delete($tienda->imagenes);
+
             // Guardamos la imagen
             $img = Helper::base64toStore($request->imagen);
             Storage::disk('tiendas')->put($img[0], base64_decode($img[2]));
@@ -83,7 +87,6 @@ class TiendaController extends Controller
             return response(['mensaje' => 'La tienda se ha ' . $mensaje . ' correctamente', 'tienda' => $tienda], 200);
         } catch (\Exception $e) {
             DB::rollBack();
-            dd($e->getMessage());
             return response()->json("Se ha producido un error al guardar la tienda", 500);
         }
     }
@@ -95,7 +98,11 @@ class TiendaController extends Controller
             DB::beginTransaction();
             $tienda = Tienda::find($id);
             if ($tienda === null) {
-                return response('No se pudo encontrar la tienda', 400);
+                return response(['errores' => __('No se pudo encontrar la tienda')], 400);
+            }
+            // Borramos la imagen si tenía una
+            if(isset($tienda->imagenes)){
+                Storage::disk('tiendas')->delete($tienda->imagenes);
             }
 
             Tienda::destroy($id);
@@ -116,15 +123,17 @@ class TiendaController extends Controller
         }
     }
 
-//    public function block(Request $request, $id)
-//    {
-//        try {
-//            $tienda = Tienda::whereIn('id', $request->ids)->delete();
-//            return response('Las tiendas se han borrado correctamente', 200);
-//        } catch (\Exception $e) {
-//            dd($e);
-//        }
-//    }
+    public function block(Request $request, $id)
+    {
+        try {
+            $tienda = Tienda::find($id);
+            $tienda->is_blocked = $request->estado == '0' ? 1 : 0;
+            $tienda->save();
+            return response('La tienda se ha bloqueado correctamente', 200);
+        } catch (\Exception $e) {
+            dd($e);
+        }
+    }
 
     public function getDataJson(Request $request) {
         // Traemos todos los usuarios admins (tando admin como empleados)
@@ -145,7 +154,10 @@ class TiendaController extends Controller
                 return $permisoEditar;
             })
             ->editColumn('imagen', function ($model){
-                return Helper::getStoredImage($model->imagenes);
+                if(isset($model->imagenes)){
+                    return Helper::getStoredImage($model->imagenes);
+                }
+                return null;
             })
             ->editColumn('created_at', function ($model){
                 return Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y');
