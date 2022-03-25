@@ -87,7 +87,8 @@
                             <div class="d-flex flex-column">
                                 <label class="form-check-label mb-50" for="customSwitch12">Cuenta bloqueada</label>
                                 <div class="form-check form-switch form-check-danger">
-                                    <input type="checkbox" name="is_blocked" class="form-check-input" id="is_blocked">
+                                    <input type="checkbox" name="is_blocked" class="form-check-input" id="is_blocked"
+                                    @if($method != 'Nuevo' && @$empleado->is_blocked == '1') checked @endif>
                                     <label class="form-check-label" for="is_blocked">
                                         <span class="switch-icon-left"><svg xmlns="http://www.w3.org/2000/svg"
                                                                             width="14" height="14" viewBox="0 0 24 24"
