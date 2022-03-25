@@ -17,7 +17,6 @@ class PermisosSeeder extends Seeder
     {
         Permiso::query()->delete();
         $permisos = ['Empleados', 'Tiendas', 'Metodos de pago', 'Configuracion'];
-//        $permisos_it = ['Pompe funebri', 'Dipendenti', 'Fatture', 'Famiglie', 'Parenti', 'Fatturazione', 'Profili', 'Abbonamenti', 'Packs', 'Valutazioni', 'Donazioni', 'Modalità di pagamento','Collocamento'];
 
         foreach ($permisos as $index=>$permiso){
             Permiso::create([
