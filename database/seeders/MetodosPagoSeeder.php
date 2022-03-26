@@ -16,11 +16,13 @@ class MetodosPagoSeeder extends Seeder
     {
 
         $metodos = ['Efectivo', 'Paypal', 'Tarjeta'];
+        $tipo = ['efectivo', 'paypal', 'tarjeta'];
 
-        foreach ($metodos as $metodo){
+        foreach ($metodos as $index=>$metodo){
             if(MetodoPago::query()->where('nombre', $metodo)->count() === 0){
                 MetodoPago::create([
                     'nombre' => $metodo,
+                    'tipo' => $tipo[$index],
                     'estado' => 0,
                     'configuracion' => null,
                 ]);

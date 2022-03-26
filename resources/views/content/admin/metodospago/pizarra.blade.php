@@ -2,6 +2,7 @@
 
 @section('content')
 
+    <input type="hidden" id="metodos_pago" value="{{json_encode($metodos)}}">
     <div id="main-metodos">
         <div class="row match-height">
             @foreach($metodos as $metodo)
@@ -15,13 +16,13 @@
                                 <h6 class="card-text font-weight-bold">{{$metodo->nombre}}</h6>
                                 <div class="d-flex flex-row align-items-center" style="height: 2em">
                                     @if($metodo->nombre != 'Efectivo')
-                                        <button type="button" class="btn btn-flat-primary waves-effect cursor-pointer me-50">
+                                        <button type="button" class="btn btn-flat-primary waves-effect cursor-pointer me-50" data-bs-toggle="modal" data-bs-target="#modal-{{strtolower($metodo->nombre)}}">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
                                     @endif
                                     <div class="custom-control custom-control-primary custom-switch">
                                         <div class="form-check form-check-primary form-switch">
-                                            <input type="checkbox" class="form-check-input cursor-pointer" id="customSwitch3" @if($metodo->estado === 1) checked="" @endif>
+                                            <input type="checkbox" class="form-check-input cursor-pointer metodo-pago-switch" data-id="{{@$metodo->id}}" id="metodo-{{$metodo->id}}" @if($metodo->estado === 1) checked="" @endif>
                                         </div>
                                     </div>
                                 </div>
@@ -38,30 +39,15 @@
 @endsection
 
 @section('crud-styles')
-{{--    <link href="{{ asset(mix('fonts/font-awesome/css/fontawesome.min.css')) }}"--}}
-{{--          rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">--}}
-{{--    <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">--}}
-{{--    <link rel="stylesheet" href="{{ asset(mix('vendors/css/file-uploaders/dropzone.min.css')) }}">--}}
-{{--    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-file-uploader.css')) }}">--}}
-{{--    <link rel="stylesheet" href="{{ asset(mix('css/base/pages/ui-feather.css')) }}">--}}
-    {{-- Flatpicker --}}
-{{--    <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/pickadate/pickadate.css')) }}">--}}
-{{--    <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">--}}
 @endsection
 
 @section('crud-scripts')
-{{--    <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>--}}
-{{--    <script src="{{ asset(mix('vendors/js/extensions/dropzone.min.js')) }}"></script>--}}
-{{--    <script src="{{ asset(mix('js/scripts/pages/tiendas/pizarra.js')). '?v='.$APP_VERSION }}"></script>--}}
-{{--<script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>--}}
-{{--    <script src="{{asset(mix('js/scripts/ui/ui-feather.js'))}}"></script>--}}
-
+    <script src="{{ asset(mix('js/scripts/pages/metodospago/metodospago.js')). '?v='.$APP_VERSION }}"></script>
 @endsection
 
 @section('form')
-{{--    @include('content.expedientes.expedientesForm')--}}
 @endsection
 
 @section('modales')
-{{--    @include('modal.modalFirma')--}}
+    @include('modales.metodospago.modal-paypal')
 @endsection

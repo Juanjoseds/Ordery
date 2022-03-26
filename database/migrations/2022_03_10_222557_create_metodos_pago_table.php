@@ -15,7 +15,8 @@ class CreateMetodosPagoTable extends Migration
     {
         Schema::create('metodos_pago', function (Blueprint $table) {
             $table->id();
-            $table->text('nombre', 199);
+            $table->text('nombre');
+            $table->text('tipo');
             $table->tinyInteger('estado')->default(0);
             $table->longText('configuracion')->nullable();
             $table->timestamps();

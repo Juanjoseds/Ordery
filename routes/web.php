@@ -79,12 +79,13 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.' ], function () {
         });
 
         Route::group(['middleware' => ['permission:Metodos de pago,Editar']], function () {
-            Route::post('block/{id}', [TiendaController::class, 'block']);
+            Route::post('cambiarestado', [MetodosPagoController::class, 'cambiarestado']);
+
+            Route::prefix('cambiar-configuracion')->group(function () {
+                Route::post('{metodo}', [MetodosPagoController::class, 'configurar']);
+            });
         });
 
-        Route::group(['middleware' => ['permission:Metodos de pago,Borrar']], function () {
-            Route::delete('delete/{id}', [TiendaController::class, 'destroy']);
-        });
 
 
     });

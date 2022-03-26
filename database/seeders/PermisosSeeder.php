@@ -23,6 +23,7 @@ class PermisosSeeder extends Seeder
                 'modulo' => strtolower($permiso),
                 'display' => strtolower($permiso),
                 'nombre' => $permiso,
+                'borrar' => $permiso === 'Metodos de pago' ? 0 : 1,
                 //'nombre_it' => $permisos_it[$index],
                 'rol' => 'admin',
             ]);

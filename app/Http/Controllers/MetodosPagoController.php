@@ -76,16 +76,62 @@ class MetodosPagoController extends Controller
         }
     }
 
-    public function block(Request $request, $id)
-    {
-        try {
-            $tienda = Tienda::find($id);
-            $tienda->is_blocked = $request->estado == '0' ? 1 : 0;
-            $tienda->save();
-            return response('La tienda se ha bloqueado correctamente', 200);
-        } catch (\Exception $e) {
-            dd($e);
+    public function cambiarestado(Request $request){
+        if(isset($request->metodoId)){
+            $metodo = MetodoPago::query()->find($request->metodoId);
+            if(is_null($metodo)){
+                return response(['errors' => ['errores' => ['No se ha podido encontrar el método de pago.']]], 400);
+            }
+            $metodo->estado = $request->estado == true ? 1 : 0;
+            if($metodo->save()){
+                return response(['titulo' => 'Método actualizado','mensaje' => 'Se ha actualizado el método de pago correctamente'], 200);
+            }else{
+                return response(['errors' => ['errores' => ['No se pudo actualizar el método de pago']]], 400);
+            }
         }
     }
 
+    public function configurar(Request $request, $tipo){
+        try{
+            DB::beginTransaction();
+
+            switch ($tipo) {
+                case 'paypal':
+                    $this->configurarPaypal($request);
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+            DB::commit();
+        }catch (\Exception $e){
+            DB::rollBack();
+            return response(['errors' => ['errores' => [$e->getMessage()]]], 400);
+        }
+    }
+
+    public function configurarPaypal($data)
+    {
+        $paypal_config = [
+            'tipo'=>'paypal',
+            'paypal_client_id' => $data->paypal_client_id,
+            'paypal_action' => $data->paypal_action,
+            'paypal_currency' => $data->paypal_currency,
+            'paypal_notify_url' => isset($data->paypal_notify_url) ? $data->paypal_notify_url : '',
+        ];
+
+        foreach ($paypal_config as $key => $value) {
+            if(is_null($value)){
+                throw new \Exception('Hay campos obligatorios vacíos. Por favor, rellene todos los campos.',400);
+            }
+        }
+        $paypal = MetodoPago::query()->where('tipo','paypal')->first();
+        if(isset($paypal)){
+            $paypal->configuracion = json_encode($paypal_config);
+            $paypal->save();
+            return response(['message' => __('backpanel/metodos-de-pago/form.exito')], 200);
+        }else{
+            throw new \Exception('Ha ocurrido un error. Método de pago Paypal no existe.',400);
+        }
+    }
 }
