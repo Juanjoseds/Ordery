@@ -15,7 +15,7 @@ class MetodosPagoSeeder extends Seeder
     public function run()
     {
 
-        $metodos = ['Recoger', 'Paypal'];
+        $metodos = ['Efectivo', 'Paypal', 'Tarjeta'];
 
         foreach ($metodos as $metodo){
             if(MetodoPago::query()->where('nombre', $metodo)->count() === 0){

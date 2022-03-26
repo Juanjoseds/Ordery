@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MetodosPagoController;
 use App\Http\Controllers\TiendaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebpagesController;
@@ -63,9 +64,26 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.' ], function () {
             Route::post('block/{id}', [TiendaController::class, 'block']);
         });
 
-        Route::group(['middleware' => ['permission:Empleados,Borrar']], function () {
+        Route::group(['middleware' => ['permission:Tiendas,Borrar']], function () {
             Route::delete('delete/{id}', [TiendaController::class, 'destroy']);
             Route::delete('delete-multiple', [TiendaController::class, 'destroyAll']);
+        });
+
+
+    });
+
+    /** MÉTODOS DE PAGO */
+    Route::prefix('metodospago')->group(function () {
+        Route::group(['middleware' => ['permission:Metodos de pago,Leer']], function () {
+            Route::get('pizarra', [MetodosPagoController::class, 'index'])->name('pizarraMetodosPago');
+        });
+
+        Route::group(['middleware' => ['permission:Metodos de pago,Editar']], function () {
+            Route::post('block/{id}', [TiendaController::class, 'block']);
+        });
+
+        Route::group(['middleware' => ['permission:Metodos de pago,Borrar']], function () {
+            Route::delete('delete/{id}', [TiendaController::class, 'destroy']);
         });
 
 

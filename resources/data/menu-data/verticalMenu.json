@@ -59,10 +59,10 @@
             ]
         },
         {
-            "routeName": "",
+            "routeName": "admin.pizarraMetodosPago",
             "name": "Métodos de pago",
             "icon": "credit-card",
-            "slug": "",
+            "slug": "admin.pizarraMetodosPago",
             "permiso_nombre": "Leer",
             "permiso_modulo": "Metodos de pago"
         },
