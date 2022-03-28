@@ -134,4 +134,17 @@ class MetodosPagoController extends Controller
             throw new \Exception('Ha ocurrido un error. Método de pago Paypal no existe.',400);
         }
     }
+
+    public function getConfig(Request $request, $id){
+        $metodo = MetodoPago::where('id',$id)->first();
+
+        if(!isset($metodo)){
+            return response(['errors' => ['errores' => ['No se ha podido recuperar la configuración del método de pago']]], 400);
+        }
+        if(isset($metodo->configuracion)){
+            $config = json_decode($metodo->configuracion);
+            return response()->json($config,200);
+        }
+        return response()->json(null,200);
+    }
 }

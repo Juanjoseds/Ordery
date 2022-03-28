@@ -16,7 +16,11 @@
                                 <h6 class="card-text font-weight-bold">{{$metodo->nombre}}</h6>
                                 <div class="d-flex flex-row align-items-center" style="height: 2em">
                                     @if($metodo->nombre != 'Efectivo')
-                                        <button type="button" class="btn btn-flat-primary waves-effect cursor-pointer me-50" data-bs-toggle="modal" data-bs-target="#modal-{{strtolower($metodo->nombre)}}">
+                                        <button type="button"
+                                                class="btn btn-flat-primary waves-effect cursor-pointer me-50"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#modal-{{strtolower($metodo->nombre)}}"
+                                                onclick="editarMetodo('{{$metodo->id}}')">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
                                     @endif
@@ -50,4 +54,5 @@
 
 @section('modales')
     @include('modales.metodospago.modal-paypal')
+    @include('modales.metodospago.modal-tarjeta')
 @endsection

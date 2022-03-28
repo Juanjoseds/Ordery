@@ -80,6 +80,7 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.' ], function () {
 
         Route::group(['middleware' => ['permission:Metodos de pago,Editar']], function () {
             Route::post('cambiarestado', [MetodosPagoController::class, 'cambiarestado']);
+            Route::get('get-configuracion/{id}', [MetodosPagoController::class, 'getConfig']);
 
             Route::prefix('cambiar-configuracion')->group(function () {
                 Route::post('{metodo}', [MetodosPagoController::class, 'configurar']);
