@@ -25,7 +25,7 @@ Route::get('/maintenance', [WebpagesController::class, 'maintenance'])->name('ma
 Route::get('/', [WebpagesController::class, 'home'])->name('home');
 
 // 'middleware'=> ['rol:admin']
-Route::group(['prefix' => 'admin', 'as'=>'admin.' ], function () {
+Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware'=> ['rol:admin']], function () {
     Route::get('dashboard', [DashboardController::class, 'indexAdmin'])->name('dashboard');
     Route::get('perfil', [UserController::class, 'perfil'])->name('perfil');
 
@@ -90,4 +90,8 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.' ], function () {
 
 
     });
+});
+
+Route::group(['prefix' => 'tienda', 'as'=>'tienda.', 'middleware'=> ['rol:tienda']], function () {
+    Route::get('dashboard', [DashboardController::class, 'indexTienda'])->name('dashboard');
 });

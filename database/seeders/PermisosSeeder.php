@@ -16,15 +16,15 @@ class PermisosSeeder extends Seeder
     public function run()
     {
         Permiso::query()->delete();
-        $permisos = ['Empleados', 'Tiendas', 'Metodos de pago', 'Configuracion'];
 
+        // ADMIN
+        $permisos = ['Empleados', 'Tiendas', 'Metodos de pago', 'Configuracion'];
         foreach ($permisos as $index=>$permiso){
             Permiso::create([
                 'modulo' => strtolower($permiso),
                 'display' => strtolower($permiso),
                 'nombre' => $permiso,
                 'borrar' => $permiso === 'Metodos de pago' ? 0 : 1,
-                //'nombre_it' => $permisos_it[$index],
                 'rol' => 'admin',
             ]);
         }
@@ -35,5 +35,18 @@ class PermisosSeeder extends Seeder
                 'permisos_id' => $permiso->id,
             ]);
         }
+
+        // TIENDA
+        $permisos = ['Carta', 'Pedidos', 'Monitor', 'Notificaciones'];
+        foreach ($permisos as $index=>$permiso){
+            Permiso::create([
+                'modulo' => strtolower($permiso),
+                'display' => strtolower($permiso),
+                'nombre' => $permiso,
+                'rol' => 'tienda',
+            ]);
+        }
+
+
     }
 }

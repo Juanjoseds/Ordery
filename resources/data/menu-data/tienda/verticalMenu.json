@@ -1,0 +1,76 @@
+{
+    "menu": [
+        {
+            "routeName": "tienda.dashboard",
+            "name": "Dashboard",
+            "url": "",
+            "icon": "home",
+            "slug": "tienda.dashboard",
+            "mostrar_siempre": true
+        },
+        {
+            "name": "Pedidos",
+            "icon": "box",
+            "slug": "",
+            "submenu": [
+                {
+                    "routeName": "",
+                    "url": "",
+                    "name": "Nuevo pedido",
+                    "icon": "circle",
+                    "slug": "",
+                    "permiso_nombre": "Leer",
+                    "permiso_modulo": "Pedidos"
+                },
+                {
+                    "routeName": "admin.createEmpleado",
+                    "url": "",
+                    "name": "Nuevo empleado",
+                    "icon": "circle",
+                    "slug": "admin.createEmpleado",
+                    "permiso_nombre": "Editar",
+                    "permiso_modulo": "Empleados"
+                }
+            ]
+        },
+        {
+            "name": "Tiendas",
+            "icon": "briefcase",
+            "slug": "",
+            "submenu": [
+                {
+                    "routeName": "admin.pizarraTiendas",
+                    "url": "",
+                    "name": "Ver tiendas",
+                    "icon": "circle",
+                    "slug": "admin.pizarraTiendas",
+                    "permiso_nombre": "Leer",
+                    "permiso_modulo": "Tiendas"
+                },
+                {
+                    "routeName": "admin.createTiendas",
+                    "url": "",
+                    "name": "Nueva tienda",
+                    "icon": "circle",
+                    "slug": "admin.createTiendas",
+                    "permiso_nombre": "Editar",
+                    "permiso_modulo": "Tiendas"
+                }
+            ]
+        },
+        {
+            "routeName": "admin.pizarraMetodosPago",
+            "name": "Métodos de pago",
+            "icon": "credit-card",
+            "slug": "admin.pizarraMetodosPago",
+            "permiso_nombre": "Leer",
+            "permiso_modulo": "Metodos de pago"
+        },
+
+
+        {
+            "navheader": "Configuración",
+            "slug": ""
+        }
+    ]
+}
