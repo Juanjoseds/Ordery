@@ -167,6 +167,8 @@
     "/js/scripts/pages/page-knowledge-base.js": "/js/scripts/pages/page-knowledge-base.js",
     "/js/scripts/pages/page-pricing.js": "/js/scripts/pages/page-pricing.js",
     "/js/scripts/pages/page-profile.js": "/js/scripts/pages/page-profile.js",
+    "/js/scripts/pages/pedidos/formulario.js": "/js/scripts/pages/pedidos/formulario.js",
+    "/js/scripts/pages/pedidos/pizarra.js": "/js/scripts/pages/pedidos/pizarra.js",
     "/js/scripts/pages/tiendas/formulario.js": "/js/scripts/pages/tiendas/formulario.js",
     "/js/scripts/pages/tiendas/pizarra.js": "/js/scripts/pages/tiendas/pizarra.js",
     "/js/scripts/pagination/components-pagination.js": "/js/scripts/pagination/components-pagination.js",

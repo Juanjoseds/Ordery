@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MetodosPagoController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\TiendaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebpagesController;
@@ -94,4 +95,17 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware'=> ['rol:admin']]
 
 Route::group(['prefix' => 'tienda', 'as'=>'tienda.', 'middleware'=> ['rol:tienda']], function () {
     Route::get('dashboard', [DashboardController::class, 'indexTienda'])->name('dashboard');
+
+    /** PEDIDOS */
+    Route::prefix('pedidos')->group(function () {
+        Route::group(['middleware' => ['permission:Pedidos,Leer']], function () {
+            Route::get('pizarra', [PedidoController::class, 'index'])->name('pizarraPedidos');
+            Route::post('json', [PedidoController::class, 'getDataJson']);
+        });
+
+        Route::group(['middleware' => ['permission:Pedidos,Editar']], function () {
+
+        });
+    });
+
 });

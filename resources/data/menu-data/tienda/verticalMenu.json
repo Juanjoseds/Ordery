@@ -14,22 +14,22 @@
             "slug": "",
             "submenu": [
                 {
+                    "routeName": "tienda.pizarraPedidos",
+                    "url": "",
+                    "name": "Ver pedidos",
+                    "icon": "circle",
+                    "slug": "tienda.pizarraPedidos",
+                    "permiso_nombre": "Leer",
+                    "permiso_modulo": "Pedidos"
+                },
+                {
                     "routeName": "",
                     "url": "",
                     "name": "Nuevo pedido",
                     "icon": "circle",
                     "slug": "",
-                    "permiso_nombre": "Leer",
-                    "permiso_modulo": "Pedidos"
-                },
-                {
-                    "routeName": "admin.createEmpleado",
-                    "url": "",
-                    "name": "Nuevo empleado",
-                    "icon": "circle",
-                    "slug": "admin.createEmpleado",
                     "permiso_nombre": "Editar",
-                    "permiso_modulo": "Empleados"
+                    "permiso_modulo": "Pedidos"
                 }
             ]
         },

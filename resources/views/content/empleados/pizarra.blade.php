@@ -17,7 +17,7 @@
 @endsection
 
 @section('crud-scripts')
-    <script src="{{ asset(mix('js/scripts/pages/empleados/metodospago.js')). '?v='.$APP_VERSION }}"></script>
+    <script src="{{ asset(mix('js/scripts/pages/empleados/pizarra.js')). '?v='.$APP_VERSION }}"></script>
 @endsection
 
 @section('form')

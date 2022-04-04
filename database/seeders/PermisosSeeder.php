@@ -47,6 +47,13 @@ class PermisosSeeder extends Seeder
             ]);
         }
 
+        foreach (Permiso::query()->where('rol', 'tienda')->get() as $permiso){
+            PermisoUser::create([
+                'users_id' => 2,
+                'permisos_id' => $permiso->id,
+            ]);
+        }
+
 
     }
 }
