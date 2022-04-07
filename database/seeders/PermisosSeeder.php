@@ -37,7 +37,7 @@ class PermisosSeeder extends Seeder
         }
 
         // TIENDA
-        $permisos = ['Carta', 'Pedidos', 'Monitor', 'Notificaciones'];
+        $permisos = ['Carta', 'Pedidos', 'Monitor', 'Notificaciones', 'Empleados'];
         foreach ($permisos as $index=>$permiso){
             Permiso::create([
                 'modulo' => strtolower($permiso),

@@ -29,7 +29,7 @@ class UserController extends Controller
 
     public function new() {
         $method = 'Nuevo';
-        $permisos = Permiso::where('rol', 'admin')->get();
+        $permisos = Permiso::where('rol', $this->user->tipo)->get();
         return view('/content/empleados/formulario', ['nameCrud' => $this->nameCrud, 'method' => $method, 'permisos'=>$permisos]);
     }
 
@@ -38,7 +38,7 @@ class UserController extends Controller
         $empleado = User::query()->where('id', $id)->first();
         $permisos = Permiso::with(['users' => function($query) use($id){
             $query->where('users.id', $id);
-        }])->get()->toArray();
+        }])->where('rol', $this->user->tipo)->get()->toArray();
 
         return view('content.empleados.formulario', [
             'permisos' => $permisos,
@@ -89,7 +89,8 @@ class UserController extends Controller
             $user->fill($fields);
             //$fields = $request->only($user->getFillable());
             $user->is_blocked = isset($request->is_blocked) ? 1 : 0;
-            $user->tipo = is_null($request->tipo) ? 'empleado' : $request->tipo;
+            $user->tipo = $this->user->tipo;
+            $user->rol = is_null($request->tipo) ? 'empleado' : $request->tipo;
 
             if(!is_null($request->password)){
                 $user->password = bcrypt($request->password);
@@ -193,7 +194,11 @@ class UserController extends Controller
     }
     public function getDataJson(Request $request) {
         // Traemos todos los usuarios admins
-        $empleados = User::query()->where('rol', 'admin');
+        $empleados = User::query()
+//            ->when($this->user->tipo === 'admin', function ($query) {
+//                $query->where('rol', 'admin');
+//            })
+            ->where('tipo', $this->user->tipo);
 
         $permisoLeer = $this->user->hasPermiso('Empleados','Leer');
         $permisoEditar = $this->user->hasPermiso('Empleados','Editar');

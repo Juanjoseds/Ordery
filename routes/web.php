@@ -109,4 +109,21 @@ Route::group(['prefix' => 'tienda', 'as'=>'tienda.', 'middleware'=> ['rol:tienda
         });
     });
 
+    Route::prefix('empleados')->group(function () {
+        Route::group(['middleware' => ['permission:Empleados,Leer']], function () {
+            Route::get('pizarra', [UserController::class, 'index'])->name('pizarraEmpleados');
+            Route::post('json', [UserController::class, 'getDataJson']);
+            Route::get('show/{id}', [UserController::class, 'show']);
+        });
+
+        Route::group(['middleware' => ['permission:Empleados,Editar']], function () {
+            Route::get('new', [UserController::class, 'new'])->name('createEmpleado');
+            Route::post('store', [UserController::class, 'store']);
+            Route::put('store/{id?}', [UserController::class, 'store']);
+            Route::get('edit/{id}', [UserController::class, 'edit']);
+            Route::post('block/{id}', [UserController::class, 'block']);
+        });
+
+    });
+
 });

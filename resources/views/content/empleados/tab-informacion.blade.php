@@ -10,7 +10,7 @@
                     </h4>
                 </div>
                 @if($method != 'Nuevo') <input type="hidden" id="userId" value="{{$empleado->id}}"> @endif
-                <input type="hidden" id="tipo" name="tipo" value="empleado">
+                <input type="hidden" id="rol" name="rol" value="empleado">
                 <div class="col-lg-3 col-12">
                     <div class="form-group col-12">
                         <label class="form-label">Imagen del empleado</label>
@@ -32,7 +32,7 @@
                                value="{{!is_null($empleado->imagen) ? $empleado->imagen : ''}}"
                             @endif
                         >
-                        <input type="file" hidden id="image_upload">
+                        <input type="file" hidden id="image_upload" accept="image/*">
                     </div>
                 </div>
                 <div class="col-9 row align-content-start">

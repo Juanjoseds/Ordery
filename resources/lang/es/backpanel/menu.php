@@ -13,6 +13,7 @@ return [
     /* HORIZONTAL MENU */
     'Empleados' => 'Empleados',
     'Tiendas' => 'Tiendas',
+    'Pedidos' => 'Pedidos',
     'Ver pedidos' => 'Ver pedidos',
     'Nuevo pedido' => 'Nuevo pedido',
 

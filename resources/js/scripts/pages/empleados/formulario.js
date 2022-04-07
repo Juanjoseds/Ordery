@@ -8,7 +8,8 @@ $(function () {
     }
   });
 
-  var changePicture = $('#change-picture'),
+    const user_tipo = $('#tipo_user').val();
+    var changePicture = $('#change-picture'),
     userAvatar = $('.user-avatar'),
     form = $('.form-usuario');
 
@@ -81,7 +82,7 @@ $(function () {
       dataForm.push({ name: 'permisos',
                       value: JSON.stringify(permisos)});
 
-      let url =  `/admin/empleados/store`
+      let url =  `/${user_tipo}/empleados/store`
       let method =  `post`
       let editando = typeof $(`#userId`).val() != 'undefined';
       if(editando){
@@ -109,11 +110,13 @@ $(function () {
       })
     }
   });
+
+    function resultEditando(response){
+        standardAjaxResponse('¡Actualizado/a!', 'El empleado se ha actualizado correctamente', `/${user_tipo}/empleados/pizarra`);
+    }
+    function resultCreando(response){
+        standardAjaxResponse('¡Listo/a!', 'El empleado se ha creado correctamente', `/${user_tipo}/empleados/pizarra`);
+    }
 });
 
-function resultEditando(response){
-    standardAjaxResponse('¡Actualizado/a!', 'El empleado se ha actualizado correctamente', '/admin/empleados/pizarra');
-}
-function resultCreando(response){
-    standardAjaxResponse('¡Listo/a!', 'El empleado se ha creado correctamente', '/admin/empleados/pizarra');
-}
+

@@ -9,6 +9,31 @@
             "mostrar_siempre": true
         },
         {
+            "name": "Empleados",
+            "icon": "users",
+            "slug": "",
+            "submenu": [
+                {
+                    "routeName": "tienda.pizarraEmpleados",
+                    "url": "",
+                    "name": "Ver empleados",
+                    "icon": "circle",
+                    "slug": "tienda.pizarraEmpleados",
+                    "permiso_nombre": "Leer",
+                    "permiso_modulo": "Empleados"
+                },
+                {
+                    "routeName": "tienda.createEmpleado",
+                    "url": "",
+                    "name": "Nuevo empleado",
+                    "icon": "circle",
+                    "slug": "tienda.createEmpleado",
+                    "permiso_nombre": "Editar",
+                    "permiso_modulo": "Empleados"
+                }
+            ]
+        },
+        {
             "name": "Pedidos",
             "icon": "box",
             "slug": "",

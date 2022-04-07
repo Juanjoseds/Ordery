@@ -1,4 +1,5 @@
 const tableClass = 'user-list-table';
+const user_tipo = $('#tipo_user').val();
 
 $(function () {
     $.ajaxSetup({
@@ -9,7 +10,6 @@ $(function () {
     'use strict';
 
     const nameCrud = "empleados";
-    const user_tipo = $('#tipo_user').val();
 
     const columns = [
         // columns according to JSON RESPONSE
@@ -75,28 +75,26 @@ $(function () {
             render: function (data, type, full, meta) {
                 let html = ``;
 
-                if(full.tipo === 'empleado' || user_tipo === 'admin'){
-                    if (full.permiso_leer) {
-                        html += `<a href="javascript:void(0)" class="dropdown-item read-record" data-record="${full.id}">
-                    ${feather.icons['eye'].toSvg({class: 'font-small-4 me-50'})} ${datatable.ver}</a>`;
-                    }
+                if (full.permiso_leer) {
+                    html += `<a href="javascript:void(0)" class="dropdown-item read-record" data-record="${full.id}">
+                ${feather.icons['eye'].toSvg({class: 'font-small-4 me-50'})} ${datatable.ver}</a>`;
+                }
 
-                    if (full.permiso_editar) {
-                        html += `<a href="javascript:void(0)" class="dropdown-item edit-record" data-record="${full.id}">
-                    ${feather.icons['archive'].toSvg({class: 'font-small-4 me-50'})} ${datatable.editar}</a>`;
-                    }
+                if (full.permiso_editar) {
+                    html += `<a href="javascript:void(0)" class="dropdown-item edit-record" data-record="${full.id}">
+                ${feather.icons['archive'].toSvg({class: 'font-small-4 me-50'})} ${datatable.editar}</a>`;
+                }
 
-                    if (full.permiso_borrar) {
-                        html += `<a href="javascript:void(0)" class="dropdown-item delete-record" data-record="${full.id}">
-                    ${feather.icons['trash-2'].toSvg({class: 'font-small-4 me-50'})} ${datatable.borrar}</a>`
-                    }
+                if (full.permiso_borrar) {
+                    html += `<a href="javascript:void(0)" class="dropdown-item delete-record" data-record="${full.id}">
+                ${feather.icons['trash-2'].toSvg({class: 'font-small-4 me-50'})} ${datatable.borrar}</a>`
+                }
 
-                    let textBloquear = (full.is_blocked) ? datatable.desbloquear : datatable.bloquear;
+                let textBloquear = (full.is_blocked) ? datatable.desbloquear : datatable.bloquear;
 
-                    if (full.permiso_editar) {
-                        html += `<a href="javascript:void(0)" onclick="blockUser('${full.id}')" class="dropdown-item block-record" data-record="${full.id}">
-                    ${feather.icons['alert-octagon'].toSvg({class: 'font-small-4 me-50'})} ${textBloquear}</a>`;
-                    }
+                if (full.permiso_editar) {
+                    html += `<a href="javascript:void(0)" onclick="blockUser('${full.id}')" class="dropdown-item block-record" data-record="${full.id}">
+                ${feather.icons['alert-octagon'].toSvg({class: 'font-small-4 me-50'})} ${textBloquear}</a>`;
 
                     return (
                         `<div class="btn-group">
@@ -174,10 +172,10 @@ $(function () {
      * domOptions => domRows, domSearch
      * acceptButton
      */
-    const userTipo = $('#tipo').val();
 
     const options = {
         order: [3, 'asc'],
+        prefix: `/${user_tipo}`,
         exportOptions: {
             exportButtonPrint: {active: true, exportOptions: {columns: ":visible:not(.not-export-col)"}},
             exportButtonCSV: {active: true, exportOptions: {columns: ":visible:not(.not-export-col)"}},
@@ -207,6 +205,7 @@ $(function () {
 
     // Inicializamos el datatable
     initDatatable(columns, columnDefs, nameCrud, tableClass, options);
+
 });
 
 function rowDrawCallback(row, data, index) {
@@ -217,7 +216,7 @@ function rowDrawCallback(row, data, index) {
 }
 
 function blockUser(id) {
-    let url = `/admin/empleados/block/${id}`
+    let url = `/${user_tipo}/empleados/block/${id}`
     let method = `post`;
 
     $('#spinner-loading').fadeIn();

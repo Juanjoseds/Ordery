@@ -1,3 +1,4 @@
 {"menu": [
-    {"routeName":"tienda.pizarraPedidos","url":"", "name":"Tiendas", "slug":"tienda.pizarraPedidos", "tip":"Ver pedidos", "permiso_nombre": "Leer", "permiso_modulo": "pedidos"}
+    {"routeName":"tienda.pizarraEmpleados","url":"", "name":"Empleados", "slug":"tienda.pizarraEmpleados", "tip":"Ver empleados", "permiso_nombre": "Leer", "permiso_modulo": "empleados"},
+    {"routeName":"tienda.pizarraPedidos","url":"", "name":"Pedidos", "slug":"tienda.pizarraPedidos", "tip":"Ver pedidos", "permiso_nombre": "Leer", "permiso_modulo": "pedidos"}
 ]}
