@@ -31,8 +31,8 @@
                             <div>
                                 <div><b>Unidades: </b> {{$producto->cantidad}} uds.</div>
                                 <div><b>Precio unidad: </b> {{$producto->precio}} €</div>
-                                <div class="text-primary"><b>Total producto: </b> {{$producto->precio * $producto->cantidad}} €</div>
                                 <div><b>Observaciones: </b> {{$pedido->observaciones}}</div>
+                                <div class="text-primary font-medium-3"><b>Total: </b> {{$producto->precio * $producto->cantidad}} €</div>
                             </div>
                         </div>
                     </div>
