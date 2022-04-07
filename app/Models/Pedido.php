@@ -13,11 +13,17 @@ class Pedido extends Model
     protected $table = 'pedidos';
     protected $fillable = [
         'doc',
-        'cliente',
+        'user_id',
+        'tienda_id',
+        'estado',
         'info_pago',
         'pedido',
         'observaciones',
         'fecha_entrega',
     ];
 
+    public function cliente()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

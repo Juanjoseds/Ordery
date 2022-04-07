@@ -124,21 +124,11 @@ class PedidoController extends Controller
         }
     }
 
-    public function block(Request $request, $id)
-    {
-        try {
-            $tienda = Tienda::find($id);
-            $tienda->is_blocked = $request->estado == '0' ? 1 : 0;
-            $tienda->save();
-            return response('La tienda se ha bloqueado correctamente', 200);
-        } catch (\Exception $e) {
-            dd($e);
-        }
-    }
-
     public function getDataJson(Request $request) {
         // Traemos todos los pedidos para la tienda
-        $pedidos = Pedido::query()->where('id', $this->user->tienda_id);
+        $pedidos = Pedido::query()->where('tienda_id', $this->user->tienda_id)->with(['cliente' => function($q){
+            $q->select('id', 'nombre', 'apellidos');
+        }]);
 
         $permisoLeer = $this->user->hasPermiso('Pedidos','Leer');
         $permisoEditar = $this->user->hasPermiso('Pedidos','Editar');
@@ -154,32 +144,28 @@ class PedidoController extends Controller
             ->addColumn('permiso_editar', function ($model) use($permisoEditar){
                 return $permisoEditar;
             })
+            ->editColumn('user_id', function ($model){
+                return $model->cliente->nombre . ' ' . (isset($model->cliente->apellidos) ? $model->cliente->apellidos : '');
+            })
+            ->editColumn('fecha_entrega', function ($model){
+                return Carbon::createFromFormat('Y-m-d H:i:s', $model->fecha_entrega)->format('d/m/Y H:i');
+            })
             ->editColumn('created_at', function ($model){
-                return Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y');
+                return Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y H:i');
             })
             ->toJson();
     }
 
-//    public function block(Request $request, $id){
-//        try {
-//            DB::beginTransaction();
-//            $user = User::find($id);
-//            if (!isset($user)) {
-//                return response('No se pudo encontrar el usuario', 400);
-//            }
-//            $user->is_blocked = !$user->is_blocked;
-//            $user->update();
-//            DB::commit();
-//            $mensaje = ($user->is_blocked) ? 'bloqueado' : 'desbloqueado';
-//            return response(['mensaje' => 'El usuario se ha ' . $mensaje . ' correctamente',
-//                'userBlocked' => $user->is_blocked
-//
-//            ], 200);
-//        } catch (\Exception $e) {
-//            DB::rollBack();
-//            return response()->json("No se ha podido actualizar los permisos del usuario el usuario", 500);
-//        }
-//    }
+    public function showPedido(Request $request){
 
+        $pedido = Pedido::query()->find($request->pedidoId);
+        if(!isset($pedido)){
+            return response(['errores' => __('Lo sentimos, no se pudo encontrar el pedido')], 400);
+        }
+        $pedido->pedido = json_decode($pedido->pedido);
+        return view('modales.pedidos.pedidos-content', [
+            'pedido' => $pedido,
+        ])->render();
+    }
 
 }

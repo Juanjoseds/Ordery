@@ -7,6 +7,7 @@
     <th>Observaciones</th>
     <th>Fecha entrega</th>
     <th>Fecha creación</th>
+    <th>Estado</th>
     <th>Acciones</th>
 @endsection
 
@@ -26,4 +27,5 @@
 @endsection
 
 @section('modales')
+    @include('modales.pedidos.offcanvas-pedidos')
 @endsection

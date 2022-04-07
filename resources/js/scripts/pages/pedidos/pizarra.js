@@ -20,6 +20,7 @@ $(function () {
         {data: 'observaciones'},
         {data: 'fecha_entrega'},
         {data: 'created_at'},
+        {data: 'estado'},
         {data: 'id', className: 'not-export-col'},//Este es para las acciones
     ];
 
@@ -48,6 +49,19 @@ $(function () {
             checkboxes: {
                 selectAllRender:
                     '<div class="form-check form-check-primary custom-checkbox"> <input class="form-check-input" type="checkbox" value="" id="checkboxSelectAll" /><label class="custom-control-label" for="checkboxSelectAll"></label></div>'
+            }
+        },
+        {
+            // PEDIDO
+            targets: 4,
+            orderable: false,
+            responsivePriority: 3,
+            render: function (data, type, full, meta) {
+                return (
+                    `<button class="btn btn-outline-primary waves-effect" type="button" onclick="mostrarPedido('${full.id}', '${btoa(data)}')">
+                        Ver
+                      </button>`
+                );
             }
         },
         {
@@ -148,7 +162,7 @@ $(function () {
     const userTipo = $('#tipo').val();
 
     const options = {
-        order: [3, 'asc'],
+        order: [6, 'asc'],
         prefix: `/tienda`,
         exportOptions: {
             exportButtonPrint: {active: true, exportOptions: {columns: ":visible:not(.not-export-col)"}},
@@ -182,30 +196,42 @@ $(function () {
 });
 
 function rowDrawCallback(row, data, index) {
-    let blocked = data.is_blocked;
-    if (blocked) {
-        $(row).addClass('bg-cancelado');
+    if(data.estado !== undefined && data.estado !== ''){
+        $(row).addClass('bg-' + data.estado.toLowerCase());
     }
 }
 
-function blockUser(id, estadoActual) {
-    let url = `/admin/tiendas/block/${id}`
-
+function mostrarPedido(id, pedidoHash){
     $('#spinner-loading').fadeIn();
+    // let pedido = JSON.parse(atob(pedidoHash)
+    //     .replace(/&amp;/g, '&')
+    //     .replace(/&lt;/g, '<')
+    //     .replace(/&gt;/g, '>')
+    //     .replace(/&quot;/g, '"')
+    //     .replace(/&#039;/g, "'"));
+
+    // $('#offcanvas-pedidos').offcanvas('show');
+
+    // Modificamos el modal
+    // $('#offcanvas-pedidos #pedido-numero').text(doc);
+    // $('#offcanvas-pedidos #pedido-estado').text(estado);
+    // $('#card-estado').addClass(`bg-${estado.toLowerCase()}`);
+    console.log('jajaja');
     $.ajax({
-        url: url,
-        method: 'post',
-        data:{
-            id: id,
-            estado: estadoActual
+        url: '/tienda/pedidos/showPedido',
+        method: 'GET',
+        data: {
+            pedidoId: id,
         }
     }).done(response => {
-        standardAjaxResponse('¡Actualizado/a!', response.mensaje, null, 'success')
-        let dataTable = $(`.${tableClass}`);
-        dataTable.DataTable().ajax.reload();
+        $('#pedidos-content').html(response);
+        $('#offcanvas-pedidos').offcanvas('show');
     }).fail(error => {
         customFormAjaxResponse(error);
     }).always(() => {
         $('#spinner-loading').fadeOut();
     })
+
+    $('#spinner-loading').fadeOut();
+
 }

@@ -20,6 +20,7 @@ class CreatePedidosTable extends Migration
             $table->longText('pedido');
             $table->longText('observaciones');
             $table->dateTime('fecha_entrega');
+            $table->string('estado');
             $table->timestamps();
 
             $table->foreignId('user_id')->nullable()->references('id')->on('users')->onUpdate('CASCADE')->onDelete('SET NULL');

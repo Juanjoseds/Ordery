@@ -101,6 +101,7 @@ Route::group(['prefix' => 'tienda', 'as'=>'tienda.', 'middleware'=> ['rol:tienda
         Route::group(['middleware' => ['permission:Pedidos,Leer']], function () {
             Route::get('pizarra', [PedidoController::class, 'index'])->name('pizarraPedidos');
             Route::post('json', [PedidoController::class, 'getDataJson']);
+            Route::get('showPedido', [PedidoController::class, 'showPedido']);
         });
 
         Route::group(['middleware' => ['permission:Pedidos,Editar']], function () {

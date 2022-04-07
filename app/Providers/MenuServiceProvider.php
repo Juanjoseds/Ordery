@@ -30,7 +30,7 @@ class MenuServiceProvider extends ServiceProvider
             $user = Auth::user();
 
             if(isset($user)){
-                // Menús para el ADMIN
+                // Menús
                 $verticalMenuData = json_decode(file_get_contents(base_path("resources/data/menu-data/$user->tipo/verticalMenu.json")));
                 $horizontalMenuData = json_decode(file_get_contents(base_path("resources/data/menu-data/$user->tipo/horizontalMenu.json")));
             }
