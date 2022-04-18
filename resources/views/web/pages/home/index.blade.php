@@ -10,24 +10,22 @@
 
 @section('page-style')
     <link rel="stylesheet" href="{{ asset(mix('css/core.css')) }}" />
+    <link href="{{ asset(mix('css/web/pages/home/home.css')) . '?v=' . $APP_VERSION }}"
+          rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
     {{-- Page Css files --}}
 {{--    <link href="{{ asset(mix('fonts/font-awesome/css/font-awesome.min.css')) }}"--}}
 {{--          rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">--}}
 {{--    <link href="{{ asset(mix('vendors/css/aos/aos.css')) }}" rel="stylesheet">--}}
 {{--    <link href="{{ asset(mix('vendors/css/extensions/swiper.7.0.6.min.css')) }}"--}}
 {{--          rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">--}}
-{{--    <link href="{{ asset(mix('css/web/pages/home/home.css')) . '?v=' . $APP_VERSION }}"--}}
-{{--          rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">--}}
+
 {{--    --}}{{-- MAPA --}}
 {{--    <link href="{{ asset('vendors/css/leaflet/leaflet.css') }}"--}}
 {{--          rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">--}}
 @endsection
 
 @section('content')
-    <div class="w-100">
-        <img src="{{asset('images/web/home/banner.svg')}}" alt="waves">
-    </div>
-    <p>Home :)</p>
+    @include('web.pages.home.header')
 
     <a href="/login">Login</a>
 
