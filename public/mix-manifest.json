@@ -609,10 +609,12 @@
     "/data/table-datatable.json": "/data/table-datatable.json",
     "/data/user-list.json": "/data/user-list.json",
     "/lang/.DS_Store": "/lang/.DS_Store",
+    "/js/web/pages/home.js": "/js/web/pages/home.js",
     "/js/web/core/aframe.min.js": "/js/web/core/aframe.min.js",
     "/js/web/core/aos.js": "/js/web/core/aos.js",
     "/js/web/core/bootstrap.bundle.min.js": "/js/web/core/bootstrap.bundle.min.js",
     "/js/web/core/floating-wpp.min.js": "/js/web/core/floating-wpp.min.js",
     "/js/web/core/jquery2.min.js": "/js/web/core/jquery2.min.js",
+    "/js/web/core/pixi.min.js": "/js/web/core/pixi.min.js",
     "/js/web/core/select2.min.js": "/js/web/core/select2.min.js"
 }

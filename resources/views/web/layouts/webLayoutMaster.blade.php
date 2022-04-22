@@ -33,7 +33,7 @@
     <meta property="twitter:description" content="Al Omran United Maritime Services & Logistics Company as a highly proficient team combined of experienced as well as young...">
     <meta property="twitter:image" content="{{asset('/images/logos/image-meta.png')}}">
     {{-- Include Styles --}}
-    {{-- <link rel="stylesheet" href="{{ asset('fonts/font-awesome/css/font-awesome.min.css')}}" crossorigin="anonymous"> --}}
+     <link rel="stylesheet" href="{{ asset('fonts/font-awesome/css/all.min.css')}}" crossorigin="anonymous">
 {{--    <link rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;"--}}
 {{--          rel="stylesheet" href="{{ asset(mix('css/web/core/bootstrap.css')) }}" crossorigin="anonymous">--}}
 {{--    <link rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;"--}}
