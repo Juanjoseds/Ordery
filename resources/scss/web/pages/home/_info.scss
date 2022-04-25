@@ -1,0 +1,22 @@
+#main-info{
+    position: relative;
+    width: 100%;
+    .section1{
+        width: 100%;
+        svg{
+            width: 30em;
+            margin-left: 2em;
+        }
+    }
+    .text-zone{
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        align-items: center;
+        font-size: 22px;
+
+        p{
+            line-height: 4rem;
+            font-size: 28px;
+        }
+    }
+}

@@ -25,6 +25,7 @@
 
 @section('content')
     @include('web.pages.home.header')
+    @include('web.pages.home.info')
 
     <a href="/login">Login</a>
 

@@ -17,10 +17,12 @@
         <ul>
             <li>NUESTRA GARANTÍA</li>
             <li>CONTACTO</li>
-            <li><button type="button" class="btn btn-warning waves-effect waves-float waves-light" onclick="location.href='/login'">
+            <li>
+                <button type="button" class="btn btn-warning waves-effect waves-float waves-light" onclick="location.href='/login'">
                     <i class="fa-solid fa-arrow-right-to-bracket me-50"></i>
                     <span>Entrar</span>
-                </button></li>
+                </button>
+            </li>
         </ul>
     </div>
     <div id="header">
@@ -35,6 +37,12 @@
         <div id="title">
             <h1 class="gradient-text">Ordery</h1>
             <p class="subtitle">Tú súper pedido</p>
+        </div>
+
+        <div id="buscador">
+            <div class="barra-buscador">
+                <input type="text" class="form-control">
+            </div>
         </div>
 
     </div>
