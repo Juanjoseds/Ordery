@@ -1,17 +1,3 @@
-{{--<div id="header">--}}
-{{--    <div id="menu">--}}
-{{--        <ul>--}}
-{{--            <li>INICIO</li>--}}
-{{--            <li>QUÉ ES</li>--}}
-{{--            <li>CONTACTO</li>--}}
-{{--        </ul>--}}
-{{--    </div>--}}
-
-{{--    <div id="main-header">--}}
-{{--        <img src="{{asset('images/web/home/banner.svg')}}" alt="waves">--}}
-{{--    </div>--}}
-{{--</div>--}}
-{{--<div id="header"></div>--}}
 <div id="main-header">
     <div id="menu">
         <ul>

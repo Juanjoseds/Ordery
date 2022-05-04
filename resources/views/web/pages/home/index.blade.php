@@ -14,7 +14,7 @@
           rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
     {{-- Page Css files --}}
 {{--          rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">--}}
-{{--    <link href="{{ asset(mix('vendors/css/aos/aos.css')) }}" rel="stylesheet">--}}
+    <link href="{{ asset(mix('vendors/css/aos/aos.css')) }}" rel="stylesheet">
 {{--    <link href="{{ asset(mix('vendors/css/extensions/swiper.7.0.6.min.css')) }}"--}}
 {{--          rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">--}}
 
@@ -26,17 +26,6 @@
 @section('content')
     @include('web.pages.home.header')
     @include('web.pages.home.info')
-
-    <a href="/login">Login</a>
-
-{{--   @include('web.pages.home.header')--}}
-{{--   @include('web.pages.home.discover')--}}
-{{--   @include('web.pages.home.divider', ['title' => 'DISCOVER OUR SERVICES'])--}}
-{{--   <div id="append"></div>--}}
-{{--   @include('web.pages.home.services')--}}
-{{--   @include('web.pages.home.divider', ['title' => 'DISCOVER OUR COVERAGE'])--}}
-{{--   @include('web.pages.home.mapa')--}}
-{{--   @include('web.pages.home.team')--}}
 @endsection
 
 @section('page-script')
@@ -48,6 +37,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@800&display=swap" rel="stylesheet">
+
+    {{-- AOS --}}
+        <script src="{{ asset(mix('vendors/js/aos/aos.js')) }}"></script>
 {{--    <script async defer src="{{ asset(mix('vendors/js/extensions/swiper.7.0.6.min.js')) }}"></script>--}}
 {{--    <script async defer src="{{ asset('js/scripts/extensions/all.min.js') }}"></script>--}}
 {{--    --}}{{-- MAPA --}}
@@ -58,14 +50,7 @@
 {{--    <script src="{{ asset(mix('vendors/js/aos/aos.js')) }}"></script>--}}
 {{--    <script src="{{ asset(mix('js/web/pages/home.js')) . '?v=' . $APP_VERSION }}"></script>--}}
 {{--    <script src="{{ asset(mix('js/web/pages/text-animations.js')) . '?v=' . $APP_VERSION }}"></script>--}}
-{{--    <script>--}}
+    <script>
 
-{{--            AOS.init({--}}
-{{--                disable: function() {--}}
-{{--                    var maxWidth = 800;--}}
-{{--                    return window.innerWidth < maxWidth;--}}
-{{--                }--}}
-{{--            });--}}
-
-{{--    </script>--}}
+    </script>
 @endsection

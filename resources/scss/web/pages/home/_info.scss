@@ -3,9 +3,20 @@
     width: 100%;
     .section1{
         width: 100%;
-        svg{
-            width: 30em;
-            margin-left: 2em;
+        .item-info{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            svg{
+                width: 30em;
+                margin-left: 2em;
+            }
+            img{
+                position: absolute;
+                width: 10vw;
+                margin-left: 20em;
+                margin-top: 5em;
+            }
         }
     }
     .text-zone{
