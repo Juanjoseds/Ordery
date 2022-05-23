@@ -146,6 +146,7 @@
     "/js/scripts/pages/auth-two-steps.js": "/js/scripts/pages/auth-two-steps.js",
     "/js/scripts/pages/dashboard-analytics.js": "/js/scripts/pages/dashboard-analytics.js",
     "/js/scripts/pages/dashboard-ecommerce.js": "/js/scripts/pages/dashboard-ecommerce.js",
+    "/js/scripts/pages/dashboard/tienda/dashboard.js": "/js/scripts/pages/dashboard/tienda/dashboard.js",
     "/js/scripts/pages/empleados/formulario.js": "/js/scripts/pages/empleados/formulario.js",
     "/js/scripts/pages/empleados/pizarra.js": "/js/scripts/pages/empleados/pizarra.js",
     "/js/scripts/pages/metodospago/metodospago.js": "/js/scripts/pages/metodospago/metodospago.js",

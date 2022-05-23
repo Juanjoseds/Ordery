@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             PermisosSeeder::class,
             MetodosPagoSeeder::class,
+            PedidosSeeder::class,
         ]);
     }
 }

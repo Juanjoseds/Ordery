@@ -18,6 +18,7 @@ class CreatePedidosTable extends Migration
             $table->string('doc');
             $table->longText('info_pago');
             $table->longText('pedido');
+            $table->float('precio');
             $table->longText('observaciones');
             $table->dateTime('fecha_entrega');
             $table->string('estado');
