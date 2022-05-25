@@ -84,6 +84,14 @@
             ]
         },
         {
+            "name": "Carta",
+            "icon": "file-text",
+            "routeName": "tienda.pizarraCarta",
+            "slug": "tienda.pizarraCarta",
+            "permiso_nombre": "Editar",
+            "permiso_modulo": "Carta"
+        },
+        {
             "routeName": "admin.pizarraMetodosPago",
             "name": "Métodos de pago",
             "icon": "credit-card",

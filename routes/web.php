@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartaController;
 use App\Http\Controllers\MetodosPagoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\TiendaController;
@@ -122,6 +123,23 @@ Route::group(['prefix' => 'tienda', 'as'=>'tienda.', 'middleware'=> ['rol:tienda
             Route::put('store/{id?}', [UserController::class, 'store']);
             Route::get('edit/{id}', [UserController::class, 'edit']);
             Route::post('block/{id}', [UserController::class, 'block']);
+        });
+
+    });
+
+    Route::prefix('carta')->group(function () {
+        Route::group(['middleware' => ['permission:Carta,Leer']], function () {
+            Route::get('pizarra', [CartaController::class, 'index'])->name('pizarraCarta');
+//            Route::post('json', [UserController::class, 'getDataJson']);
+//            Route::get('show/{id}', [UserController::class, 'show']);
+        });
+
+        Route::group(['middleware' => ['permission:Empleados,Editar']], function () {
+            Route::get('new', [UserController::class, 'new'])->name('createEmpleado');
+//            Route::post('store', [UserController::class, 'store']);
+//            Route::put('store/{id?}', [UserController::class, 'store']);
+//            Route::get('edit/{id}', [UserController::class, 'edit']);
+//            Route::post('block/{id}', [UserController::class, 'block']);
         });
 
     });

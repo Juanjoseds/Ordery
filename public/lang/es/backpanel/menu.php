@@ -14,6 +14,7 @@ return [
     'Empleados' => 'Empleados',
     'Tiendas' => 'Tiendas',
     'Pedidos' => 'Pedidos',
+    'Carta' => 'Carta',
     'Ver pedidos' => 'Ver pedidos',
     'Nuevo pedido' => 'Nuevo pedido',
 

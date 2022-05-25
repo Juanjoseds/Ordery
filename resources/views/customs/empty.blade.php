@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-    <section class="app-user-list">
+    <section class="main-content">
         @yield('content')
     </section>
 @endsection
