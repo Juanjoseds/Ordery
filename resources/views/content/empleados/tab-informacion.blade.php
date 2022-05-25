@@ -1,7 +1,5 @@
 <form class="form-usuario form-usuario-form">
-    @if($method == 'Ver')
-        <fieldset disabled>
-            @endif
+    @if($method == 'Ver')<fieldset disabled>@endif
             <div class="row mt-1">
                 <div class="col-12">
                     <h4 class="mb-1">
@@ -17,7 +15,7 @@
                         <div class="w-100 text-center">
                             <img id="display_uploaded" class="img-fluid cursor-pointer"
                                  style="width: 10em;"
-                                 alt="Imagen agente"
+                                 alt="Imagen empleado"
                                  @if($method != 'Nuevo')
                                  src="{{!is_null($empleado->imagen) ? $empleado->imagen : asset('images/assets/upload.svg')}}"
                                  @else
@@ -25,7 +23,7 @@
                                 @endif
                             >
                             <br>
-                            <small class="w-100"><i class="mr-50" data-feather="info"></i>Tamaño recomendado: 600 x 700</small>
+                            <small class="w-100"><i class="me-50" data-feather="info"></i>Tamaño recomendado: 600 x 700</small>
                         </div>
                         <input type="text" id="image_uploaded" name="imagen" style="position: absolute;z-index: -1;"
                                @if($method != 'Nuevo')
@@ -38,7 +36,7 @@
                 <div class="col-9 row align-content-start">
                     <div class="col-lg-4 col-md-6 col-12 mb-1">
                         <div class="form-group">
-                            <label for="nombre">Nombre</label>
+                            <label for="nombre">Nombre*</label>
                             <input id="nombre" name="nombre" type="text" class="form-control"
                                    data-required="El campo nombre es requerido"
                                    data-minlength="3"
@@ -48,7 +46,7 @@
                     </div>
                     <div class="col-lg-4 col-md-6 col-12 mb-1">
                         <div class="form-group">
-                            <label for="apellidos">Apellidos</label>
+                            <label for="apellidos">Apellidos*</label>
                             <input id="apellidos" name="apellidos" type="text" class="form-control"
                                    data-required=""
                                    @if($method != 'Nuevo') value="{{$empleado->apellidos}}"@endif
@@ -57,7 +55,7 @@
                     </div>
                     <div class="col-lg-4 col-md-6 col-12 mb-1">
                         <div class="form-group">
-                            <label for="dni">DNI</label>
+                            <label for="dni">DNI*</label>
                             <input id="dni" name="dni" type="text" class="form-control"
                                    data-required=""
                                    @if($method != 'Nuevo') value="{{$empleado->dni}}"@endif
@@ -66,7 +64,7 @@
                     </div>
                     <div class="col-lg-4 col-md-6 col-12 mb-1">
                         <div class="form-group">
-                            <label for="telefono">Teléfono</label>
+                            <label for="telefono">Teléfono*</label>
                             <input id="telefono" name="telefono" type="text" class="form-control"
                                    data-required="El campo teléfono es requerido"
                                    @if($method != 'Nuevo') value="{{$empleado->telefono}}"@endif
@@ -75,52 +73,34 @@
                     </div>
                     <div class="col-lg-4 col-md-6 col-12 mb-1">
                         <div class="form-group">
-                            <label for="cargo_empresa">Cargo en la empresa</label>
+                            <label for="cargo_empresa">Cargo en la empresa*</label>
                             <input id="cargo_empresa" name="cargo_empresa" type="text" class="form-control"
                                    data-required="El campo cargo empresa es requerido"
                                    @if($method != 'Nuevo') value="{{$empleado->cargo_empresa}}"@endif
                             />
                         </div>
                     </div>
-                    @if($method !== 'Nuevo')
-                        <div class="col-lg-4 col-md-6 col-12 mb-1">
-                            <div class="d-flex flex-column">
-                                <label class="form-check-label mb-50" for="customSwitch12">Cuenta bloqueada</label>
-                                <div class="form-check form-switch form-check-danger">
-                                    <input type="checkbox" name="is_blocked" class="form-check-input" id="is_blocked"
-                                    @if($method != 'Nuevo' && @$empleado->is_blocked == '1') checked @endif>
-                                    <label class="form-check-label" for="is_blocked">
-                                        <span class="switch-icon-left"><svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="14" height="14" viewBox="0 0 24 24"
-                                                                            fill="none" stroke="currentColor"
-                                                                            stroke-width="2" stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-check"><polyline
-                                                    points="20 6 9 17 4 12"></polyline></svg></span>
-                                        <span class="switch-icon-right"><svg xmlns="http://www.w3.org/2000/svg"
-                                                                             width="14" height="14" viewBox="0 0 24 24"
-                                                                             fill="none" stroke="currentColor"
-                                                                             stroke-width="2" stroke-linecap="round"
-                                                                             stroke-linejoin="round"
-                                                                             class="feather feather-x"><line x1="18"
-                                                                                                             y1="6"
-                                                                                                             x2="6"
-                                                                                                             y2="18"></line><line
-                                                    x1="6" y1="6" x2="18" y2="18"></line></svg></span>
-                                    </label>
-                                </div>
+                    <div class="col-lg-4 col-md-6 col-12 mb-1">
+                        <div class="d-flex flex-column">
+                            <label class="form-check-label mb-50" for="customSwitch12">Cuenta bloqueada</label>
+                            <div class="form-check form-switch form-check-danger">
+                                <input type="checkbox" name="is_blocked" class="form-check-input" id="is_blocked"
+                                @if($method != 'Nuevo' && @$empleado->is_blocked == '1') checked @endif>
+                                <label class="form-check-label" for="is_blocked">
+                                    <span class="switch-icon-left"><i data-feather="check"></i></span>
+                                    <span class="switch-icon-right"><i data-feather="x"></i></span>
+                                </label>
                             </div>
                         </div>
-                    @endif
+                    </div>
                 </div>
             </div>
 
-            </div>
             <div class="row">
                 <div class="col-12">
                     <h4 class="mb-1 mt-2">
-                        <i data-feather="lock" class="font-medium-4 mr-25"></i>
-                        <span class="align-middle">Cuenta</span>
+                        <i data-feather="key" class="font-medium-4 mr-25"></i>
+                        <span class="align-middle">Acceso</span>
                     </h4>
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
@@ -170,5 +150,6 @@
             </div>
 
         @include('content.empleados.tab-permisos')
-
+        @if($method == 'Ver')</fieldset>@endif
+        @include('customs.form-buttons', ['routeName' => "$user_auth->tipo.pizarraEmpleados"])
 </form>

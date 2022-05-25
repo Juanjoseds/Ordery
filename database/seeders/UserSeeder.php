@@ -38,11 +38,12 @@ class UserSeeder extends Seeder
         // TIENDA
         User::create([
             'nombre' => 'Aythami',
-            'apellidos' => 'Pérez',
+            'apellidos' => 'Torrado',
             'dni' => '41102254',
             'telefono' => '656555887',
             'tipo' => 'tienda',
             'email' => 'tienda@gmail.com',
+            'cargo_empresa' => 'Jefe',
             'descripcion' => '¡Los videojuegos es mi pasión!',
             'rol' => 'admin',
             'email_verified_at' => now(),

@@ -29,14 +29,18 @@ class UserController extends Controller
 
     public function new() {
         $method = 'Nuevo';
-        $permisos = Permiso::where('rol', $this->user->tipo)->get();
+        $permisos = Permiso::query()
+            ->where('rol', $this->user->tipo)
+            ->get();
         return view('/content/empleados/formulario', ['nameCrud' => $this->nameCrud, 'method' => $method, 'permisos'=>$permisos]);
     }
 
     public function edit($id)
     {
         $empleado = User::query()->where('id', $id)->first();
-        $permisos = Permiso::with(['users' => function($query) use($id){
+        $permisos = Permiso::query()
+            ->where('rol', $this->user->tipo)
+            ->with(['users' => function($query) use($id){
             $query->where('users.id', $id);
         }])->where('rol', $this->user->tipo)->get()->toArray();
 
@@ -50,7 +54,9 @@ class UserController extends Controller
     public function show($id)
     {
         $empleado = User::query()->where('id', $id)->first();
-        $permisos = Permiso::with(['users' => function($query) use($id){
+        $permisos = Permiso::query()
+            ->where('rol', $this->user->tipo)
+            ->with(['users' => function($query) use($id){
             $query->where('users.id', $id);
         }])->get()->toArray();
 
