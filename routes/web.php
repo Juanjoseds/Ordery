@@ -26,122 +26,123 @@ Auth::routes();
 Route::get('/maintenance', [WebpagesController::class, 'maintenance'])->name('maintenance');
 Route::get('/', [WebpagesController::class, 'home'])->name('home');
 
-// 'middleware'=> ['rol:admin']
-Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware'=> ['rol:admin']], function () {
-    Route::get('dashboard', [DashboardController::class, 'indexAdmin'])->name('dashboard');
-    Route::get('perfil', [UserController::class, 'perfil'])->name('perfil');
+Route::group(['middleware'=> ['auth']], function () {
+    Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware'=> ['rol:admin']], function () {
+        Route::get('dashboard', [DashboardController::class, 'indexAdmin'])->name('dashboard');
+        Route::get('perfil', [UserController::class, 'perfil'])->name('perfil');
 
-    /** EMPLEADOS **/
-    Route::prefix('empleados')->group(function () {
-        Route::group(['middleware' => ['permission:Empleados,Leer']], function () {
-            Route::get('pizarra', [UserController::class, 'index'])->name('pizarraEmpleados');
-            Route::post('json', [UserController::class, 'getDataJson']);
-            Route::get('show/{id}', [UserController::class, 'show']);
+        /** EMPLEADOS **/
+        Route::prefix('empleados')->group(function () {
+            Route::group(['middleware' => ['permission:Empleados,Leer']], function () {
+                Route::get('pizarra', [UserController::class, 'index'])->name('pizarraEmpleados');
+                Route::post('json', [UserController::class, 'getDataJson']);
+                Route::get('show/{id}', [UserController::class, 'show']);
+            });
+
+            Route::group(['middleware' => ['permission:Empleados,Editar']], function () {
+                Route::get('new', [UserController::class, 'new'])->name('createEmpleado');
+                Route::post('store', [UserController::class, 'store']);
+                Route::put('store/{id?}', [UserController::class, 'store']);
+                Route::get('edit/{id}', [UserController::class, 'edit']);
+                Route::post('block/{id}', [UserController::class, 'block']);
+            });
+
+
         });
 
-        Route::group(['middleware' => ['permission:Empleados,Editar']], function () {
-            Route::get('new', [UserController::class, 'new'])->name('createEmpleado');
-            Route::post('store', [UserController::class, 'store']);
-            Route::put('store/{id?}', [UserController::class, 'store']);
-            Route::get('edit/{id}', [UserController::class, 'edit']);
-            Route::post('block/{id}', [UserController::class, 'block']);
+        /** TIENDAS **/
+        Route::prefix('tiendas')->group(function () {
+            Route::group(['middleware' => ['permission:Tiendas,Leer']], function () {
+                Route::get('pizarra', [TiendaController::class, 'index'])->name('pizarraTiendas');
+                Route::post('json', [TiendaController::class, 'getDataJson']);
+                Route::get('show/{id}', [TiendaController::class, 'show']);
+            });
+
+            Route::group(['middleware' => ['permission:Tiendas,Editar']], function () {
+                Route::get('new', [TiendaController::class, 'new'])->name('createTiendas');
+                Route::post('store', [TiendaController::class, 'store']);
+                Route::put('store/{id?}', [TiendaController::class, 'store']);
+                Route::get('edit/{id}', [TiendaController::class, 'edit']);
+                Route::post('block/{id}', [TiendaController::class, 'block']);
+            });
+
+            Route::group(['middleware' => ['permission:Tiendas,Borrar']], function () {
+                Route::delete('delete/{id}', [TiendaController::class, 'destroy']);
+                Route::delete('delete-multiple', [TiendaController::class, 'destroyAll']);
+            });
+
+
         });
 
+        /** MÉTODOS DE PAGO */
+        Route::prefix('metodospago')->group(function () {
+            Route::group(['middleware' => ['permission:Metodos de pago,Leer']], function () {
+                Route::get('pizarra', [MetodosPagoController::class, 'index'])->name('pizarraMetodosPago');
+            });
 
+            Route::group(['middleware' => ['permission:Metodos de pago,Editar']], function () {
+                Route::post('cambiarestado', [MetodosPagoController::class, 'cambiarestado']);
+                Route::get('get-configuracion/{id}', [MetodosPagoController::class, 'getConfig']);
+
+                Route::prefix('cambiar-configuracion')->group(function () {
+                    Route::post('{metodo}', [MetodosPagoController::class, 'configurar']);
+                });
+            });
+
+
+
+        });
     });
 
-    /** TIENDAS **/
-    Route::prefix('tiendas')->group(function () {
-        Route::group(['middleware' => ['permission:Tiendas,Leer']], function () {
-            Route::get('pizarra', [TiendaController::class, 'index'])->name('pizarraTiendas');
-            Route::post('json', [TiendaController::class, 'getDataJson']);
-            Route::get('show/{id}', [TiendaController::class, 'show']);
-        });
+    Route::group(['prefix' => 'tienda', 'as'=>'tienda.', 'middleware'=> ['rol:tienda']], function () {
+        Route::get('dashboard', [DashboardController::class, 'indexTienda'])->name('dashboard');
 
-        Route::group(['middleware' => ['permission:Tiendas,Editar']], function () {
-            Route::get('new', [TiendaController::class, 'new'])->name('createTiendas');
-            Route::post('store', [TiendaController::class, 'store']);
-            Route::put('store/{id?}', [TiendaController::class, 'store']);
-            Route::get('edit/{id}', [TiendaController::class, 'edit']);
-            Route::post('block/{id}', [TiendaController::class, 'block']);
-        });
+        /** PEDIDOS */
+        Route::prefix('pedidos')->group(function () {
+            Route::group(['middleware' => ['permission:Pedidos,Leer']], function () {
+                Route::get('pizarra', [PedidoController::class, 'index'])->name('pizarraPedidos');
+                Route::post('json', [PedidoController::class, 'getDataJson']);
+                Route::get('showPedido', [PedidoController::class, 'showPedido']);
+            });
 
-        Route::group(['middleware' => ['permission:Tiendas,Borrar']], function () {
-            Route::delete('delete/{id}', [TiendaController::class, 'destroy']);
-            Route::delete('delete-multiple', [TiendaController::class, 'destroyAll']);
-        });
+            Route::group(['middleware' => ['permission:Pedidos,Editar']], function () {
 
-
-    });
-
-    /** MÉTODOS DE PAGO */
-    Route::prefix('metodospago')->group(function () {
-        Route::group(['middleware' => ['permission:Metodos de pago,Leer']], function () {
-            Route::get('pizarra', [MetodosPagoController::class, 'index'])->name('pizarraMetodosPago');
-        });
-
-        Route::group(['middleware' => ['permission:Metodos de pago,Editar']], function () {
-            Route::post('cambiarestado', [MetodosPagoController::class, 'cambiarestado']);
-            Route::get('get-configuracion/{id}', [MetodosPagoController::class, 'getConfig']);
-
-            Route::prefix('cambiar-configuracion')->group(function () {
-                Route::post('{metodo}', [MetodosPagoController::class, 'configurar']);
             });
         });
 
+        Route::prefix('empleados')->group(function () {
+            Route::group(['middleware' => ['permission:Empleados,Leer']], function () {
+                Route::get('pizarra', [UserController::class, 'index'])->name('pizarraEmpleados');
+                Route::post('json', [UserController::class, 'getDataJson']);
+                Route::get('show/{id}', [UserController::class, 'show']);
+            });
 
-
-    });
-});
-
-Route::group(['prefix' => 'tienda', 'as'=>'tienda.', 'middleware'=> ['rol:tienda']], function () {
-    Route::get('dashboard', [DashboardController::class, 'indexTienda'])->name('dashboard');
-
-    /** PEDIDOS */
-    Route::prefix('pedidos')->group(function () {
-        Route::group(['middleware' => ['permission:Pedidos,Leer']], function () {
-            Route::get('pizarra', [PedidoController::class, 'index'])->name('pizarraPedidos');
-            Route::post('json', [PedidoController::class, 'getDataJson']);
-            Route::get('showPedido', [PedidoController::class, 'showPedido']);
-        });
-
-        Route::group(['middleware' => ['permission:Pedidos,Editar']], function () {
+            Route::group(['middleware' => ['permission:Empleados,Editar']], function () {
+                Route::get('new', [UserController::class, 'new'])->name('createEmpleado');
+                Route::post('store', [UserController::class, 'store']);
+                Route::put('store/{id?}', [UserController::class, 'store']);
+                Route::get('edit/{id}', [UserController::class, 'edit']);
+                Route::post('block/{id}', [UserController::class, 'block']);
+            });
 
         });
-    });
 
-    Route::prefix('empleados')->group(function () {
-        Route::group(['middleware' => ['permission:Empleados,Leer']], function () {
-            Route::get('pizarra', [UserController::class, 'index'])->name('pizarraEmpleados');
-            Route::post('json', [UserController::class, 'getDataJson']);
-            Route::get('show/{id}', [UserController::class, 'show']);
-        });
+        Route::prefix('carta')->group(function () {
+            Route::group(['middleware' => ['permission:Carta,Leer']], function () {
+                Route::get('pizarra', [CartaController::class, 'index'])->name('pizarraCarta');
+    //            Route::post('json', [UserController::class, 'getDataJson']);
+    //            Route::get('show/{id}', [UserController::class, 'show']);
+            });
 
-        Route::group(['middleware' => ['permission:Empleados,Editar']], function () {
-            Route::get('new', [UserController::class, 'new'])->name('createEmpleado');
-            Route::post('store', [UserController::class, 'store']);
-            Route::put('store/{id?}', [UserController::class, 'store']);
-            Route::get('edit/{id}', [UserController::class, 'edit']);
-            Route::post('block/{id}', [UserController::class, 'block']);
-        });
+            Route::group(['middleware' => ['permission:Empleados,Editar']], function () {
+                Route::get('new', [UserController::class, 'new'])->name('createEmpleado');
+    //            Route::post('store', [UserController::class, 'store']);
+    //            Route::put('store/{id?}', [UserController::class, 'store']);
+    //            Route::get('edit/{id}', [UserController::class, 'edit']);
+    //            Route::post('block/{id}', [UserController::class, 'block']);
+            });
 
-    });
-
-    Route::prefix('carta')->group(function () {
-        Route::group(['middleware' => ['permission:Carta,Leer']], function () {
-            Route::get('pizarra', [CartaController::class, 'index'])->name('pizarraCarta');
-//            Route::post('json', [UserController::class, 'getDataJson']);
-//            Route::get('show/{id}', [UserController::class, 'show']);
-        });
-
-        Route::group(['middleware' => ['permission:Empleados,Editar']], function () {
-            Route::get('new', [UserController::class, 'new'])->name('createEmpleado');
-//            Route::post('store', [UserController::class, 'store']);
-//            Route::put('store/{id?}', [UserController::class, 'store']);
-//            Route::get('edit/{id}', [UserController::class, 'edit']);
-//            Route::post('block/{id}', [UserController::class, 'block']);
         });
 
     });
-
 });
