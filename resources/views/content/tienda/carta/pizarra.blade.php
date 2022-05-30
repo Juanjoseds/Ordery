@@ -3,6 +3,7 @@
 @section('content')
 
     @include('content.tienda.carta.banner')
+    @include('content.tienda.carta.botones')
     @include('content.tienda.carta.cards')
 
 @endsection
@@ -28,5 +29,5 @@
 @endsection
 
 @section('modales')
-    {{--    @include('modales.pedidos.offcanvas-pedidos')--}}
+        @include('modales.carta.offcanvas-carta')
 @endsection

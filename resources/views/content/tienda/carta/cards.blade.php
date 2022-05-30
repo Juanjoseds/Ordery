@@ -3,6 +3,12 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Draggable Card 1</h4>
+                <div>
+                    <button type="button" class="btn btn-outline-primary waves-effect" onclick="nuevoProductoCarta(this)">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Nuevo producto</span>
+                    </button>
+                </div>
             </div>
             <div class="card-body">
                 <ul class="list-group" id="basic-list-group">
