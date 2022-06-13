@@ -3,8 +3,9 @@
         <h5 id="offcanvas-pedidosLabel" class="offcanvas-title">Nuevo producto en <span id="nombre-categoria"></span></h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div id="formulario-carta" class="offcanvas-body mx-0 flex-grow-0">
-        <form class="{{$nameCrud}}-form pt-0">
+    <div  class="offcanvas-body mx-0 flex-grow-0">
+        <form id="producto-form" class="pt-0">
+            <input type="hidden" id="categoriaId">
             <div class="row">
 
                 <div class="col-12">
@@ -54,6 +55,9 @@
                         </div>
                     </div>
 
+                </div>
+                <div class="botones d-grid">
+                    <button type="button" class="btn btn-success waves-effect waves-float waves-light btn-sm-block" onclick="nuevoProducto()">Guardar</button>
                 </div>
             </div>
         </form>

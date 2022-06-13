@@ -5,6 +5,7 @@
     @include('content.tienda.carta.banner')
     @include('content.tienda.carta.botones')
     @include('content.tienda.carta.cards')
+    @include('content.tienda.carta.bases')
 
 @endsection
 
@@ -29,5 +30,6 @@
 @endsection
 
 @section('modales')
-        @include('modales.carta.offcanvas-carta')
+        @include('modales.carta.offcanvas-carta-producto')
+        @include('modales.carta.offcanvas-carta-categoria')
 @endsection

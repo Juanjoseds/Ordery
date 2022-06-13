@@ -15,14 +15,6 @@
                     <h2 class="brand-text">Ordery</h2>
                 </a>
 
-{{--                <a style="" class="navbar-brand d-flex w-75" href="/{{@$user_auth->tipo}}/dashboard">--}}
-{{--                    --}}{{--          <h2 class="brand-text">--}}
-{{--                    --}}{{--            ZIEGEL--}}
-{{--                    --}}{{--          </h2>--}}
-
-
-{{--                </a>--}}
-
             </li>
             <li class="nav-item nav-toggle">
                 <a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse" style="margin-top: 1.3rem;"><i
