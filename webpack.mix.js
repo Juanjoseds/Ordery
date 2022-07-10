@@ -44,6 +44,10 @@ mixAssetsDir('scss/base/pages/**/!(_)*.scss', (src, dest) =>
   mix.sass(src, dest.replace(/(\\|\/)scss(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), { sassOptions })
 )
 
+mixAssetsDir('scss/web/panel/**/!(_)*.scss', (src, dest) =>
+    mix.sass(src, dest.replace(/(\\|\/)scss(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), { sassOptions })
+)
+
 // Core stylesheets
 mixAssetsDir('scss/base/core/**/!(_)*.scss', (src, dest) =>
   mix.sass(src, dest.replace(/(\\|\/)scss(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), { sassOptions })

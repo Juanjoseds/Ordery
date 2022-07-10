@@ -26,5 +26,8 @@
                 <span>Chupa chups tiramisu apple pie biscuit sweet roll bonbon macaroon toffee icing.</span>
             </div>
         </div>
+        <div class="d-flex precio">
+            10€
+        </div>
     </li>
 </div>

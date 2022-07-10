@@ -1,0 +1,11 @@
+.producto{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .precio{
+        font-weight: bold;
+        font-size: 20px;
+        margin-right: 1em;
+    }
+}

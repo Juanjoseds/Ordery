@@ -18,6 +18,9 @@
     {{-- DRAG & DROP --}}
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-drag-drop.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/dragula.min.css')) }}">
+
+    {{-- ESTILOS --}}
+    <link rel="stylesheet" href="{{ asset(mix('css/web/panel/carta/pizarra.css')) }}">
 @endsection
 
 @section('crud-scripts')
