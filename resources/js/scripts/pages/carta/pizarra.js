@@ -59,9 +59,14 @@ function nuevaCategoria(){
     let nombre = form[1].value;
     let descripcion = form[2].value;
 
+    // Seteamos la información
     cardnew.find('.categoria-titulo').text(nombre);
+
+    // Ocultamos el botón de Nuevo producto
+    cardnew.find('.btn-add-producto').hide();
+
     $('#card-drag-area').append(cardnew);
-    $('.categoria:not(.categoria-new):last').data('id',id);
+    $('.categoria:not(.categoria-new):last').attr('data-id',id);
     $('#offcanvas-carta-categoria').offcanvas('hide');
 }
 
