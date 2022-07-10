@@ -9,8 +9,14 @@
         <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
         <label class="btn btn-outline-primary waves-effect" for="btnradio3" onclick="destroyAllDraggables()">Desactivar</label>
     </div>
-    <div class="btn-add-categoria">
-        <button type="button" class="btn btn-primary waves-effect waves-float waves-light" onclick="abrirOffcanvasNuevaCategoria()"><i class="fa-solid fa-plus"></i> Nueva categoría</button>
+    <div class="d-flex">
+        <div class="btn-guardar" style="display: none;">
+            <button type="button" class="btn btn-success waves-effect waves-float waves-light" onclick=""><i class="fa-solid fa-save"></i> Guardar cambios</button>
+        </div>
+        <div class="btn-add-categoria ms-1">
+            <button type="button" class="btn btn-primary waves-effect waves-float waves-light" onclick="abrirOffcanvasNuevaCategoria()"><i class="fa-solid fa-plus"></i> Nueva categoría</button>
+        </div>
     </div>
+
 </div>
 

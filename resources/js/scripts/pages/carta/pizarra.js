@@ -68,6 +68,7 @@ function nuevaCategoria(){
     $('#card-drag-area').append(cardnew);
     $('.categoria:not(.categoria-new):last').attr('data-id',id);
     $('#offcanvas-carta-categoria').offcanvas('hide');
+    activarGuardado();
 }
 
 function nuevoProducto(){
@@ -84,4 +85,9 @@ function nuevoProducto(){
     $(`.categoria[data-id='${idCategoria}']`).find('.lista-productos').append(productoNew);
 
     $('#offcanvas-carta-producto').offcanvas('hide');
+    activarGuardado();
+}
+
+function activarGuardado(){
+    $('.btn-guardar').fadeIn();
 }
