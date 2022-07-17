@@ -11,7 +11,7 @@
     </div>
     <div class="d-flex">
         <div class="btn-guardar" style="display: none;">
-            <button type="button" class="btn btn-success waves-effect waves-float waves-light" onclick=""><i class="fa-solid fa-save"></i> Guardar cambios</button>
+            <button type="button" class="btn btn-success waves-effect waves-float waves-light" onclick="guardarCarta()"><i class="fa-solid fa-save"></i> Guardar cambios</button>
         </div>
         <div class="btn-add-categoria ms-1">
             <button type="button" class="btn btn-primary waves-effect waves-float waves-light" onclick="abrirOffcanvasNuevaCategoria()"><i class="fa-solid fa-plus"></i> Nueva categoría</button>

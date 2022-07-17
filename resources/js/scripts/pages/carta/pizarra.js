@@ -11,8 +11,8 @@ let dragulaCard, dragulaList;
 function initCardsDraggable(){
     dragulaCard = dragula([document.getElementById('card-drag-area')]);
     destroyListsDraggable();
-
-    $('.list-group').fadeOut();
+    $('#card-drag-area .card-body').fadeOut();
+    /*$('.list-group').fadeOut();*/
     $('.btn-add-producto').fadeOut();
 }
 
@@ -20,7 +20,8 @@ function initListsDraggable(){
     dragulaList = dragula([document.getElementById('basic-list-group')]);
     destroyCardsDraggable();
 
-    $('.list-group').fadeIn();
+    /*$('.list-group').fadeIn();*/
+    $('#card-drag-area .card-body').fadeIn();
     $('.btn-add-producto').fadeIn();
 }
 
@@ -90,4 +91,39 @@ function nuevoProducto(){
 
 function activarGuardado(){
     $('.btn-guardar').fadeIn();
+}
+
+/**
+ * let carta = {
+ *     'categoria1': [
+ *         [titulo: pepe, desc: pepe, precio: 2]
+ *     ]
+ * }
+ *
+ *
+ */
+
+function guardarCarta(){
+    let carta = {};
+    let categorias = $('.categoria');
+
+    categorias.each(function (index) {
+
+        let productos = $(this).find('.producto');
+        let cartaProductos = [];
+
+        productos.each(function (index){
+            let arrayProductos = {
+                'titulo': $(this).find('.producto-titulo').text(),
+                'descripcion': $(this).find('.producto-descripcion').text(),
+                'precio': $(this).find('.producto-precio').text(),
+                'imagen': $(this).find('img').attr('src')
+            };
+            cartaProductos.push(arrayProductos);
+        });
+
+        carta[$(this).find('.categoria-titulo').text()] = cartaProductos;
+    });
+
+    console.log(carta);
 }

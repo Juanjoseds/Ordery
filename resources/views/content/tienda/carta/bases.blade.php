@@ -23,11 +23,9 @@
             <img src="http://vuexy.test/images/portrait/small/avatar-s-12.jpg" class="rounded-circle me-2" alt="img-placeholder" height="50" width="50">
             <div class="more-info">
                 <h5 class="producto-titulo">Mary S. Navarre</h5>
-                <span>Chupa chups tiramisu apple pie biscuit sweet roll bonbon macaroon toffee icing.</span>
+                <span class="producto-descripcion">Chupa chups tiramisu apple pie biscuit sweet roll bonbon macaroon toffee icing.</span>
             </div>
         </div>
-        <div class="d-flex precio">
-            10€
-        </div>
+        <div class="d-flex producto-precio">10€</div>
     </li>
 </div>
