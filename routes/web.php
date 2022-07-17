@@ -50,7 +50,7 @@ Route::group(['middleware'=> ['auth']], function () {
 
         });
 
-        /** TIENDAS **/
+        /** TIENDAS */
         Route::prefix('tiendas')->group(function () {
             Route::group(['middleware' => ['permission:Tiendas,Leer']], function () {
                 Route::get('pizarra', [TiendaController::class, 'index'])->name('pizarraTiendas');
@@ -94,6 +94,8 @@ Route::group(['middleware'=> ['auth']], function () {
         });
     });
 
+    /** ROL TIENDA */
+
     Route::group(['prefix' => 'tienda', 'as'=>'tienda.', 'middleware'=> ['rol:tienda']], function () {
         Route::get('dashboard', [DashboardController::class, 'indexTienda'])->name('dashboard');
 
@@ -110,6 +112,7 @@ Route::group(['middleware'=> ['auth']], function () {
             });
         });
 
+        /** EMPLEADOS */
         Route::prefix('empleados')->group(function () {
             Route::group(['middleware' => ['permission:Empleados,Leer']], function () {
                 Route::get('pizarra', [UserController::class, 'index'])->name('pizarraEmpleados');
@@ -127,9 +130,11 @@ Route::group(['middleware'=> ['auth']], function () {
 
         });
 
+        /** CARTA */
         Route::prefix('carta')->group(function () {
             Route::group(['middleware' => ['permission:Carta,Leer']], function () {
                 Route::get('pizarra', [CartaController::class, 'index'])->name('pizarraCarta');
+                Route::post('guardarCarta', [CartaController::class, 'store']);
     //            Route::post('json', [UserController::class, 'getDataJson']);
     //            Route::get('show/{id}', [UserController::class, 'show']);
             });

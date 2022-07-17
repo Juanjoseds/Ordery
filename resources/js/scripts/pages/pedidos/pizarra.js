@@ -216,7 +216,6 @@ function mostrarPedido(id, pedidoHash){
     // $('#offcanvas-pedidos #pedido-numero').text(doc);
     // $('#offcanvas-pedidos #pedido-estado').text(estado);
     // $('#card-estado').addClass(`bg-${estado.toLowerCase()}`);
-    console.log('jajaja');
     $.ajax({
         url: '/tienda/pedidos/showPedido',
         method: 'GET',

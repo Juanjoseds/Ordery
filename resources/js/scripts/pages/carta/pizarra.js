@@ -11,8 +11,9 @@ let dragulaCard, dragulaList;
 function initCardsDraggable(){
     dragulaCard = dragula([document.getElementById('card-drag-area')]);
     destroyListsDraggable();
+
     $('#card-drag-area .card-body').fadeOut();
-    /*$('.list-group').fadeOut();*/
+    $('.list-group').fadeOut();
     $('.btn-add-producto').fadeOut();
 }
 
@@ -20,8 +21,8 @@ function initListsDraggable(){
     dragulaList = dragula([document.getElementById('basic-list-group')]);
     destroyCardsDraggable();
 
-    /*$('.list-group').fadeIn();*/
     $('#card-drag-area .card-body').fadeIn();
+    $('.list-group').fadeIn();
     $('.btn-add-producto').fadeIn();
 }
 
@@ -89,8 +90,8 @@ function nuevoProducto(){
     activarGuardado();
 }
 
-function activarGuardado(){
-    $('.btn-guardar').fadeIn();
+function activarGuardado(activo = true){
+    activo ? $('.btn-guardar').fadeIn() : $('.btn-guardar').fadeOut();
 }
 
 /**
@@ -105,7 +106,7 @@ function activarGuardado(){
 
 function guardarCarta(){
     let carta = {};
-    let categorias = $('.categoria');
+    let categorias = $('.categoria:not(.categoria-new)');
 
     categorias.each(function (index) {
 
@@ -125,5 +126,28 @@ function guardarCarta(){
         carta[$(this).find('.categoria-titulo').text()] = cartaProductos;
     });
 
-    console.log(carta);
+    // Aquí debería validar que todo está bien
+
+    // Se guarda
+    $('#spinner-loading').fadeIn();
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: 'guardarCarta',
+        method: 'POST',
+        data: {
+            carta: JSON.stringify(carta)
+        },
+    }).done(response => {
+        standardAjaxResponse('¡Actualizado/a!', response.mensaje);
+    }).fail(errores => {
+        customFormAjaxResponse(errores);
+    }).always(() => {
+        $('#spinner-loading').fadeOut();
+    })
+    activarGuardado(false);
 }

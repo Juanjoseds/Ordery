@@ -11,7 +11,7 @@
                     </button>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body" style="display: none">
                 <ul class="list-group lista-productos"></ul>
             </div>
         </div>
