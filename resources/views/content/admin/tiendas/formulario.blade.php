@@ -10,7 +10,7 @@
 @section('page-style')
     {{-- Page Css files --}}
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('fonts/font-awesome/css/font-awesome.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('fonts/font-awesome/css/all.min.css')) }}">
 @endsection
 
 @section('form')
