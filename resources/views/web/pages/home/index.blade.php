@@ -15,6 +15,10 @@
     {{-- Page Css files --}}
 {{--          rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">--}}
     <link href="{{ asset(mix('vendors/css/aos/aos.css')) }}" rel="stylesheet">
+    {{-- FUENTES --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@800&display=swap" rel="stylesheet">
 {{--    <link href="{{ asset(mix('vendors/css/extensions/swiper.7.0.6.min.css')) }}"--}}
 {{--          rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">--}}
 

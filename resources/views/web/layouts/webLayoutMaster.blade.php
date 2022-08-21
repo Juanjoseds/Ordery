@@ -55,7 +55,7 @@
     {{-- @include('panels/loading') --}}
     <!-- JavaScript Bundle with Popper -->
     <script src="{{ asset('js/web/core/jquery2.min.js') }}"></script>
-{{--    <script async defer src="{{ asset('js/web/core/bootstrap.bundle.min.js') }}" crossorigin="anonymous"></script>--}}
+    <script async defer src="{{ asset('js/web/core/bootstrap.bundle.min.js') }}" crossorigin="anonymous"></script>
 {{--    <script async defer src="{{ asset(mix('js/web/layout/global.js')) . '?v=' . $APP_VERSION }}"></script>--}}
 {{--    <script async defer src="{{ asset(mix('js/web/layout/navbar.js')) . '?v=' . $APP_VERSION }}"></script>--}}
 {{--    <script async src="{{ asset('js/scripts/banner.js') }}" data-cookiefirst-key="{{config('app.cookie_key')}}"></script>--}}

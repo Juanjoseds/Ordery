@@ -1,20 +1,38 @@
 <div id="main-info">
-
-    <div class="section1 row">
-        <div class="col-4">
-            <div class="item-info" data-aos="fade-up">
-                <img src="{{asset('/images/web/home/shopbag.png')}}" alt="shop-bag" data-aos="fade-up" data-aos-delay="300">
-                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                    <path fill="#E26573" d="M66.1,-23C73.7,1.9,59.6,32.3,36.3,48.9C13,65.6,-19.4,68.5,-39.6,54C-59.8,39.5,-67.6,7.5,-59,-18.9C-50.3,-45.3,-25.2,-66,2,-66.7C29.3,-67.3,58.5,-47.9,66.1,-23Z" transform="translate(100 100)" />
-                </svg>
+    <div class="row m-0">
+        <div class="col-6">
+            <img class="mt-3" src="/images/web/home/food.png" alt="comida">
+        </div>
+        <div class="col-6 text-center justify-content-center mt-2 main-buscador">
+            <div class="texto">
+                ¿Qué te apetece comer?
             </div>
-
+            <div class="search-box mt-2">
+                <div class="search-icon"><i class="fa fa-search search-icon"></i></div>
+                <form action="" class="search-form">
+                    <input type="text" placeholder="Search" id="search" autocomplete="off">
+                </form>
+                <svg class="search-border" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" viewBox="0 0 671 111" style="enable-background:new 0 0 671 111;"
+                     xml:space="preserve">
+                  <path class="border" d="M335.5,108.5h-280c-29.3,0-53-23.7-53-53v0c0-29.3,23.7-53,53-53h280"/>
+                    <path class="border" d="M335.5,108.5h280c29.3,0,53-23.7,53-53v0c0-29.3-23.7-53-53-53h-280"/>
+                </svg>
+                <div class="go-icon"><i class="fa fa-arrow-right"></i></div>
+            </div>
         </div>
-        <div class="col-8 text-zone">
-            <p>Compra lo que necesitas para tu nevera, de una manera rápida y pasa a buscarlo cuando mejor te venga</p>
-        </div>
-
     </div>
+{{--    <div class="search-box">--}}
+{{--        <div class="search-icon"><i class="fa fa-search search-icon"></i></div>--}}
+{{--        <form action="" class="search-form">--}}
+{{--            <input type="text" placeholder="Search" id="search" autocomplete="off">--}}
+{{--        </form>--}}
+{{--        <svg class="search-border" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" viewBox="0 0 671 111" style="enable-background:new 0 0 671 111;"--}}
+{{--             xml:space="preserve">--}}
+{{--          <path class="border" d="M335.5,108.5h-280c-29.3,0-53-23.7-53-53v0c0-29.3,23.7-53,53-53h280"/>--}}
+{{--            <path class="border" d="M335.5,108.5h280c29.3,0,53-23.7,53-53v0c0-29.3-23.7-53-53-53h-280"/>--}}
+{{--        </svg>--}}
+{{--        <div class="go-icon"><i class="fa fa-arrow-right"></i></div>--}}
+{{--    </div>--}}
 
 </div>
 
