@@ -12,7 +12,10 @@
     </div>
     <div class="row m-0">
         <div class="col-3"></div>
-        <div class="col-9 p-3">
+        <div id="mainTiendas-recomendadas" class="col-9 p-4">
+            <div class="row text-end">
+                <span class="text-muted texto-tienda">Tiendas que encontrarás en Ordery</span>
+            </div>
             @include('web.pages.home.slider-tiendas')
         </div>
     </div>

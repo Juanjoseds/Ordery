@@ -5,7 +5,7 @@
     }
     .main-buscador .texto {
         font-family: 'Source Sans Pro', sans-serif;
-        font-size: 28px;
+        font-size: 36px;
     }
 
     .swiper {
@@ -50,5 +50,11 @@
 
     .swiper-slide:nth-child(3n) {
         width: 40%;
+    }
+
+    #mainTiendas-recomendadas{
+        .texto-tienda{
+            margin-top: -2em;
+        }
     }
 }
