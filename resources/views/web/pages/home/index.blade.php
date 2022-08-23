@@ -18,7 +18,8 @@
     {{-- FUENTES --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
 {{--    <link href="{{ asset(mix('vendors/css/extensions/swiper.7.0.6.min.css')) }}"--}}
 {{--          rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">--}}
 
@@ -38,13 +39,14 @@
     <script async defer src="{{ asset('js/web/pages/home.js') }}"></script>
 
     {{-- FONTS --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@800&display=swap" rel="stylesheet">
+
+
 
     {{-- AOS --}}
         <script src="{{ asset(mix('vendors/js/aos/aos.js')) }}"></script>
-{{--    <script async defer src="{{ asset(mix('vendors/js/extensions/swiper.7.0.6.min.js')) }}"></script>--}}
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+    {{--    <script async defer src="{{ asset(mix('vendors/js/extensions/swiper.7.0.6.min.js')) }}"></script>--}}
 {{--    <script async defer src="{{ asset('js/scripts/extensions/all.min.js') }}"></script>--}}
 {{--    --}}{{-- MAPA --}}
 {{--    <script async defer src="{{ asset('js/scripts/extensions/leaflet.js') }}"></script>--}}
