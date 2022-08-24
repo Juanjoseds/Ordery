@@ -25,6 +25,7 @@ Auth::routes();
 
 Route::get('/maintenance', [WebpagesController::class, 'maintenance'])->name('maintenance');
 Route::get('/', [WebpagesController::class, 'home'])->name('home');
+Route::get('/search', [WebpagesController::class, 'search'])->name('search');
 
 Route::group(['middleware'=> ['auth']], function () {
     Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware'=> ['rol:admin']], function () {

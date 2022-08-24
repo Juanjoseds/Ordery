@@ -84,16 +84,18 @@
   </div>
     <ul class="nav navbar-nav align-items-center" id="navbar-enlaces">
 
-        @foreach ($menuData[1]->menu as $menu)
-            @if (isset($menu->mostrar_siempre) || ($menu->permiso_nombre != '' && $user_auth->hasPermiso($menu->permiso_modulo, $menu->permiso_nombre)))
-                <li class="nav-item @if(Route::currentRouteName() == $menu->routeName) active @endif">
-                    <a class="nav-link @if(Route::currentRouteName() == $menu->routeName) active @endif" href="{{strlen($menu->routeName) > 0 ? route($menu->routeName, ['lang' => $lang]) : "/$lang/$menu->url"}}">{{__('backpanel/menu.'.$menu->name)}}</a>
-                </li>
-            @endif
-            {{-- <li>
-              <a href="{{strlen($menu->routeName) > 0 ? route($menu->routeName, ['lang' => $lang]) : "/$lang/$menu->url"}}">{{__('backpanel/menu.'.$menu->name)}}</a>
-            </li> --}}
-        @endforeach
+        @if(isset($menuData) && sizeof($menuData) > 0 && $menuData[0] !== [] && $menuData[1] !== [])
+            @foreach ($menuData[1]->menu as $menu)
+                @if (isset($menu->mostrar_siempre) || ($menu->permiso_nombre != '' && $user_auth->hasPermiso($menu->permiso_modulo, $menu->permiso_nombre)))
+                    <li class="nav-item @if(Route::currentRouteName() == $menu->routeName) active @endif">
+                        <a class="nav-link @if(Route::currentRouteName() == $menu->routeName) active @endif" href="{{strlen($menu->routeName) > 0 ? route($menu->routeName, ['lang' => $lang]) : "/$lang/$menu->url"}}">{{__('backpanel/menu.'.$menu->name)}}</a>
+                    </li>
+                @endif
+                {{-- <li>
+                  <a href="{{strlen($menu->routeName) > 0 ? route($menu->routeName, ['lang' => $lang]) : "/$lang/$menu->url"}}">{{__('backpanel/menu.'.$menu->name)}}</a>
+                </li> --}}
+            @endforeach
+        @endif
 
     </ul>
   <ul class="nav navbar-nav align-items-center ms-auto">
@@ -356,12 +358,12 @@
             @endif
           </span>
           <span class="user-status">
-            {{strtoupper($user_auth->tipo)}}
+            {{strtoupper(@$user_auth->tipo)}}
           </span>
         </div>
         <span class="avatar">
           <img class="round"
-            src="{{ $user_auth->image === null ? Avatar::create($user_auth->nombre)->toBase64() : $user_auth->image }}"
+            src="{{ @$user_auth->image === null ? Avatar::create(@$user_auth->nombre)->toBase64() : @$user_auth->image }}"
             alt="avatar" height="40" width="40">
           <span class="avatar-status-online"></span>
         </span>

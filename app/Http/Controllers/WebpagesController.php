@@ -24,6 +24,17 @@ class WebpagesController extends Controller
         return view('/web/pages/home/index', []);
     }
 
+    //SEARCH
+    public function search(Request $request){
+        $pageConfigs = [
+            'contentLayout' => "content-detached-left-sidebar",
+            'pageClass' => 'ecommerce-application',
+        ];
+        return view('/web/pages/search/index', [
+            'pageConfigs' => $pageConfigs,
+        ]);
+    }
+
     // COOKIES
     public function cookies(Request $request)
     {

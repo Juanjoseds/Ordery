@@ -17,7 +17,7 @@ $configData = Helper::applClasses();
   <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
   <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
   <meta name="author" content="PIXINVENT">
-  <title>@yield('title') - Vuexy - Bootstrap HTML & Laravel admin template</title>
+  <title>@yield('title')</title>
   <link rel="apple-touch-icon" href="{{asset('images/ico/apple-icon-120.png')}}">
   <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/logo/favicon.ico')}}">
     <link rel="stylesheet" href="{{ asset('fonts/font-awesome/css/all.min.css')}}" crossorigin="anonymous"><meta property="og:title" content="Ordery">
@@ -31,7 +31,7 @@ $configData = Helper::applClasses();
 </head>
 <!-- END: Head-->
 
-<input type="hidden" id="tipo_user" value="{{$user_auth->tipo}}">
+<input type="hidden" id="tipo_user" value="{{@$user_auth->tipo}}">
 <input type="hidden" id="method" value="{{ @$method }}">
 
 <!-- BEGIN: Body-->
