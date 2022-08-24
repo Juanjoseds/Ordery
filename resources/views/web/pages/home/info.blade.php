@@ -1,7 +1,7 @@
 <div id="main-info">
-    <div class="row m-0">
+    <div class="row m-0 main-foto-buscador">
         <div class="col-6">
-            <img class="mt-3" src="/images/web/home/food.png" alt="comida">
+            <img class="mt-3 main-image" src="/images/web/home/food.png" alt="comida">
         </div>
         <div class="col-6 d-flex flex-column text-center justify-content-center mt-2 main-buscador">
             <div class="texto">

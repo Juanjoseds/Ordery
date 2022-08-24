@@ -1,8 +1,13 @@
 #main-info{
-    img{
-        height: auto;
-        width: 50%;
+    .main-foto-buscador{
+        height: 35vh;
+        img.main-image{
+            height: auto;
+            width: 35%;
+            position: absolute;
+        }
     }
+
     .main-buscador .texto {
         font-family: 'Source Sans Pro', sans-serif;
         font-size: 36px;
