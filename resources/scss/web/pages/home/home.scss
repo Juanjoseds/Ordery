@@ -6,17 +6,17 @@ html {
     scroll-behavior: smooth;
 
     &::-webkit-scrollbar {
-        width: 10px;
+        width: 7px;
     }
 
     &::-webkit-scrollbar-thumb {
-        background: #666;
-        border-radius: 20px;
+        background: #969696;
+        border-radius: 15px;
     }
 
     &::-webkit-scrollbar-track {
         background: #ddd;
-        border-radius: 20px;
+        border-radius: 15px;
     }
 }
 body{
