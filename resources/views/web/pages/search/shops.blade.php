@@ -120,8 +120,11 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center mt-2">
                     <li class="page-item prev-item"><a class="page-link" href="#"></a></li>
-                    @foreach(range(0,ceil($tiendas->total() / $tiendas->perPage())) as $index)
-                        <li class="page-item"><a class="page-link" href="#">{{$index}}</a></li> {{--class active--}}
+                    @foreach(range(1,ceil($tiendas->total() / $tiendas->perPage())) as $index)
+                        <li @class([
+                            'page-item',
+                            'active' => $tiendas->currentPage() == $index])>
+                            <a class="page-link" href="?page={{$index}}">{{$index}}</a></li>
                     @endforeach
                     <li class="page-item next-item"><a class="page-link" href="#"></a></li>
                 </ul>
