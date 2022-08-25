@@ -27,7 +27,7 @@ class WebpagesController extends Controller
 
     //SEARCH
     public function search(Request $request){
-        $tiendas = Tienda::query()->get();
+        $tiendas = Tienda::query()->paginate(5);
         $pageConfigs = [
             'contentLayout' => "content-detached-left-sidebar",
             'pageClass' => 'ecommerce-application',
