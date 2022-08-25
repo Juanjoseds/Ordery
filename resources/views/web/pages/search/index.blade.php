@@ -1,22 +1,31 @@
-@extends('web/layouts/webLayoutMaster')
+@extends('layouts/searchlayoutMaster')
 
-@section('title', '')
+@section('title', 'Shop')
 
-@section('meta-description', 'Gestiona pedidos de tus clientes o realiza tu pedido a tu tienda favorita de una forma rápida y eficaz.')
-
-@section('meta-keywords', 'Order Manager, Realizar pedido, Online')
+@section('vendor-style')
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/nouislider.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.min.css')) }}">
+@endsection
 
 @section('page-style')
-    <link rel="stylesheet" href="{{ asset(mix('css/core.css')) }}" />
-{{--    <link href="{{ asset(mix('css/web/pages/home/home.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">--}}
+    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-sliders.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('css/base/pages/app-ecommerce.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
+@endsection
+
+@section('content-sidebar')
+    @include('web.pages.search.sidebar')
 @endsection
 
 @section('content')
-    SEARCH
     @include('web.pages.search.shops')
-{{--    @include('web.pages.home.info')--}}
 @endsection
 
+@section('vendor-script')
+    <script src="{{ asset(mix('vendors/js/extensions/wNumb.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/extensions/nouislider.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
+@endsection
 @section('page-script')
-{{--    <script async defer src="{{ asset('js/web/pages/home.js') }}"></script>--}}
+    <script src="{{ asset(mix('js/scripts/pages/app-ecommerce.js')) }}"></script>
 @endsection

@@ -6,6 +6,7 @@ use App\Helpers\propiedades;
 use App\Models\Cabecera;
 use App\Models\Noticia;
 use App\Models\Servicio;
+use App\Models\Tienda;
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 use Exception;
@@ -26,12 +27,14 @@ class WebpagesController extends Controller
 
     //SEARCH
     public function search(Request $request){
+        $tiendas = Tienda::query()->get();
         $pageConfigs = [
             'contentLayout' => "content-detached-left-sidebar",
             'pageClass' => 'ecommerce-application',
         ];
         return view('/web/pages/search/index', [
             'pageConfigs' => $pageConfigs,
+            'tiendas' => $tiendas,
         ]);
     }
 
