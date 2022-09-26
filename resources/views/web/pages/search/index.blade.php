@@ -28,4 +28,5 @@
 @endsection
 @section('page-script')
     <script src="{{ asset(mix('js/scripts/pages/app-ecommerce.js')) }}"></script>
+    <script src="{{ asset(mix('js/scripts/pages/buscador/buscador.js')) }}"></script>
 @endsection

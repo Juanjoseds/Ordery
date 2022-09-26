@@ -9,6 +9,7 @@
 @section('page-style')
     <link rel="stylesheet" href="{{ asset(mix('css/core.css')) }}" />
     <link href="{{ asset(mix('css/web/pages/home/home.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
+    <link href="{{ asset(mix('css/web/pages/header.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
 
     {{-- FUENTES --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">

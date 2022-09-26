@@ -8,6 +8,7 @@
     <div class="card">
         <div class="card-body">
             <!-- Price Filter starts -->
+            <form id="filtros-form" action="" method="post">
             <div class="multi-range-price">
                 <h6 class="filter-title mt-0">Multi Range</h6>
                 <ul class="list-unstyled price-range" id="price-range">
@@ -263,6 +264,7 @@
                 <button type="button" class="btn w-100 btn-primary">Clear All Filters</button>
             </div>
             <!-- Clear Filters Ends -->
+            </form>
         </div>
     </div>
 </div>

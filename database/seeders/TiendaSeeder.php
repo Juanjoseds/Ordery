@@ -24,6 +24,7 @@ class TiendaSeeder extends Seeder
             'direccion' => 'C/ Unión, 35',
             'ciudad' => 'Las Palmas de Gran Canaria',
             'provincia' => 'Las Palmas',
+            'carta' => '{"test":[{"titulo":"test","descripcion":"Chupa chups tiramisu apple pie biscuit sweet roll bonbon macaroon toffee icing.","precio":"10€","imagen":"http://vuexy.test/images/portrait/small/avatar-s-12.jpg"}]}',
             'descripcion' => 'Vendemos productos variados para todas las necesidades. Desde primeras necesidades hasta ¡cholotate!',
             'url' => 'el-goloso',
             'is_blocked' => 0,

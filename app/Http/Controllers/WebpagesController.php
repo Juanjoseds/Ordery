@@ -61,6 +61,19 @@ class WebpagesController extends Controller
         return view('errors.maintenance');
     }
 
+    public function buscador(Request $request){
+        dd($request->all());
+    }
+
+    public function tienda(Request $request, $url){
+        $tienda = Tienda::query()->where('url', $url)->first();
+
+        if(!isset($tienda)){
+            abort(404);
+        }
+        return view('/web/pages/tienda/index', ['tienda' => $tienda]);
+    }
+
     // APPEND VIEW PARA SEO
 //    public function appendViews(){
 //        // Servicios

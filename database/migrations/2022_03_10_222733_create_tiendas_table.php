@@ -20,6 +20,7 @@ class CreateTiendasTable extends Migration
             $table->string('cif');
             $table->string('telefono');
             $table->string('email');
+            $table->longText('carta')->nullable();
             $table->longText('imagenes')->nullable();
             $table->longText('direccion');
             $table->longText('codigo_postal');
