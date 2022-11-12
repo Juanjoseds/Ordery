@@ -1,32 +1,35 @@
-@extends('layouts/searchlayoutMaster')
+@extends('web/layouts/webLayoutMaster')
 
-@section('title', 'Shop')
+@section('title', '')
 
-@section('vendor-style')
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/nouislider.min.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.min.css')) }}">
-@endsection
+{{--@section('meta-description', 'Gestiona pedidos de tus clientes o realiza tu pedido a tu tienda favorita de una forma rápida y eficaz.')--}}
+
+@section('meta-keywords', 'Order Manager, Realizar pedido, Online')
 
 @section('page-style')
-    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-sliders.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('css/base/pages/app-ecommerce.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
-@endsection
+    <link rel="stylesheet" href="{{ asset(mix('css/core.css')) }}" />
+    <link href="{{ asset(mix('css/web/pages/search/search.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
+    <link href="{{ asset(mix('css/web/pages/header.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
 
-@section('content-sidebar')
-    @include('web.pages.search.sidebar')
+    {{-- FUENTES --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+{{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>--}}
 @endsection
 
 @section('content')
+    @include('web.pages.home.header')
+    @include('web.pages.search.buscador')
     @include('web.pages.search.shops')
+
+
+
+{{--    @include('web.pages.home.info')--}}
 @endsection
 
-@section('vendor-script')
-    <script src="{{ asset(mix('vendors/js/extensions/wNumb.min.js')) }}"></script>
-    <script src="{{ asset(mix('vendors/js/extensions/nouislider.min.js')) }}"></script>
-    <script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
-@endsection
 @section('page-script')
-    <script src="{{ asset(mix('js/scripts/pages/app-ecommerce.js')) }}"></script>
-    <script src="{{ asset(mix('js/scripts/pages/buscador/buscador.js')) }}"></script>
+    <script async defer src="{{ asset('js/web/pages/search.js') }}"></script>
+    <script async defer src="{{ asset('js/web/pages/buscador.js') }}"></script>
+{{--    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>--}}
 @endsection

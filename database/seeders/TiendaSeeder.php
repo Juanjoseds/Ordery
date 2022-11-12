@@ -28,6 +28,20 @@ class TiendaSeeder extends Seeder
             'descripcion' => 'Vendemos productos variados para todas las necesidades. Desde primeras necesidades hasta ¡cholotate!',
             'url' => 'el-goloso',
             'is_blocked' => 0,
+        ],
+        [
+            'nombre' => 'Canela',
+            'nombre_legal' => 'Canela S.A.',
+            'cif' => 'X382900A',
+            'telefono' => '888551125',
+            'email' => 'canela@gmail.com',
+            'codigo_postal' => '35110',
+            'direccion' => 'C/ Primero de Mayo, 120',
+            'ciudad' => 'Telde',
+            'provincia' => 'Las Palmas',
+            'descripcion' => 'Vendemos productos variados para todas las necesidades. Desde primeras necesidades hasta ¡cholotate!',
+            'url' => 'canela',
+            'is_blocked' => 0,
         ]);
     }
 }

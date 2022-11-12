@@ -26,7 +26,7 @@ Auth::routes();
 Route::get('/maintenance', [WebpagesController::class, 'maintenance'])->name('maintenance');
 Route::get('/', [WebpagesController::class, 'home'])->name('home');
 Route::get('/tienda/{url}', [WebpagesController::class, 'tienda'])->name('tienda');
-Route::get('/search', [WebpagesController::class, 'search'])->name('search');
+Route::get('/shops', [WebpagesController::class, 'search'])->name('search');
 Route::post('/buscador', [WebpagesController::class, 'buscador'])->name('buscador');
 
 Route::group(['middleware'=> ['auth']], function () {

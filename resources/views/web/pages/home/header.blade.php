@@ -14,35 +14,12 @@
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li class="nav-item ps-4 ps-md-0 ms-0 ms-md-4 active">
-                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Home</a>
-{{--                                    <div class="dropdown-menu">--}}
-{{--                                        <a class="dropdown-item" href="#">Action</a>--}}
-{{--                                        <a class="dropdown-item" href="#">Another action</a>--}}
-{{--                                        <a class="dropdown-item" href="#">Something else here</a>--}}
-{{--                                        <a class="dropdown-item" href="#">Another action</a>--}}
-{{--                                    </div>--}}
+                                @php $routeName = Route::current()->getName()@endphp
+                                <li class="nav-item ps-4 ps-md-0 ms-md-4">
+                                    <a class="nav-link @if($routeName == 'home') active @endif" href="/">Home</a>
                                 </li>
-{{--                                <li class="nav-item ps-4 ps-md-0 ms-0 ms-md-4">--}}
-{{--                                    <a class="nav-link" href="#">Portfolio</a>--}}
-{{--                                </li>--}}
-{{--                                <li class="nav-item ps-4 ps-md-0 ms-0 ms-md-4">--}}
-{{--                                    <a class="nav-link" href="#">Agency</a>--}}
-{{--                                </li>--}}
-{{--                                <li class="nav-item ps-4 ps-md-0 ms-0 ms-md-4">--}}
-{{--                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Services</a>--}}
-{{--                                    <div class="dropdown-menu">--}}
-{{--                                        <a class="dropdown-item" href="#">Action</a>--}}
-{{--                                        <a class="dropdown-item" href="#">Another action</a>--}}
-{{--                                        <a class="dropdown-item" href="#">Something else here</a>--}}
-{{--                                        <a class="dropdown-item" href="#">Another action</a>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
-{{--                                <li class="nav-item ps-4 ps-md-0 ms-0 ms-md-4">--}}
-{{--                                    <a class="nav-link" href="#">Journal</a>--}}
-{{--                                </li>--}}
                                 <li class="nav-item ps-4 ps-md-0 ms-0 ms-md-4">
-                                    <a class="nav-link" href="/search">Shops</a>
+                                    <a class="nav-link @if($routeName == 'search') active @endif" href="/shops">Shops</a>
                                 </li>
                                 <li class="nav-item ps-4 ps-md-0 ms-0 ms-md-4">
                                     <a class="nav-link" href="#">Contact</a>
