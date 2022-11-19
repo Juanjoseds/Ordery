@@ -11,7 +11,7 @@
                 @foreach($tiendas as $tienda)
                     <div class="col-3">
 
-                            <div class="card card-developer-meetup cursor-pointer" onclick="window.open('/tienda/{{$tienda->url}}', '_self')">
+                            <div class="card card-developer-meetup cursor-pointer" onclick="window.open('/shops/{{$tienda->url}}', '_self')">
                                 <div class="bg-light-primary rounded-top text-center">
                                     <img src="/images/illustration/api.svg" alt="Meeting Pic" height="170" class="">
                                 </div>

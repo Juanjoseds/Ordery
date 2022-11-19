@@ -25,7 +25,7 @@ Auth::routes();
 
 Route::get('/maintenance', [WebpagesController::class, 'maintenance'])->name('maintenance');
 Route::get('/', [WebpagesController::class, 'home'])->name('home');
-Route::get('/tienda/{url}', [TiendaController::class, 'tienda'])->name('tienda');
+Route::get('/shops/{url}', [TiendaController::class, 'tienda'])->name('tienda');
 Route::get('/shops', [WebpagesController::class, 'search'])->name('search');
 Route::post('/buscador', [WebpagesController::class, 'buscador'])->name('buscador');
 
