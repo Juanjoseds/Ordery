@@ -165,6 +165,15 @@ class TiendaController extends Controller
             ->toJson();
     }
 
+    public function tienda(Request $request, $url){
+        $tienda = Tienda::query()->where('url', $url)->first();
+
+        if(!isset($tienda)){
+            abort(404);
+        }
+        return view('/web/pages/tienda/index', ['tienda' => $tienda]);
+    }
+
 //    public function block(Request $request, $id){
 //        try {
 //            DB::beginTransaction();

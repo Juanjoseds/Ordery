@@ -69,14 +69,7 @@ class WebpagesController extends Controller
         dd($request->all());
     }
 
-    public function tienda(Request $request, $url){
-        $tienda = Tienda::query()->where('url', $url)->first();
 
-        if(!isset($tienda)){
-            abort(404);
-        }
-        return view('/web/pages/tienda/index', ['tienda' => $tienda]);
-    }
 
     // APPEND VIEW PARA SEO
 //    public function appendViews(){
