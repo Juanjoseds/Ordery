@@ -29,7 +29,7 @@
 @endsection
 
 @section('page-script')
-    <script async defer src="{{ asset('js/web/pages/search.js') }}"></script>
     <script async defer src="{{ asset('js/web/pages/buscador.js') }}"></script>
+    <script async defer src="{{ asset('js/web/pages/search.js') }}"></script>
 {{--    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>--}}
 @endsection

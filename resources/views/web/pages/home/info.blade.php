@@ -5,7 +5,7 @@
         </div>
         <div class="col-6 d-flex flex-column text-center justify-content-center mt-2 main-buscador">
             <div class="texto">
-                ¿Qué te apetece comer hoy?
+                ¿Qué te apetece pedir hoy?
             </div>
             @include('web.pages.home.buscador')
         </div>
