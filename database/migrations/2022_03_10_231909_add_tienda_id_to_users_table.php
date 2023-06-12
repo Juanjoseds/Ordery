@@ -14,7 +14,11 @@ class AddTiendaIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreign('tienda_id')->references('id')->on('tiendas')->onUpdate('CASCADE')->onDelete('SET NULL');
+            $table->foreign('tienda_id')
+                ->references('id')
+                ->on('tiendas')
+                ->onUpdate('CASCADE')
+                ->onDelete('SET NULL');
         });
     }
 
