@@ -3,7 +3,11 @@
     <div class="col-12 draggable categoria hidden categoria-new" data-id>
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title text-capitalize categoria-titulo">Nueva categoría</h4>
+                <div class="d-flex flex-column">
+                    <h4 class="card-title text-capitalize categoria-titulo">Nueva categoría</h4>
+                    <small class="categoria-descripcion">Descripción</small>
+                </div>
+
                 <div>
                     <button type="button" class="btn btn-outline-primary waves-effect btn-add-producto" onclick="abrirOffcanvasNuevoProducto(this)">
                         <i class="fa-solid fa-plus"></i>
@@ -22,7 +26,7 @@
         <div class="d-flex">
             <img src="http://vuexy.test/images/portrait/small/avatar-s-12.jpg" class="rounded-circle me-2" alt="img-placeholder" height="50" width="50">
             <div class="more-info">
-                <h5 class="producto-titulo">Mary S. Navarre</h5>
+                <h5 class="producto-titulo">John Doe</h5>
                 <span class="producto-descripcion">Chupa chups tiramisu apple pie biscuit sweet roll bonbon macaroon toffee icing.</span>
             </div>
         </div>

@@ -7,22 +7,22 @@
         <form id="nueva-categoria-form" class="pt-0">
             <div class="row">
 
-                <div class="col-12">
-                    <div class="form-group col-12">
-                        <label id="nombre" for="nombre">Imagen de la categoría</label>
-                        <div class="w-100 text-center">
-                            <img id="display_uploaded" class="img-fluid cursor-pointer"
-                                 style="width: 10em;"
-                                 alt="Imagen agente"
-                                 src="{{asset('images/assets/upload.svg')}}"
-                            >
-                            <br>
-                            <small class="w-100"><i class="mr-50" data-feather="info"></i>Tamaño recomendado: 800 x 400</small>
-                        </div>
-                        <input type="text" hidden id="image_uploaded" name="imagen" style="position: absolute;z-index: -1;">
-                        <input type="file" hidden id="image_upload">
-                    </div>
-                </div>
+{{--                <div class="col-12">--}}
+{{--                    <div class="form-group col-12">--}}
+{{--                        <label id="nombre" for="nombre">Imagen de la categoría</label>--}}
+{{--                        <div class="w-100 text-center">--}}
+{{--                            <img id="display_uploaded" class="img-fluid cursor-pointer"--}}
+{{--                                 style="width: 10em;"--}}
+{{--                                 alt="Imagen agente"--}}
+{{--                                 src="{{asset('images/assets/upload.svg')}}"--}}
+{{--                            >--}}
+{{--                            <br>--}}
+{{--                            <small class="w-100"><i class="mr-50" data-feather="info"></i>Tamaño recomendado: 800 x 400</small>--}}
+{{--                        </div>--}}
+{{--                        <input type="text" hidden id="image_uploaded" name="imagen" style="position: absolute;z-index: -1;">--}}
+{{--                        <input type="file" hidden id="image_upload">--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
                 <div class="col-12 align-content-start">
 

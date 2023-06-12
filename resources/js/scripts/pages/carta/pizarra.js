@@ -1,42 +1,51 @@
+let dragulaCard, dragulaList;
+
 $(function () {
 
-    initCardsDraggable()
-    initListsDraggable()
-
+    initCardsDraggable();
+    // initListsDraggable();
+    console.log('ready', $('.btn-add-categoria'));
 });
-
-let dragulaCard, dragulaList;
 
 // Editar categorías
 function initCardsDraggable(){
-    dragulaCard = dragula([document.getElementById('card-drag-area')]);
     destroyListsDraggable();
+    dragulaCard = dragula([document.getElementById('card-drag-area')]);
 
     $('#card-drag-area .card-body').fadeOut();
     $('.list-group').fadeOut();
     $('.btn-add-producto').fadeOut();
+    $('.btn-add-categoria').fadeIn();
 }
 
 function initListsDraggable(){
-    dragulaList = dragula([document.getElementById('basic-list-group')]);
     destroyCardsDraggable();
+    dragulaList = dragula([document.getElementById('basic-list-group')]);
 
     $('#card-drag-area .card-body').fadeIn();
     $('.list-group').fadeIn();
     $('.btn-add-producto').fadeIn();
+    $('.btn-add-categoria').fadeOut();
 }
 
 function destroyCardsDraggable(){
-    dragulaCard.destroy();
+    if(typeof(dragulaCard) != 'undefined') {
+        dragulaCard.destroy();
+    }
 }
 
 function destroyListsDraggable(){
-    dragulaList.destroy();
+    if(typeof(dragulaList) != 'undefined'){
+        dragulaList.destroy();
+    }
 }
 
 function destroyAllDraggables(){
     destroyCardsDraggable();
     destroyListsDraggable();
+
+    $('.btn-add-categoria').fadeOut();
+    $('.btn-add-producto').fadeOut();
 }
 
 function abrirOffcanvasNuevoProducto(e){
@@ -57,12 +66,12 @@ function nuevaCategoria(){
     // Seteamos correctamente la categoría
     let form = $('#nueva-categoria-form').serializeArray();
     let id = $('.categoria:not(.categoria-new)').length+1; // TODO: Cambiar al último ID +1
-    let imagen = form[0].value;
-    let nombre = form[1].value;
-    let descripcion = form[2].value;
+    let nombre = form[0].value;
+    let descripcion = form[1].value;
 
     // Seteamos la información
     cardnew.find('.categoria-titulo').text(nombre);
+    cardnew.find('.categoria-descripcion').text(descripcion);
 
     // Ocultamos el botón de Nuevo producto
     cardnew.find('.btn-add-producto').hide();
@@ -80,7 +89,12 @@ function nuevoProducto(){
     // Seteamos correctamente el producto
     let form = $('#producto-form').serializeArray();
     let nombre = form[1].value;
+    let descripcion = form[2].value;
+    let precio = form[3].value;
+
     productoNew.find('.producto-titulo').text(nombre);
+    productoNew.find('.producto-descripcion').text(descripcion);
+    productoNew.find('.producto-precio').text(precio);
 
     let idCategoria = $('#categoriaId').val();
     console.log(idCategoria, $(`.categoria[data-id=${idCategoria}]`));

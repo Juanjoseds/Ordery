@@ -38,18 +38,18 @@
                     </div>
                     <div class="col-12 mb-1">
                         <div class="form-group">
-                            <label for="nombre_legal">Descripción</label>
-                            <input id="nombre_legal" name="nombre_legal" type="text" class="form-control"
-                                   data-required="El campo nombre legal es requerido"
+                            <label for="descripcion">Descripción</label>
+                            <input id="descripcion" name="descripcion" type="text" class="form-control"
+                                   data-required="El campo descripción es requerido"
                                    data-minlength="3"
                             />
                         </div>
                     </div>
                     <div class="col-12 mb-1">
                         <div class="form-group">
-                            <label for="cif">Precio</label>
-                            <input id="cif" name="cif" type="text" class="form-control"
-                                   data-required="El campo cif es requerido"
+                            <label for="precio">Precio</label>
+                            <input id="precio" name="precio" type="text" class="form-control"
+                                   data-required="El campo precio es requerido"
                                    data-minlength="3"
                             />
                         </div>
