@@ -8,7 +8,7 @@
     <th>DNI</th>
     <th>Correo electrónico</th>
     <th>Teléfono</th>
-    <th>Tipo</th>
+{{--    <th>Tipo</th>--}}
     <th>Actions</th>
 @endsection
 

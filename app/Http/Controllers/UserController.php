@@ -29,15 +29,17 @@ class UserController extends Controller
 
     public function new() {
         $method = 'Nuevo';
+        $title = "Nuevo empleado";
         $permisos = Permiso::query()
             ->where('rol', $this->user->tipo)
             ->get();
-        return view('/content/empleados/formulario', ['nameCrud' => $this->nameCrud, 'method' => $method, 'permisos'=>$permisos]);
+        return view('/content/empleados/formulario', ['nameCrud' => $this->nameCrud, 'method' => $method, 'title' => $title, 'permisos'=>$permisos]);
     }
 
     public function edit($id)
     {
         $empleado = User::query()->where('id', $id)->first();
+        $title = "Editar empleado";
         $permisos = Permiso::query()
             ->where('rol', $this->user->tipo)
             ->with(['users' => function($query) use($id){
@@ -47,6 +49,7 @@ class UserController extends Controller
         return view('content.empleados.formulario', [
             'permisos' => $permisos,
             'empleado' => $empleado,
+            'title' => $title,
             'method' => 'Editar'
         ]);
     }
@@ -54,6 +57,7 @@ class UserController extends Controller
     public function show($id)
     {
         $empleado = User::query()->where('id', $id)->first();
+        $title = "Ver empleado";
         $permisos = Permiso::query()
             ->where('rol', $this->user->tipo)
             ->with(['users' => function($query) use($id){
@@ -63,6 +67,7 @@ class UserController extends Controller
         return view('content.empleados.formulario', [
             'permisos' => $permisos,
             'empleado' => $empleado,
+            'title' => $title,
             'method' => 'Ver'
         ]);
 
@@ -108,14 +113,10 @@ class UserController extends Controller
 //            dd(($request->all()), $user);
 
             if ($id === null) {
+                if(isset($this->user->tienda_id)){
+                    $user->tienda_id = $this->user->tienda_id;
+                }
                 $user->save();
-                //$user->nuevoPass = $request->password;
-
-//                try {
-//                    $user->notify(new NewEmpleadoNotify());
-//                }catch (\Exception $e){
-//
-//                }
             } else {
                 $user->update();
             }
@@ -123,11 +124,11 @@ class UserController extends Controller
                 $this->savePermisos(json_decode($request->permisos), $user);
             }
             DB::commit();
-            return response(['mensaje' => 'El usuario se ha ' . $mensaje . ' correctamente',
-                'user' => $user], 200);
+            return response(['mensaje' => 'El usuario se ha ' . $mensaje . ' correctamente', 'user' => $user], 200);
         } catch (\Exception $e) {
+            dd($e);
             DB::rollBack();
-            return response()->json("No se ha $mensaje el usuario", 500);
+            return response(['errors' => ["No se ha $mensaje el usuario"]], 500);
         }
     }
 
