@@ -1,10 +1,10 @@
 <div id="main-header" class="hero-anime">
 
-    <div class="navigation-wrap bg-light start-header start-style">
+    <div class="navigation-wrap bg-gray start-header start-style">
         <div class="px-4">
             <div class="row">
                 <div class="col-12">
-                    <nav class="navbar navbar-expand-md navbar-light pb-0">
+                    <nav class="navbar navbar-expand-md navbar-gray pb-0">
 
                         <a class="navbar-brand" href="" target="_blank">Ordery</a>
 
@@ -13,22 +13,27 @@
                         </button>
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                @php $routeName = Route::current()->getName()@endphp
+                            <ul class="navbar-nav justify-content-center w-100">
                                 <li class="nav-item ps-4 ps-md-0 ms-md-4">
-                                    <a class="nav-link @if($routeName == 'home') active @endif" href="/">Home</a>
-                                </li>
-                                <li class="nav-item ps-4 ps-md-0 ms-0 ms-md-4">
-                                    <a class="nav-link @if($routeName == 'search') active @endif" href="/shops">Shops</a>
-                                </li>
-                                <li class="nav-item ps-4 ps-md-0 ms-0 ms-md-4">
-                                    <a class="nav-link" href="#">Contact</a>
+                                    <input class="form-control" type="text" name="buscador" id="buscador">
                                 </li>
                             </ul>
+{{--                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">--}}
+{{--                                @php $routeName = Route::current()->getName()@endphp--}}
+{{--                                <li class="nav-item ps-4 ps-md-0 ms-md-4">--}}
+{{--                                    <a class="nav-link @if($routeName == 'home') active @endif" href="/">Home</a>--}}
+{{--                                </li>--}}
+{{--                                <li class="nav-item ps-4 ps-md-0 ms-0 ms-md-4">--}}
+{{--                                    <a class="nav-link @if($routeName == 'search') active @endif" href="/shops">Shops</a>--}}
+{{--                                </li>--}}
+{{--                                <li class="nav-item ps-4 ps-md-0 ms-0 ms-md-4">--}}
+{{--                                    <a class="nav-link" href="#">Contact</a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
                             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                                <li class="nav-item ps-4 ps-md-0 ms-0 ms-md-4">
+                                <li class="nav-item">
                                     @if(!isset($user_auth))
-                                    <a class="nav-link" href="/login">Acceder</a>
+                                    <a class="nav-link" href="/login"><i class="ti ti-user ti-md"></i></a>
                                     @else
                                         <a class="nav-link dropdown-toggle d-flex" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                             <div class="user-nav d-sm-flex d-none flex-column text-end me-1">
@@ -50,6 +55,9 @@
                                             </form>
                                         </div>
                                     @endif
+                                </li>
+                                <li class="nav-item ms-2">
+                                    <a class="nav-link" href="/login"><i class="ti ti-heart ti-md"></i></a>
                                 </li>
                             </ul>
                         </div>
