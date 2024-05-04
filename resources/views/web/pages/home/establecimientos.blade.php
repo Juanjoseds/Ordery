@@ -65,8 +65,8 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"><i class="ti ti-square-rounded-arrow-right-filled"></i></div>
+                <div class="swiper-button-prev"><i class="ti ti-square-rounded-arrow-left-filled"></i></div>
             </div>
         </div>
     </div>
