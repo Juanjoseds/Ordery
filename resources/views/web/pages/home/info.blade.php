@@ -1,22 +1,49 @@
 <div id="main-info">
-    <div class="row m-0 main-foto-buscador">
-        <div class="col-6">
-            <img class="mt-3 main-image" src="/images/web/home/food.png" alt="comida">
-        </div>
-        <div class="col-6 d-flex flex-column text-center justify-content-center mt-2 main-buscador">
-            <div class="texto">
-                ¿Qué te apetece pedir hoy?
+    <div class="row">
+        <div class="col-4">
+            <div class="card text-center p-3 card-ordery">
+                <p class="ordery-title">ORDERY</p>
+                <p class="ordery-subtitle mt-1">PÍDETE UN ORDERY Y QUE TE LO PREPAREN</p>
             </div>
-            @include('web.pages.home.buscador')
         </div>
-    </div>
-    <div class="row m-0">
-        <div class="col-3"></div>
-        <div id="mainTiendas-recomendadas" class="col-9 p-4">
-            <div class="row text-end">
-                <span class="text-muted texto-tienda">Tiendas que encontrarás en Ordery</span>
+        <div class="col-8">
+            <div class="main-pasos">
+                <div class="pasos-title">
+                    <p>Lo que necesitas cerca de tí</p>
+                </div>
+                <div class="pasos">
+                    <div class="paso d-flex align-items-center">
+                        <div class="numero">
+                            <span>1</span>
+                        </div>
+
+                        <div class="texto">
+                            Busca lo que te hace falta en tu despensa
+                        </div>
+
+                    </div>
+                    <div class="paso d-flex align-items-center">
+                        <div class="numero">
+                            <span>2</span>
+                        </div>
+
+                        <div class="texto">
+                            Elige tu establecimiento favorito y haz el pedido
+                        </div>
+
+                    </div>
+                    <div class="paso d-flex align-items-center">
+                        <div class="numero">
+                            <span>3</span>
+                        </div>
+
+                        <div class="texto">
+                            ¡Ups! ¡No hay paso 3! 🎉
+                        </div>
+
+                    </div>
+                </div>
             </div>
-            @include('web.pages.home.slider-tiendas')
         </div>
     </div>
 </div>

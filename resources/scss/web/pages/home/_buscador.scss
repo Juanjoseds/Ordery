@@ -12,7 +12,7 @@
     color: #6426a7;
 }
 
-$buscador-bg: #F6C6EA;
+$buscador-bg: #ffffff;
 $buscador-bg-hover: #f6ace2;
 #search {
     align-items: center;
@@ -23,9 +23,9 @@ $buscador-bg-hover: #f6ace2;
     margin: 0.5em 0;
     padding: 0.5em 0.5em 0.5em 1em;
     transition: all 0.5s;
-    width: 95%;
-    font: 30px/1.375 "Lato", arial, sans-serif;
-    color: white;
+    width: 100%;
+    font: 20px "Lato", arial, sans-serif;
+    color: #94a6b3;
 }
 #search:hover, #search:focus {
     background: $buscador-bg-hover;
@@ -49,13 +49,13 @@ $buscador-bg-hover: #f6ace2;
     flex: 1;
 }
 #search input::-moz-placeholder {
-    color: #fff;
+    color: #94a6b3;
 }
 #search input:-ms-input-placeholder {
-    color: #fff;
+    color: #94a6b3;
 }
 #search input::placeholder {
-    color: #fff;
+    color: #94a6b3;
 }
 #search .spinner {
     -webkit-animation: spinner 1s infinite linear;

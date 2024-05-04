@@ -54,7 +54,7 @@
 </head>
 
 <body class="@yield('body-class')">
-    @yield('content')
+        @yield('content')
 
     {{-- @include('panels/loading') --}}
     <!-- JavaScript Bundle with Popper -->

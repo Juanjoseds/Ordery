@@ -1,4 +1,5 @@
 @import "_info.scss";
+@import "_establecimientos.scss";
 @import "_buscador.scss";
 
 html {
@@ -18,10 +19,11 @@ html {
         border-radius: 15px;
     }
 }
+
 body{
-    background-color: white!important;
-    background-image: url("/images/web/background/home.svg");
-    background-size:cover;
-    background-repeat:no-repeat;
-    background-position: center;
+    background-color: #ebf0f5 !important;
+}
+
+.main-content{
+    padding: 2rem 6rem;
 }

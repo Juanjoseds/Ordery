@@ -14,22 +14,16 @@
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav justify-content-center w-100">
-                                <li class="nav-item ps-4 ps-md-0 ms-md-4">
-                                    <input class="form-control" type="text" name="buscador" id="buscador">
+                                <li class="nav-item">
+{{--                                    <div class="input-group input-group-merge">--}}
+{{--                                        <span class="input-group-text"><i class="ti ti-search"></i></span>--}}
+{{--                                        <input type="text" id="buscador" class="form-control" placeholder="Verduras" aria-label="Verduras">--}}
+{{--                                    </div>--}}
+{{--                                    <input class="form-control" type="text" name="buscador" id="buscador">--}}
+                                    @include('web.pages.home.buscador')
                                 </li>
                             </ul>
-{{--                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">--}}
-{{--                                @php $routeName = Route::current()->getName()@endphp--}}
-{{--                                <li class="nav-item ps-4 ps-md-0 ms-md-4">--}}
-{{--                                    <a class="nav-link @if($routeName == 'home') active @endif" href="/">Home</a>--}}
-{{--                                </li>--}}
-{{--                                <li class="nav-item ps-4 ps-md-0 ms-0 ms-md-4">--}}
-{{--                                    <a class="nav-link @if($routeName == 'search') active @endif" href="/shops">Shops</a>--}}
-{{--                                </li>--}}
-{{--                                <li class="nav-item ps-4 ps-md-0 ms-0 ms-md-4">--}}
-{{--                                    <a class="nav-link" href="#">Contact</a>--}}
-{{--                                </li>--}}
-{{--                            </ul>--}}
+
                             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
                                     @if(!isset($user_auth))
