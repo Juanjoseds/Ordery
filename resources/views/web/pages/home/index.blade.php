@@ -26,6 +26,7 @@
     <div class="main-content">
         @include('web.pages.home.info')
         @include('web.pages.home.establecimientos')
+        @include('web.pages.home.necesitas')
     </div>
 
 @endsection
