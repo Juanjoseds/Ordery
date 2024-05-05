@@ -14,9 +14,17 @@
         margin-right: -1rem;
     }
 
-    .badge.bg-yellow{
-        background-color: rgba(149, 255, 14, 0.33);
-        color: black;
+    .badge{
+        font-family: "Fira Mono", monospace;
+        font-weight: 400;
+        font-style: normal;
         font-size: 14px;
+
+        &.bg-yellow{
+            background-color: rgba(149, 255, 14, 0.33);
+            color: black;
+        }
     }
+
+
 }

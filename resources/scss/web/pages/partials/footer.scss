@@ -1,0 +1,24 @@
+#footer{
+    background-color: #262626;
+    padding-top: 4rem;
+    clip-path: polygon(0 75%, 100% 0, 100% 100%, 0% 100%);
+    color: white;
+
+    font-family: "Fauna One", serif;
+    font-weight: 400;
+    font-style: normal;
+
+    .footer-title{
+        font-family: "Indie Flower", cursive !important;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 24px;
+    }
+
+    .footer-politicas{
+
+        & p:not(:last-child){
+            margin-bottom: 0.25rem;
+        }
+    }
+}

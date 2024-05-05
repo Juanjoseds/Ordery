@@ -14,7 +14,7 @@
     {{-- FUENTES --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&family=Indie+Flower&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&family=Fauna+One&family=Fira+Mono:wght@400;500;700&family=Indie+Flower&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
 
     {{-- TABLER --}}
@@ -29,6 +29,7 @@
         @include('web.pages.home.necesitas')
     </div>
 
+    @include('web.pages.home.footer')
 @endsection
 
 @section('page-script')

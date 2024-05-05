@@ -10,6 +10,7 @@
     "/css/web/core/bootstrap.css": "/css/web/core/bootstrap.css",
     "/css/web/pages/tienda/tienda.css": "/css/web/pages/tienda/tienda.css",
     "/css/web/pages/search/search.css": "/css/web/pages/search/search.css",
+    "/css/web/pages/partials/footer.css": "/css/web/pages/partials/footer.css",
     "/css/web/pages/home/home.css": "/css/web/pages/home/home.css",
     "/css/base/plugins/extensions/ext-component-context-menu.css": "/css/base/plugins/extensions/ext-component-context-menu.css",
     "/css/web/pages/header.css": "/css/web/pages/header.css",
