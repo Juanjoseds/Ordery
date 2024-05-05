@@ -1,11 +1,12 @@
 <section id="main-shops">
-    <div class="container-fluid px-2">
 
 
         @if(isset($tiendas) && sizeof($tiendas) > 0)
-            @if(request()->busqueda !== '' && request()->busqueda != null)
-                <p class="text-muted">Resultados para la búsqueda "{{request()->busqueda}}"</p>
-            @endif
+            <div class="d-flex resultados-title align-items-center mt-2 mb-2">
+                <i class="ti ti-search"></i>
+                <p class="m-0">Hay <b>{{$busqueda}}</b> en estos {{sizeof($tiendas)}} establecimientos</p>
+            </div>
+
 
             <div class="row match-height">
                 @foreach($tiendas as $tienda)
@@ -15,12 +16,9 @@
                                 <div class="bg-light-primary rounded-top text-center">
                                     <img src="/images/illustration/api.svg" alt="Meeting Pic" height="170" class="">
                                 </div>
-                                <div class="card-body"><!----><!---->
+                                <div class="card-body">
                                     <div class="meetup-header d-flex align-items-center">
-                                        {{--                        <div class="meetup-day">--}}
-                                        {{--                            <h6 class="mb-0">THU</h6>--}}
-                                        {{--                            <h3 class="mb-0">24</h3>--}}
-                                        {{--                        </div>--}}
+
                                         <div class="my-auto">
                                             <h4 class="card-title mb-25">{{$tienda->nombre}}</h4>
                                             <p class="tienda-descripcion card-text mb-0">{{$tienda->descripcion}}</p>
@@ -52,8 +50,14 @@
                 @endforeach
             </div>
         @else
-            <p class="text-muted">No hay resultados para "{{request()->busqueda}}"</p>
+            <div class="row sin-resultados mt-3">
+                <div class="col-12">
+                    <p class="sin-resultados-title">Nuestra despensa está vacía...</p>
+                    <p class="sin-resultados-subtitle">No hemos encontrado nada para "{{$busqueda}}" :(</p>
+                </div>
+            </div>
+
+            @include('web.pages.home.necesitas')
         @endif
 
-    </div>
 </section>

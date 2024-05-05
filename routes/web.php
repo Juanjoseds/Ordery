@@ -16,7 +16,7 @@ Route::get('/maintenance', [WebpagesController::class, 'maintenance'])->name('ma
 Route::get('/', [WebpagesController::class, 'home'])->name('home');
 Route::get('/shops/{url}', [TiendaController::class, 'tienda'])->name('tienda');
 Route::get('/shops', [WebpagesController::class, 'search'])->name('search');
-Route::post('/buscador', [WebpagesController::class, 'buscador'])->name('buscador');
+Route::get('/busqueda', [WebpagesController::class, 'busqueda'])->name('buscador');
 
 Route::group(['middleware'=> ['auth']], function () {
     Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware'=> ['rol:admin']], function () {

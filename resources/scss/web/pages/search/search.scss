@@ -1,36 +1,38 @@
 @import "../home/_buscador.scss";
+@import "../home/_necesitas.scss";
+@import "../partials/footer";
 
 body{
-    //background-color: #FAF4B7!important;
+    overflow-x: hidden;
 }
 
-#search{
-    position: absolute;
+.main-content{
+    padding: 2rem 6rem;
 }
 
-#main-shops{
-    margin-top: -3rem;
+.sin-resultados{
+    text-align: center;
 
-    .enlace-card{
-        color: #7d7d7d;
+    .sin-resultados-title{
+        font-family: "Indie Flower", cursive !important;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 24px;
+        color: black;
     }
 
-    .tienda-descripcion{
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    .sin-resultados-subtitle{
+        font-family: "Fauna One", serif;
+        font-weight: 400;
+        font-style: normal;
+        color: black;
     }
 }
 
-.search-background{
-    //position: absolute;
-    padding: 0;
-    -webkit-filter: drop-shadow( 4px 4px 4px rgba(0, 0, 0, .5));
-    filter: drop-shadow( 2px 2px 26px rgba(0, 0, 0, .1));
-}
-
-.navigation-wrap{
-    box-shadow: none!important;
+.resultados-title{
+    font-family: "Indie Flower", cursive !important;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
+    color: black;
 }

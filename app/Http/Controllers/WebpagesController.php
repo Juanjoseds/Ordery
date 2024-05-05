@@ -65,8 +65,19 @@ class WebpagesController extends Controller
         return view('errors.maintenance');
     }
 
-    public function buscador(Request $request){
-        dd($request->all());
+    public function busqueda(Request $request){
+
+        if(!isset($request->search) || $request->search == ""){
+            return view('/web/pages/home/index');
+        }
+
+        $busqueda = $request->search;
+        $tiendas = Tienda::query()->where('nombre', 'LIKE', "%$busqueda%")->paginate(5);
+
+        return view('/web/pages/search/index', [
+            'busqueda' => $busqueda,
+            'tiendas' => $tiendas,
+        ]);
     }
 
 

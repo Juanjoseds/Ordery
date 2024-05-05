@@ -6,7 +6,7 @@
                 <div class="col-12">
                     <nav class="navbar navbar-expand-md navbar-gray pb-0">
 
-                        <a class="navbar-brand" href="" target="_blank">Ordery</a>
+                        <a class="navbar-brand" href="{{route('home')}}" target="_blank">Ordery</a>
 
                         <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>

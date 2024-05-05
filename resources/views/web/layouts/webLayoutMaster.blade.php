@@ -23,31 +23,25 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{env('app_url')}}">
     <meta property="og:title" content="Ordery - Pide a tu tienda favorita">
-    <meta property="og:description" content="Al Omran United Maritime Services & Logistics Company as a highly proficient team combined of experienced as well as young...">
+    <meta property="og:description" content="Ordery - Pide a tu tienda favorita">
     <meta property="og:image" content="{{asset('/images/logos/image-meta.png')}}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{env('app_url')}}">
     <meta property="twitter:title" content="Ordery - Pide a tu tienda favorita">
-    <meta property="twitter:description" content="Al Omran United Maritime Services & Logistics Company as a highly proficient team combined of experienced as well as young...">
+    <meta property="twitter:description" content="Ordery - Pide a tu tienda favorita">
     <meta property="twitter:image" content="{{asset('/images/logos/image-meta.png')}}">
     {{-- Include Styles --}}
      <link rel="stylesheet" href="{{ asset('fonts/font-awesome/css/all.min.css')}}" crossorigin="anonymous">
-{{--    <link rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;"--}}
-{{--          rel="stylesheet" href="{{ asset(mix('css/web/core/bootstrap.css')) }}" crossorigin="anonymous">--}}
-{{--    <link rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;"--}}
-{{--          rel="stylesheet" href="{{ asset(mix('css/web/layout/global.css')) . '?v=' . $APP_VERSION }}" />--}}
-
-    {{-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/> --}}
 
     {{-- FUENTES --}}
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&family=Fauna+One&family=Fira+Mono:wght@400;500;700&family=Indie+Flower&display=swap" rel="stylesheet">
 
+    {{-- TABLER --}}
+    <link rel="stylesheet" href="fonts/tabler/tabler-icons.min.css">
 
     @yield('page-style')
     @stack('extra-css')
@@ -60,6 +54,7 @@
     <!-- JavaScript Bundle with Popper -->
     <script src="{{ asset('js/web/core/jquery2.min.js') }}"></script>
     <script async defer src="{{ asset('js/web/core/bootstrap.bundle.min.js') }}" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/js/tabler.min.js"></script>
 {{--    <script async defer src="{{ asset(mix('js/web/layout/global.js')) . '?v=' . $APP_VERSION }}"></script>--}}
 {{--    <script async defer src="{{ asset(mix('js/web/layout/navbar.js')) . '?v=' . $APP_VERSION }}"></script>--}}
 {{--    <script async src="{{ asset('js/scripts/banner.js') }}" data-cookiefirst-key="{{config('app.cookie_key')}}"></script>--}}
