@@ -21,7 +21,7 @@ $(function () {
         {data: 'dni'},
         {data: 'email'},
         {data: 'telefono'},
-        {data: 'tipo'},
+        // {data: 'tipo'},
         {data: 'id', className: 'not-export-col'},//Este es para las acciones
     ];
 
@@ -145,26 +145,26 @@ $(function () {
             className: 'col-2 px-50',
             type: 'text',
         },
-        {
-            title: 'Tipo',
-            column: 8,
-            className: 'col-2 px-50',
-            type: 'select',
-            opcionesSelect: [
-                {
-                    text: 'Selecciona un tipo',
-                    valor: '',
-                },
-                {
-                    text: 'Admin',
-                    valor: 'admin',
-                },
-                {
-                    text: 'Agente',
-                    valor: 'agente',
-                }
-            ]
-        }
+        // {
+        //     title: 'Tipo',
+        //     column: 8,
+        //     className: 'col-2 px-50',
+        //     type: 'select',
+        //     opcionesSelect: [
+        //         {
+        //             text: 'Selecciona un tipo',
+        //             valor: '',
+        //         },
+        //         {
+        //             text: 'Admin',
+        //             valor: 'admin',
+        //         },
+        //         {
+        //             text: 'Agente',
+        //             valor: 'agente',
+        //         }
+        //     ]
+        // }
     ];
     /**
      * Opciones disponibles:
