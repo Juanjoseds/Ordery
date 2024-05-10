@@ -1,6 +1,6 @@
 <div id="main-header" class="hero-anime">
 
-    <div class="navigation-wrap bg-gray start-header start-style">
+    <div class="navigation-wrap start-header start-style">
         <div class="px-4">
             <div class="row">
                 <div class="col-12">
@@ -14,7 +14,7 @@
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav justify-content-center w-100">
-                                <li class="nav-item">
+                                <li class="nav-item no-effects">
 {{--                                    <div class="input-group input-group-merge">--}}
 {{--                                        <span class="input-group-text"><i class="ti ti-search"></i></span>--}}
 {{--                                        <input type="text" id="buscador" class="form-control" placeholder="Verduras" aria-label="Verduras">--}}

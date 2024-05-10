@@ -5,19 +5,26 @@
 
     ::selection {
         color: #fff;
-        background-color: #8167a9;
+        background-color: #95A7B4;
     }
     ::-moz-selection {
         color: #fff;
-        background-color: #8167a9;
+        background-color: #95A7B4;
     }
 
     .start-header {
         opacity: 1;
         transform: translateY(0);
-        box-shadow: 0 10px 30px 0 rgba(138, 155, 165, 0.15);
+        //box-shadow: 0 10px 30px 0 rgba(138, 155, 165, 0.15);
         -webkit-transition : all 0.3s ease-out;
         transition : all 0.3s ease-out;
+
+        background: rgb(202 221 233 / 42%);
+        /* border-radius: 16px; */
+        box-shadow: 0 4px 30px rgb(202 221 233);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
     }
     .start-header.scroll-on {
         box-shadow: 0 5px 10px 0 rgba(138, 155, 165, 0.15);
@@ -95,7 +102,7 @@
         transition: all 200ms linear;
     }
     .nav-item:hover .nav-link{
-        color: #8167a9 !important;
+        color: #95A7B4 !important;
     }
     .nav-item.active .nav-link{
         color: #777 !important;
@@ -105,14 +112,14 @@
         padding: 5px 0 !important;
         display: inline-block;
     }
-    .nav-item:after{
+    .nav-item:not(.no-effects):after{
         position: absolute;
-        bottom: -5px;
+        bottom: -10px;
         left: 0;
         width: 100%;
         height: 2px;
         content: '';
-        background-color: #8167a9;
+        background-color: #95A7B4;
         opacity: 0;
         transition: all 200ms linear;
     }
@@ -140,7 +147,7 @@
         transition: all 200ms linear;
     }
     .navbar-gray{
-        background-color: #95A7B4 !important;
+        //background-color: #95A7B4 !important;
         transition: all 200ms linear;
     }
     #buscador{
@@ -338,7 +345,7 @@
     }
     .switched {
         border-color: #000 !important;
-        background: #8167a9 !important;
+        background: #95A7B4 !important;
     }
     .switched #circle {
         left: 43px;
@@ -386,7 +393,7 @@
     .dropdown-item:hover,
     .dropdown-item:focus {
         color: #fff;
-        background-color: rgba(129,103,169,.6);
+        background-color: #95A7B4;
     }
 
     body.dark{

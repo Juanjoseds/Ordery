@@ -27,9 +27,7 @@ $buscador-bg-hover: #f6ace2;
     font: 20px "Lato", arial, sans-serif;
     color: #94a6b3;
 }
-#search:hover, #search:focus {
-    background: $buscador-bg-hover;
-}
+
 #search button,
 #search input {
     -webkit-appearance: none;
@@ -66,25 +64,4 @@ $buscador-bg-hover: #f6ace2;
 
 #search.loading button {
     display: none;
-}
-#search.loading .spinner {
-    display: block;
-}
-
-@-webkit-keyframes spinner {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes spinner {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
 }
