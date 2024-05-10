@@ -73,7 +73,7 @@ $(function () {
                 let html = ``;
 
                 if (full.permiso_leer) {
-                    html += `<a href="javascript:void(0)" class="dropdown-item read-record" data-record="${full.id}">
+                    html += `<a href="javascript:void(0)" class="dropdown-item" onclick="mostrarPedido('${full.id}', '${btoa(full.pedido)}')">
                 ${feather.icons['eye'].toSvg({class: 'font-small-4 me-50'})} ${datatable.ver}</a>`;
                 }
 
@@ -89,10 +89,10 @@ $(function () {
 
                 let textBloquear = (full.is_blocked) ? datatable.desbloquear : datatable.bloquear;
 
-                if (full.permiso_editar) {
-                    html += `<a href="javascript:void(0)" onclick="blockUser('${full.id}', '${full.is_blocked}')" class="dropdown-item block-record" data-record="${full.id}">
-                ${feather.icons['alert-octagon'].toSvg({class: 'font-small-4 me-50'})} ${textBloquear}</a>`;
-                }
+                // if (full.permiso_editar) {
+                //     html += `<a href="javascript:void(0)" onclick="blockUser('${full.id}', '${full.is_blocked}')" class="dropdown-item block-record" data-record="${full.id}">
+                // ${feather.icons['alert-octagon'].toSvg({class: 'font-small-4 me-50'})} ${textBloquear}</a>`;
+                // }
 
                 if(html === '') return '';
                 return (

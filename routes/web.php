@@ -102,6 +102,11 @@ Route::group(['middleware'=> ['auth']], function () {
             Route::group(['middleware' => ['permission:Pedidos,Editar']], function () {
 
             });
+
+            Route::group(['middleware' => ['permission:Pedidos,Borrar']], function () {
+                Route::delete('delete/{id}', [PedidoController::class, 'destroy']);
+                Route::delete('delete-multiple', [PedidoController::class, 'destroyAll']);
+            });
         });
 
         /** EMPLEADOS */

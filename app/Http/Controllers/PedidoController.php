@@ -57,70 +57,74 @@ class PedidoController extends Controller
 
     }
 
-    public function store(TiendaRequest $request, $id = null) {
-        try {
-            DB::beginTransaction();
-
-            if ($id === null) {
-                $tienda = new Tienda();
-                $mensaje = 'creado';
-            } else {
-                $tienda = Tienda::find($id);
-                if ($tienda === null) {
-                    return response('No se pudo encontrar la tienda', 400);
-                }
-                $mensaje = 'editado';
-            }
-
-            $fields = $request->only($tienda->getFillable());
-            $tienda->fill($fields);
-
-            // Borramos la imagen si ya tenía una
-            Storage::disk('tiendas')->delete($tienda->imagenes);
-
-            // Guardamos la imagen
-            $img = Helper::base64toStore($request->imagen);
-            Storage::disk('tiendas')->put($img[0], base64_decode($img[2]));
-            $tienda->imagenes = $img[0];
-            $tienda->save();
-
-            DB::commit();
-            return response(['mensaje' => 'La tienda se ha ' . $mensaje . ' correctamente', 'tienda' => $tienda], 200);
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return response()->json("Se ha producido un error al guardar la tienda", 500);
-        }
-    }
+//    public function store(TiendaRequest $request, $id = null) {
+//        try {
+//            DB::beginTransaction();
+//
+//            if ($id === null) {
+//                $tienda = new Tienda();
+//                $mensaje = 'creado';
+//            } else {
+//                $tienda = Tienda::find($id);
+//                if ($tienda === null) {
+//                    return response('No se pudo encontrar la tienda', 400);
+//                }
+//                $mensaje = 'editado';
+//            }
+//
+//            $fields = $request->only($tienda->getFillable());
+//            $tienda->fill($fields);
+//
+//            // Borramos la imagen si ya tenía una
+//            Storage::disk('tiendas')->delete($tienda->imagenes);
+//
+//            // Guardamos la imagen
+//            $img = Helper::base64toStore($request->imagen);
+//            Storage::disk('tiendas')->put($img[0], base64_decode($img[2]));
+//            $tienda->imagenes = $img[0];
+//            $tienda->save();
+//
+//            DB::commit();
+//            return response(['mensaje' => 'La tienda se ha ' . $mensaje . ' correctamente', 'tienda' => $tienda], 200);
+//        } catch (\Exception $e) {
+//            DB::rollBack();
+//            return response()->json("Se ha producido un error al guardar la tienda", 500);
+//        }
+//    }
 
 
     public function destroy(Request $request, $id)
     {
         try {
             DB::beginTransaction();
-            $tienda = Tienda::find($id);
-            if ($tienda === null) {
-                return response(['errores' => __('No se pudo encontrar la tienda')], 400);
-            }
-            // Borramos la imagen si tenía una
-            if(isset($tienda->imagenes)){
-                Storage::disk('tiendas')->delete($tienda->imagenes);
+            $pedido = Pedido::find($id);
+            if ($pedido === null) {
+                return response(['errores' => __('No se pudo encontrar el pedido')], 400);
             }
 
-            Tienda::destroy($id);
+            // Borramos la imagen si tenía una
+//            if(isset($tienda->imagenes)){
+//                Storage::disk('tiendas')->delete($tienda->imagenes);
+//            }
+
+            $pedido->delete();
             DB::commit();
-            return response('La tienda se ha borrado correctamente', 200);
+            return response('El pedido se ha borrado correctamente', 200);
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json("No se ha podido borrar la tienda", 500);
+            return response()->json("No se ha podido borrar el pedido", 500);
         }
     }
     public function destroyAll(Request $request)
     {
         try {
-            $tienda = Tienda::whereIn('id', $request->ids)->delete();
-            return response('Las tiendas se han borrado correctamente', 200);
+            DB::beginTransaction();
+            Pedido::query()->whereIn('id', $request->ids)->delete();
+            DB::commit();
+            return response('Los pedidos se han borrado correctamente', 200);
         } catch (\Exception $e) {
-            dd($e);
+            DB::rollBack();
+            return response('No se ha podido borrar los pedidos', 500);
         }
     }
 
