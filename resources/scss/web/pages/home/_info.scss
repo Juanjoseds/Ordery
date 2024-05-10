@@ -14,14 +14,21 @@
     }
 
     .card-ordery{
-        background-color: #CADDE9;
+        text-align: right;
+        background-size: cover!important;
+        background-position: right;
+        background: #CADDE9 url(https://images.unsplash.com/photo-1555243896-c709bfa0b564?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) no-repeat center;
 
         .ordery-title{
             font-weight: bold;
-            font-size: 40px;
+            font-size: 46px;
+            font-family: "Fauna One", serif;
         }
         .ordery-subtitle{
-            font-size: 18px;
+            font-size: 20px;
+            font-family: "Fauna One", serif;
+            font-weight: 400;
+            font-style: normal;
         }
     }
 

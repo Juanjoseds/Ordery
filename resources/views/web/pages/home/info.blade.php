@@ -1,12 +1,12 @@
 <div id="main-info">
     <div class="row">
-        <div class="col-4">
-            <div class="card text-center p-3 card-ordery">
+        <div class="col-6">
+            <div class="card p-3 card-ordery">
                 <p class="ordery-title">ORDERY</p>
-                <p class="ordery-subtitle mt-1">PÍDETE UN ORDERY Y QUE TE LO PREPAREN</p>
+                <p class="ordery-subtitle mt-1">PÍDETE UN ORDERY <br>Y QUE TE LO PREPAREN</p>
             </div>
         </div>
-        <div class="col-8">
+        <div class="col-6">
             <div class="main-pasos">
                 <div class="pasos-title">
                     <p>Lo que necesitas cerca de tí</p>
