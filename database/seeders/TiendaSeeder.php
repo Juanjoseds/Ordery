@@ -14,7 +14,7 @@ class TiendaSeeder extends Seeder
      */
     public function run()
     {
-        Tienda::create([
+        $tiendas = [[
             'nombre' => 'El Goloso',
             'nombre_legal' => 'El Goloso S.L.',
             'cif' => 'Q2826000H',
@@ -30,18 +30,50 @@ class TiendaSeeder extends Seeder
             'is_blocked' => 0,
         ],
         [
-            'nombre' => 'Canela',
-            'nombre_legal' => 'Canela S.A.',
+            'nombre' => 'Bazar Gemma',
+            'nombre_legal' => 'Gemmazar S.L.',
             'cif' => 'X382900A',
             'telefono' => '888551125',
-            'email' => 'canela@gmail.com',
-            'codigo_postal' => '35110',
-            'direccion' => 'C/ Primero de Mayo, 120',
-            'ciudad' => 'Telde',
+            'email' => 'bazargemma@gmail.com',
+            'codigo_postal' => '35002',
+            'direccion' => 'C/ Luis Morote, 120',
+            'ciudad' => 'Las Palmas de Gran Canaria',
             'provincia' => 'Las Palmas',
             'descripcion' => 'Vendemos productos variados para todas las necesidades. Desde primeras necesidades hasta ¡cholotate!',
-            'url' => 'canela',
+            'url' => 'bazar-gemma',
             'is_blocked' => 0,
-        ]);
+        ],
+        [
+            'nombre' => "Food Shop",
+            'nombre_legal' => 'Fudsiop S.L.',
+            'cif' => 'F4888555C',
+            'telefono' => '2555444876',
+            'email' => 'fudsiop@gmail.com',
+            'codigo_postal' => '35002',
+            'direccion' => 'C/ Paseo de Chill, S/N',
+            'ciudad' => 'Las Palmas de Gran Canaria',
+            'provincia' => 'Las Palmas',
+            'descripcion' => 'Gran variedad de productos cárnicos y verduras frescas.',
+            'url' => 'fudsiop',
+            'is_blocked' => 0,
+        ],
+        [
+            'nombre' => "Las Mascotas",
+            'nombre_legal' => 'mascotasdivertidas S.A',
+            'cif' => '4888744X',
+            'telefono' => '6995444122',
+            'email' => 'supermascotas@hotmail.com',
+            'codigo_postal' => '35110',
+            'direccion' => 'C/ La Unión, 45',
+            'ciudad' => 'Vecindario',
+            'provincia' => 'Las Palmas',
+            'descripcion' => 'Mima a tu mascota con los mejores productos 🐶.',
+            'url' => 'las-mascotas',
+            'is_blocked' => 0,
+        ]];
+        foreach ($tiendas as $tienda) {
+            Tienda::query()->create($tienda);
+        }
+
     }
 }

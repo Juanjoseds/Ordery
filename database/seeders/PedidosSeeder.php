@@ -17,18 +17,18 @@ class PedidosSeeder extends Seeder
     public function run()
     {
         $estados = ['Pendiente', 'Preparacion', 'Preparado', 'Finalizado', 'Cancelado'];
+        $pedido = '{"productos": [
+                  {"id":"3", "nombre": "Papas", "precio": "5", "cantidad": "1"},
+                  {"id":"4", "nombre": "Dulces", "precio": "10", "cantidad": "2"}
+               ],
+               "precio": "37.5",
+               "descuento": "5"
+               }';
         foreach (range(1, 5) as $i) {
-            Pedido::create([
+            Pedido::query()->create([
                 'doc' => "test$i",
                 'info_pago' => '',
-                'pedido' => '{
-                   "productos": [
-                      {"id":"3", "nombre": "Papas", "precio": "5", "cantidad": "1"},
-                      {"id":"4", "nombre": "Dulces", "precio": "10", "cantidad": "2"}
-                   ],
-                   "precio": "37.5",
-                   "descuento": "5"
-                }',
+                'pedido' => $pedido,
                 'precio' => 37.5,
                 'observaciones' => '¡El dulce que sea de hoy!',
                 'fecha_entrega' => Carbon::now(),
