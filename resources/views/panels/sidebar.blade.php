@@ -6,11 +6,9 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item me-auto">
-                <a class="navbar-brand" href="/dashboard">
+                <a class="navbar-brand" href="/{{$user_auth->tipo}}/dashboard">
                     <span class="brand-logo">
-                        <img src="{{asset('images/logo/logo.png')}}" class="logo-collapse"  width="100%" style="
-                           "
-                             alt="Ordery">
+                        <img src="{{asset('images/logo/logo.png')}}" class="logo-collapse" width="100%" alt="Ordery">
                     </span>
                     <h2 class="brand-text">Ordery</h2>
                 </a>

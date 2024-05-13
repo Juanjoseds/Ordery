@@ -25,10 +25,11 @@ class TiendaSeeder extends Seeder
             'codigo_postal' => '35100',
             'direccion' => 'C/ Unión, 35',
             'ciudad' => 'Las Palmas de Gran Canaria',
-            'provincia' => 'Las Palmas',
+            'provincia'º => 'Las Palmas',
             'carta' => '{"test":[{"titulo":"test","descripcion":"Chupa chups tiramisu apple pie biscuit sweet roll bonbon macaroon toffee icing.","precio":"10€","imagen":"http://vuexy.test/images/portrait/small/avatar-s-12.jpg"}]}',
             'descripcion' => 'Vendemos productos variados para todas las necesidades. Desde primeras necesidades hasta ¡cholotate!',
             'url' => 'el-goloso',
+            'nombre_contacto' => 'VENTA AL PÚBLICO',
             'is_blocked' => 0,
         ],
             [
@@ -43,6 +44,7 @@ class TiendaSeeder extends Seeder
                 'provincia' => 'Las Palmas',
                 'descripcion' => 'Vendemos productos variados para todas las necesidades. Desde primeras necesidades hasta ¡cholotate!',
                 'url' => 'bazar-gemma',
+                'nombre_contacto' => 'Gemma Guardeño',
                 'is_blocked' => 0,
             ],
             [
@@ -57,6 +59,7 @@ class TiendaSeeder extends Seeder
                 'provincia' => 'Las Palmas',
                 'descripcion' => 'Gran variedad de productos cárnicos y verduras frescas.',
                 'url' => 'fudsiop',
+                'nombre_contacto' => 'Jorge Estupiñán',
                 'is_blocked' => 0,
             ],
             [
@@ -71,6 +74,7 @@ class TiendaSeeder extends Seeder
                 'provincia' => 'Las Palmas',
                 'descripcion' => 'Mima a tu mascota con los mejores productos 🐶.',
                 'url' => 'las-mascotas',
+                'nombre_contacto' => 'RECEPCIÓN',
                 'is_blocked' => 0,
             ]];
         foreach ($tiendas as $tienda) {
@@ -93,6 +97,7 @@ class TiendaSeeder extends Seeder
                 'ciudad' => $faker->city(),
                 'provincia' => $faker->country(),
                 'descripcion' => $faker->text(),
+                'nombre_contacto' => $faker->name(),
                 'url' => $faker->slug(2),
                 'is_blocked' => $faker->randomElement([0,1]),
             ]);
