@@ -7,15 +7,15 @@
             <!-- Swiper -->
             <div class="swiper-container mySwiper">
                 <div class="swiper-wrapper">
-                    @foreach (range(1, 7) as $tienda)
-                        <div class="swiper-slide">
+                    @foreach ($tiendas as $tienda)
+                        <a class="swiper-slide" href="/shops/{{@$tienda->url}}">
 
                             <div class="card mb-0 w-100">
                                 <img class="card-img-top" src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/img/elements/2.jpg" alt="Card image cap">
                                 <div class="card-body ps-0 pe-0 pb-0">
                                     <div class="ps-2">
                                         <h5 class="card-subtitle">BAZAR</h5>
-                                        <h5 class="card-title mt-25 mb-0">Gemma Shop</h5>
+                                        <h5 class="card-title mt-25 mb-0">{{@$tienda->nombre}}</h5>
                                     </div>
 
                                     <hr>
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
 
-                        </div>
+                        </a>
                     @endforeach
                 </div>
                 <div class="swiper-button-next"><i class="ti ti-square-rounded-arrow-right-filled"></i></div>

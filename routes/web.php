@@ -17,6 +17,11 @@ Route::get('/', [WebpagesController::class, 'home'])->name('home');
 Route::get('/shops/{url}', [TiendaController::class, 'tienda'])->name('tienda');
 Route::get('/shops', [WebpagesController::class, 'search'])->name('search');
 Route::get('/busqueda', [WebpagesController::class, 'busqueda'])->name('buscador');
+Route::get('/logout', function (Request $request) {
+    Auth::logout();
+
+    return redirect('/login');
+});
 
 Route::group(['middleware'=> ['auth']], function () {
     Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware'=> ['rol:admin']], function () {

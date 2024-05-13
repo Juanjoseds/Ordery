@@ -22,7 +22,9 @@ class WebpagesController extends Controller
         //$isMobile = ($agent->isMobile() || $agent->isTablet()) ? false : true;
         //$isMobile = false;
 
-        return view('/web/pages/home/index', []);
+        $tiendas = Tienda::query()->inRandomOrder()->limit(10)->get();
+
+        return view('/web/pages/home/index', compact('tiendas'));
     }
 
     //SEARCH

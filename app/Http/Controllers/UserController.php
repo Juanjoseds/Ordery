@@ -202,10 +202,12 @@ class UserController extends Controller
     public function getDataJson(Request $request) {
         // Traemos todos los usuarios admins
         $empleados = User::query()
-//            ->when($this->user->tipo === 'admin', function ($query) {
-//                $query->where('rol', 'admin');
-//            })
-            ->where('tipo', $this->user->tipo);
+            ->when($this->user->tipo === 'admin', function ($query) {
+                $query->where('rol', 'admin');
+            })
+            ->when($this->user->tipo === 'tienda', function ($query) {
+                $query->where('tienda_id', $this->user->tienda_id);
+            });
 
         $permisoLeer = $this->user->hasPermiso('Empleados','Leer');
         $permisoEditar = $this->user->hasPermiso('Empleados','Editar');

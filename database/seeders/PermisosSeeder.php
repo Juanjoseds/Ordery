@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use App\Models\Permiso;
 use App\Models\PermisoUser;
@@ -47,12 +48,16 @@ class PermisosSeeder extends Seeder
             ]);
         }
 
-        foreach (Permiso::query()->where('rol', 'tienda')->get() as $permiso){
-            PermisoUser::create([
-                'users_id' => 2,
-                'permisos_id' => $permiso->id,
-            ]);
+        $countAllusers = User::query()->where('tipo', '!=', 'admin')->select('id')->get();
+        foreach ($countAllusers as $countAlluser){
+            foreach (Permiso::query()->where('rol', 'tienda')->get() as $permiso){
+                PermisoUser::query()->create([
+                    'users_id' => $countAlluser->id,
+                    'permisos_id' => $permiso->id,
+                ]);
+            }
         }
+
 
 
     }

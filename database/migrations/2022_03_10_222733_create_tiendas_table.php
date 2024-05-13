@@ -27,6 +27,7 @@ class CreateTiendasTable extends Migration
             $table->longText('ciudad');
             $table->longText('provincia');
             $table->longText('descripcion');
+            $table->longText('nombre_contacto')->nullable();
             $table->string('url');
             $table->tinyInteger('is_blocked')->default(0);
             $table->timestamps();
