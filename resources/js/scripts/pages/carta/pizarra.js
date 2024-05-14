@@ -3,8 +3,9 @@ let dragulaCard, dragulaList;
 $(function () {
 
     initCardsDraggable();
+    loadCategoriesAndProducts();
     // initListsDraggable();
-    console.log('ready', $('.btn-add-categoria'));
+    // console.log('ready', $('.btn-add-categoria'));
 });
 
 // Editar categorías
@@ -19,8 +20,9 @@ function initCardsDraggable(){
 }
 
 function initListsDraggable(){
+    console.log('produtossss drag');
     destroyCardsDraggable();
-    dragulaList = dragula([document.getElementById('basic-list-group')]);
+    dragulaList = dragula([document.getElementById('lista-productos')]);
 
     $('#card-drag-area .card-body').fadeIn();
     $('.list-group').fadeIn();
@@ -59,15 +61,17 @@ function abrirOffcanvasNuevaCategoria(){
     $('#offcanvas-carta-categoria').offcanvas('show');
 }
 
-function nuevaCategoria(){
+function nuevaCategoria(id, nombre=null, descripcion=null){
     let cardnew = $('.categoria-new').clone();
     cardnew.removeClass('hidden').removeClass('categoria-new');
 
     // Seteamos correctamente la categoría
-    let form = $('#nueva-categoria-form').serializeArray();
-    let id = $('.categoria:not(.categoria-new)').length+1; // TODO: Cambiar al último ID +1
-    let nombre = form[0].value;
-    let descripcion = form[1].value;
+    if(nombre==null && descripcion == null){
+        let form = $('#nueva-categoria-form').serializeArray();
+        id = $('.categoria:not(.categoria-new)').length+1; // TODO: Cambiar al último ID +1
+        nombre = form[0].value;
+        descripcion = form[1].value;
+    }
 
     // Seteamos la información
     cardnew.find('.categoria-titulo').text(nombre);
@@ -82,22 +86,28 @@ function nuevaCategoria(){
     activarGuardado();
 }
 
-function nuevoProducto(){
+function nuevoProducto(nombre=null, descripcion=null, precio=null, idCategoria=null){
     let productoNew = $('.producto-new').clone();
     productoNew.removeClass('hidden').removeClass('producto-new');
 
     // Seteamos correctamente el producto
-    let form = $('#producto-form').serializeArray();
-    let nombre = form[1].value;
-    let descripcion = form[2].value;
-    let precio = form[3].value;
+    if(nombre==null && descripcion == null) {
+        let form = $('#producto-form').serializeArray();
+        nombre = form[1].value;
+        descripcion = form[2].value;
+        precio = form[3].value;
+    }
 
+    console.log(precio);
     productoNew.find('.producto-titulo').text(nombre);
     productoNew.find('.producto-descripcion').text(descripcion);
     productoNew.find('.producto-precio').text(precio);
 
-    let idCategoria = $('#categoriaId').val();
-    console.log(idCategoria, $(`.categoria[data-id=${idCategoria}]`));
+    if(idCategoria == null){
+        idCategoria = $('#categoriaId').val();
+        console.log(idCategoria, $(`.categoria[data-id=${idCategoria}]`));
+    }
+
     $(`.categoria[data-id='${idCategoria}']`).find('.lista-productos').append(productoNew);
 
     $('#offcanvas-carta-producto').offcanvas('hide');
@@ -119,11 +129,13 @@ function activarGuardado(activo = true){
  */
 
 function guardarCarta(){
-    let carta = {};
+    let carta = [];
     let categorias = $('.categoria:not(.categoria-new)');
 
     categorias.each(function (index) {
-
+        console.log($(this));
+        let categoriaNombre = $(this).find('.categoria-titulo').text();
+        let categoriaDescripcion = $(this).find('.categoria-descripcion').text();
         let productos = $(this).find('.producto');
         let cartaProductos = [];
 
@@ -137,7 +149,16 @@ function guardarCarta(){
             cartaProductos.push(arrayProductos);
         });
 
-        carta[$(this).find('.categoria-titulo').text()] = cartaProductos;
+        let categoria = {
+            "titulo": categoriaNombre,
+            "descripcion": categoriaDescripcion,
+            "productos": [
+                ...cartaProductos
+            ]
+
+        }
+
+        carta[index] = categoria;
     });
 
     // Aquí debería validar que todo está bien
@@ -164,4 +185,27 @@ function guardarCarta(){
         $('#spinner-loading').fadeOut();
     })
     activarGuardado(false);
+}
+
+function loadCategoriesAndProducts(){
+    let categorias = $('#categorias').val();
+    if(categorias == null || categorias == ''){
+        return false;
+    }
+
+    categorias = JSON.parse(categorias);
+
+    $.each(categorias, function( index, value ){
+        // CATEGORÍAS
+        nuevaCategoria(value.id, value.nombre, value.descripcion);
+
+        if(value.productos != null && value.productos != []){
+            $.each(value.productos, function( index2, value2 ){
+                // console.log(value2.precio);
+                nuevoProducto(value2.nombre, value2.descripcion, value2.precio, value.id);
+            });
+        }
+
+    });
+
 }

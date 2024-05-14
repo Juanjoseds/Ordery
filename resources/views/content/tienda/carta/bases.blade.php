@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="card-body" style="display: none">
-                <ul class="list-group lista-productos"></ul>
+                <ul class="list-group lista-productos" id="lista-productos"></ul>
             </div>
         </div>
     </div>

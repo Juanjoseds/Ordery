@@ -1,7 +1,7 @@
 @extends('customs.empty')
 
 @section('content')
-
+    <input type="hidden" id="categorias" name="categorias" value="{{@$categorias}}">
     @include('content.tienda.carta.banner')
     @include('content.tienda.carta.botones')
     @include('content.tienda.carta.cards')
