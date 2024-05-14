@@ -54,7 +54,7 @@ class CartaController extends Controller
                     $newProducto->nombre = $producto->titulo;
                     $newProducto->descripcion = $producto->descripcion;
                     $newProducto->precio = $producto->precio;
-                    $newProducto->imagen = $producto->imagen;
+                    $newProducto->imagen = isset($producto->imagen) ? $producto->imagen : '/images/assets/product.png';
                     $newProducto->orden = $index;
                     $newProducto->id_categoria = $newCategoria->id;
                     $newProducto->id_tienda = $tiendaId;

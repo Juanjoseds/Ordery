@@ -20,6 +20,7 @@
 
 @section('crud-scripts')
     <script src="{{ asset(mix('js/scripts/pages/carta/pizarra.js')). '?v='.$APP_VERSION }}"></script>
+    <script src="{{ asset(mix('js/scripts/custom/custom-input-file.js')). '?v='.$APP_VERSION }}"></script>
     <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
 
     {{-- DRAG & DROP --}}

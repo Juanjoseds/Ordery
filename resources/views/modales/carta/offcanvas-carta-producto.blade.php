@@ -12,16 +12,16 @@
                     <div class="form-group col-12">
                         <label for="nombre">Imagen del producto</label>
                         <div class="w-100 text-center">
-                            <img id="display_uploaded" class="img-fluid cursor-pointer"
+                            <img id="producto_display_uploaded" class="img-fluid cursor-pointer"
                                  style="width: 10em;"
-                                 alt="Imagen agente"
+                                 alt="Imagen producto"
                                  src="{{asset('images/assets/upload.svg')}}"
                             >
                             <br>
                             <small class="w-100"><i class="mr-50" data-feather="info"></i>Tamaño recomendado: 600 x 700</small>
                         </div>
-                        <input type="text" hidden id="image_uploaded" name="imagen" style="position: absolute;z-index: -1;">
-                        <input type="file" hidden id="image_upload">
+                        <input type="text" hidden id="producto_image_uploaded" name="imagen" style="position: absolute;z-index: -1;">
+                        <input type="file" hidden id="producto_image_upload">
                     </div>
                 </div>
 

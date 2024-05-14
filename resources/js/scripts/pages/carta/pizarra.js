@@ -55,6 +55,7 @@ function abrirOffcanvasNuevoProducto(e){
 
     let idCategoria = $(e).parents('.categoria').data('id');
     $('#categoriaId').val(idCategoria);
+    initInputFile('producto', 2000);
 }
 
 function abrirOffcanvasNuevaCategoria(){
@@ -86,19 +87,20 @@ function nuevaCategoria(id, nombre=null, descripcion=null){
     activarGuardado();
 }
 
-function nuevoProducto(nombre=null, descripcion=null, precio=null, idCategoria=null){
+function nuevoProducto(nombre=null, descripcion=null, precio=null, imagen=null, idCategoria=null){
     let productoNew = $('.producto-new').clone();
     productoNew.removeClass('hidden').removeClass('producto-new');
 
     // Seteamos correctamente el producto
     if(nombre==null && descripcion == null) {
         let form = $('#producto-form').serializeArray();
+        imagen = form[0].value;
         nombre = form[1].value;
         descripcion = form[2].value;
         precio = form[3].value;
     }
 
-    console.log(precio);
+    productoNew.find('.producto-imagen').attr('src', imagen);
     productoNew.find('.producto-titulo').text(nombre);
     productoNew.find('.producto-descripcion').text(descripcion);
     productoNew.find('.producto-precio').text(precio);
@@ -202,7 +204,7 @@ function loadCategoriesAndProducts(){
         if(value.productos != null && value.productos != []){
             $.each(value.productos, function( index2, value2 ){
                 // console.log(value2.precio);
-                nuevoProducto(value2.nombre, value2.descripcion, value2.precio, value.id);
+                nuevoProducto(value2.nombre, value2.descripcion, value2.precio,value2.imagen, value.id);
             });
         }
 
