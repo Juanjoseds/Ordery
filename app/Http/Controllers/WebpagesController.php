@@ -27,12 +27,25 @@ class WebpagesController extends Controller
         return view('/web/pages/home/index', compact('tiendas'));
     }
 
-    //SEARCH
+    //SEARCH - BUSQUEDA
     public function search(Request $request){
         $tiendas = Tienda::query()
-        ->when($request->busqueda,function ($query, $busqueda) {
-            return $query->where('nombre', 'LIKE', "%$busqueda%");
-        })->paginate(5);
+            ->where('nombre', 'LIKE', "%$busqueda%")
+            ->orWhereHas('categorias', function ($q) use ($request) {
+                $q->whereHas('productos', function ($q2) use ($request) {
+                    $q2->where('nombre', 'LIKE', "%$busqueda%");
+                });
+            })
+            ->paginate(5);
+
+        dd($tiendas);
+
+
+//        $tiendas = Tienda::query()
+//            ->when($request->busqueda,function ($query, $busqueda) {
+//                return $query->where('nombre', 'LIKE', "%$busqueda%");
+//            })
+//            ->paginate(5);
 
         $pageConfigs = [
             'contentLayout' => "content-detached-left-sidebar",
@@ -74,7 +87,16 @@ class WebpagesController extends Controller
         }
 
         $busqueda = $request->search;
-        $tiendas = Tienda::query()->where('nombre', 'LIKE', "%$busqueda%")->paginate(5);
+
+        $tiendas = Tienda::query()
+            ->where('nombre', 'LIKE', "%$busqueda%")
+            ->orWhereHas('categorias', function ($q) use ($busqueda) {
+                $q->whereHas('productos', function ($q2) use ($busqueda) {
+                    $q2->where('nombre', 'LIKE', "%$busqueda%");
+                });
+            })
+            ->paginate(5);
+
 
         return view('/web/pages/search/index', [
             'busqueda' => $busqueda,

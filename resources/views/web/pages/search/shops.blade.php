@@ -49,6 +49,22 @@
                     </div>
                 @endforeach
             </div>
+
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item prev">
+                    <a class="page-link waves-effect" href="javascript:void(0);"><i class="ti ti-chevrons-left ti-xs"></i></a>
+                </li>
+                @foreach(range(1, $tiendas->lastPage()) as $pagina)
+                <li class="page-item @if($tiendas->currentPage() == $pagina)active @endif">
+                    <a class="page-link waves-effect" href="/busqueda?search={{$busqueda}}&page={{$pagina}}">{{$pagina}}</a>
+                </li>
+                @endforeach
+                <li class="page-item next">
+                    <a class="page-link waves-effect" href="javascript:void(0);"><i class="ti ti-chevrons-right ti-xs"></i></a>
+                </li>
+            </ul>
+        </nav>
         @else
             <div class="row sin-resultados mt-3">
                 <div class="col-12">

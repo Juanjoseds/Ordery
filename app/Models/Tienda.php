@@ -31,4 +31,8 @@ class Tienda extends Model
         'direccion',
     ];
 
+    public function categorias(){
+        return $this->hasMany(Categoria::class, 'id_tienda', 'id');
+    }
+
 }
