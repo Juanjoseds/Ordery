@@ -33,7 +33,7 @@ class DashboardController extends Controller
 
       $pedido = Pedido::query()
           ->where('estado', 'Finalizado')
-          ->where('tienda_id', $this->user->tienda_id)
+          ->where('id_tienda', $this->user->tienda_id)
           ->whereDate('created_at', '>=', $haceSeisMeses)
           ->selectRaw('year(created_at) year, month(created_at) month, count(*) totalPedidos, SUM(precio) totalPrecio')
           ->groupBy('year', 'month')

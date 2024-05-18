@@ -24,8 +24,8 @@ class CreatePedidosTable extends Migration
             $table->string('estado');
             $table->timestamps();
 
-            $table->foreignId('user_id')->nullable()->references('id')->on('users')->onUpdate('CASCADE')->onDelete('SET NULL');
-            $table->foreignId('tienda_id')->nullable()->references('id')->on('tiendas')->onUpdate('CASCADE')->onDelete('SET NULL');
+            $table->foreignId('id_user')->nullable()->references('id')->on('users')->onUpdate('CASCADE')->onDelete('SET NULL');
+            $table->foreignId('id_tienda')->nullable()->references('id')->on('tiendas')->onUpdate('CASCADE')->onDelete('SET NULL');
         });
     }
 

@@ -130,7 +130,7 @@ class PedidoController extends Controller
 
     public function getDataJson(Request $request) {
         // Traemos todos los pedidos para la tienda
-        $pedidos = Pedido::query()->where('tienda_id', $this->user->tienda_id)->with(['cliente' => function($q){
+        $pedidos = Pedido::query()->where('id_tienda', $this->user->tienda_id)->with(['cliente' => function($q){
             $q->select('id', 'nombre', 'apellidos');
         }]);
 

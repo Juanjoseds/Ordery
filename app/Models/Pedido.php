@@ -24,6 +24,6 @@ class Pedido extends Model
 
     public function cliente()
     {
-        return $this->hasOne(User::class, 'id', 'user_id');
+        return $this->hasOne(User::class, 'id', 'id_user');
     }
 }
