@@ -24,7 +24,7 @@
     {{-- Nuevo producto --}}
     <li class="list-group-item draggable producto producto-new hidden">
         <div class="d-flex">
-            <img src="/images/assets/product.png" class="producto-imagen rounded-circle me-2" alt="img-placeholder" height="50" width="50">
+            <img src="/images/assets/product.pngphp " class="producto-imagen rounded-circle me-2" alt="img-placeholder" height="50" width="50">
             <div class="more-info">
                 <h5 class="producto-titulo">John Doe</h5>
                 <span class="producto-descripcion">Chupa chups tiramisu apple pie biscuit sweet roll bonbon macaroon toffee icing.</span>
