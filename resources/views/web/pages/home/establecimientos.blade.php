@@ -8,7 +8,7 @@
             <div class="swiper-container mySwiper">
                 <div class="swiper-wrapper">
                     @foreach ($tiendas as $tienda)
-                        <a class="swiper-slide" href="/shops/{{@$tienda->url}}">
+                        <a class="swiper-slide tarjeta-tienda" href="/shops/{{@$tienda->url}}">
 
                             <div class="card mb-0 w-100">
                                 <img class="card-img-top" src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/img/elements/2.jpg" alt="Card image cap">
@@ -49,8 +49,8 @@
                                                 <img class="contacto-avatar" src="/images/assets/profile.svg" alt="avatar">
                                             </div>
                                             <div class="col-10  ps-0">
-                                                <p class="contacto-nombre mb-0">Gemma Guardeño</p>
-                                                <p class="contacto-telefono">(+34) 699 12 34 56</p>
+                                                <p class="contacto-nombre mb-0">{{@$tienda->nombre_contacto}}</p>
+                                                <p class="contacto-telefono">{{@$tienda->telefono}}</p>
                                             </div>
                                         </div>
 
