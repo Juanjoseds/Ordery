@@ -69,7 +69,7 @@ function nuevaCategoria(id, nombre=null, descripcion=null){
     // Seteamos correctamente la categoría
     if(nombre==null && descripcion == null){
         let form = $('#nueva-categoria-form').serializeArray();
-        id = $('.categoria:not(.categoria-new)').length+1; // TODO: Cambiar al último ID +1
+        id = $('.categoria:not(.categoria-new)').length+1;
         nombre = form[0].value;
         descripcion = form[1].value;
     }
@@ -83,7 +83,10 @@ function nuevaCategoria(id, nombre=null, descripcion=null){
 
     $('#card-drag-area').append(cardnew);
     $('.categoria:not(.categoria-new):last').attr('data-id',id);
-    $('#offcanvas-carta-categoria').offcanvas('hide');
+    let canvasModal =  $('#offcanvas-carta-categoria');
+    canvasModal.offcanvas('hide');
+    canvasModal.find('input').val('');
+
     activarGuardado();
 }
 

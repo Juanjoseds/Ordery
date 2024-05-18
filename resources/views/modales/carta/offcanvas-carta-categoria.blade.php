@@ -4,6 +4,10 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div id="formulario-carta" class="offcanvas-body mx-0 flex-grow-0">
+        <div class="alert alert-primary p-1 alert-dismissible" role="alert">
+            Las categorías son importantes para clasificar tus productos o servicios.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         <form id="nueva-categoria-form" class="pt-0">
             <div class="row">
 
