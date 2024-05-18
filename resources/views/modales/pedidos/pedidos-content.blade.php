@@ -41,6 +41,34 @@
         </div>
 
         <h4 class="card-title text-primary mt-2">Total: <b>{{$pedido->pedido->precio}} €</b></h4>
+
+        <div class="row main-estados">
+            @if($pedido->estado != "Pendiente")
+                <div class="col-6">
+                    <button type="button" class="btn bg-pendiente waves-effect mb-1 w-100" onclick='changeEstado("{{$pedido->id}}", "Pendiente")'>Pendiente</button>
+                </div>
+            @endif
+            @if($pedido->estado != "Preparado")
+            <div class="col-6">
+                <button type="button" class="btn bg-preparado waves-effect mb-1 w-100" onclick='changeEstado("{{$pedido->id}}", "Preparado")'>Preparado</button>
+            </div>
+            @endif
+            @if($pedido->estado != "Preparacion")
+            <div class="col-6">
+                <button type="button" class="btn bg-preparacion waves-effect mb-1 w-100" onclick='changeEstado("{{$pedido->id}}", "Preparacion")'>En preparación</button>
+            </div>
+            @endif
+            @if($pedido->estado != "Cancelado")
+            <div class="col-6">
+                <button type="button" class="btn bg-cancelado waves-effect mb-1 w-100" onclick='changeEstado("{{$pedido->id}}", "Cancelado")'>Cancelado</button>
+            </div>
+            @endif
+            @if($pedido->estado != "Finalizado")
+            <div class="col-6">
+                <button type="button" class="btn bg-finalizado waves-effect mb-1 w-100" onclick='changeEstado("{{$pedido->id}}", "Finalizado")'>Finalizado</button>
+            </div>
+            @endif
+        </div>
     @else
         <p class="text-danger"> <i class="fa-solid fa-circle-exclamation"></i> Parece que hay un error en este pedido. Por favor, contacte con el cliente.</p>
     @endif

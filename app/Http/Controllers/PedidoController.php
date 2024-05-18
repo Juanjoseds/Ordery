@@ -172,4 +172,14 @@ class PedidoController extends Controller
         ])->render();
     }
 
+    public function changeState(Request $request){
+        $pedido = Pedido::query()->where('id', $request->pedidoId)->first();
+        if(!isset($pedido)){
+            return response(['errores' => 'El pedido no existe'], 400);
+        }
+
+        $pedido->estado = $request->estado;
+        $pedido->update();
+    }
+
 }

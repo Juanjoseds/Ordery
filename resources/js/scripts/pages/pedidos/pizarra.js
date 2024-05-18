@@ -234,3 +234,23 @@ function mostrarPedido(id, pedidoHash){
     $('#spinner-loading').fadeOut();
 
 }
+
+function changeEstado(idPedido, estado){
+    console.log(idPedido, estado);
+
+    $.ajax({
+        url: '/tienda/pedidos/changeState',
+        method: 'POST',
+        data: {
+            pedidoId: idPedido,
+            estado: estado,
+        }
+    }).done(response => {
+        standardAjaxResponse('Estado actualizado', `Se ha actualizado el estado del pedido #${idPedido} correctamente`);
+        $('#pedidos-table').DataTable().ajax.reload();
+    }).fail(error => {
+        customFormAjaxResponse(error);
+    }).always(() => {
+        $('#spinner-loading').fadeOut();
+    })
+}

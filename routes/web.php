@@ -102,10 +102,11 @@ Route::group(['middleware'=> ['auth']], function () {
                 Route::get('pizarra', [PedidoController::class, 'index'])->name('pizarraPedidos');
                 Route::post('json', [PedidoController::class, 'getDataJson']);
                 Route::get('showPedido', [PedidoController::class, 'showPedido']);
+
             });
 
             Route::group(['middleware' => ['permission:Pedidos,Editar']], function () {
-
+                Route::post('changeState', [PedidoController::class, 'changeState']);
             });
 
             Route::group(['middleware' => ['permission:Pedidos,Borrar']], function () {
