@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             PermisosSeeder::class,
             MetodosPagoSeeder::class,
             PedidosSeeder::class,
+            CategoriasSeeder::class,
+            ProductosSeeder::class,
         ]);
     }
 }

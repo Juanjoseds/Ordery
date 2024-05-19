@@ -166,8 +166,11 @@ class TiendaController extends Controller
     }
 
     public function tienda(Request $request, $url){
-        $tienda = Tienda::query()->where('url', $url)->first();
+        $tienda = Tienda::query()->where('url', $url)
+            ->with('categorias.productos')
+            ->first();
 
+        dd($tienda);
         if(!isset($tienda)){
             abort(404);
         }
