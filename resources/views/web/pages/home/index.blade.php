@@ -1,6 +1,6 @@
 @extends('web/layouts/webLayoutMaster')
 
-@section('title', '')
+@section('title', 'Ordery | Haz tu pedido y recógelo')
 
 @section('meta-description', 'Gestiona pedidos de tus clientes o realiza tu pedido a tu tienda favorita de una forma rápida y eficaz.')
 

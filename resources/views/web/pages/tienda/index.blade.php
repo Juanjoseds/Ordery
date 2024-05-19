@@ -10,11 +10,12 @@
     <link rel="stylesheet" href="{{ asset(mix('css/core.css')) }}" />
     <link href="{{ asset(mix('css/web/pages/tienda/tienda.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
     <link href="{{ asset(mix('css/web/pages/header.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
-    <link rel="stylesheet" href="{{ asset(mix('css/base/pages/page-profile.css')) }}">
+{{--    <link rel="stylesheet" href="{{ asset(mix('css/base/pages/page-profile.css')) }}">--}}
 @endsection
 
 @section('content')
     @include('web.pages.home.header')
+
     <div id="user-profile" class="m-2">
     <div class="row">
         <div class="col-12">
@@ -1224,4 +1225,5 @@
 
 @section('page-script')
     <script async defer src="{{ asset('js/web/pages/tienda.js') }}"></script>
+    <script async defer src="{{ asset('js/web/pages/buscador.js') }}"></script>
 @endsection
