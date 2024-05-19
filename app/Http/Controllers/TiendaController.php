@@ -170,7 +170,6 @@ class TiendaController extends Controller
             ->with('categorias.productos')
             ->first();
 
-        dd($tienda);
         if(!isset($tienda)){
             abort(404);
         }
