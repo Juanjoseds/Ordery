@@ -254,3 +254,14 @@ function changeEstado(idPedido, estado){
         $('#spinner-loading').fadeOut();
     })
 }
+
+function showCambiarTotales(){
+    $('.btn-cambiar-totales').fadeOut(function (){
+        $('.bloque-totales').fadeIn();
+        $('.bloque-totales input').focus();
+    })
+
+    $('.bloque-totales input').on('keypress', function (){
+        $('.btn-guardar-total').fadeIn();
+    });
+}

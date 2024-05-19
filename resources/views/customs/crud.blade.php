@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/responsive.bootstrap5.min.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/buttons.bootstrap5.min.css')) }}">
 
+
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/animate/animate.min.css')) }}">
 {{--    --}}{{-- Flatpicker --}}
 {{--    <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/pickadate/pickadate.css')) }}">--}}
@@ -17,6 +18,8 @@
 @section('page-style')
 {{-- Page Css files --}}
     <link rel="stylesheet" href="{{ asset(mix('css/base/pages/custom-datatable.css')) }}">
+    {{-- TABLER --}}
+    <link rel="stylesheet" href="{{asset(mix('fonts/tabler/tabler-icons.min.css'))}}">
 {{--    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-quill-editor.css')) }}">--}}
 {{--    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">--}}
 {{--    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-pickadate.css')) }}">--}}
@@ -92,6 +95,8 @@
 {{--    <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.time.js')) }}"></script>--}}
 {{--    <script src="{{ asset(mix('vendors/js/pickers/pickadate/legacy.js')) }}"></script>--}}
 {{--    <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>--}}
+
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/js/tabler.min.js"></script>
 @endsection
 
 @section('page-script')

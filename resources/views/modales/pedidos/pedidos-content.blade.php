@@ -42,6 +42,18 @@
 
         <h4 class="card-title text-primary mt-2">Total: <b>{{$pedido->pedido->precio}} €</b></h4>
 
+        <div class="main-cambiartotales mb-1">
+            <button type="button" class="btn-cambiar-totales btn rounded-pill bg-gradient-warning waves-effect w-100" onclick="showCambiarTotales()">Cambiar total del pedido</button>
+
+            <div class="bloque-totales input-group rounded-pill mt-50" style="display: none">
+                <input type="text" class="form-control" placeholder="Username">
+                <span class="input-group-text">€</span>
+            </div>
+
+            <button type="button" class="btn-guardar-total btn rounded-pill bg-gradient-success waves-effect w-100 mt-50" onclick="showCambiarTotales()" style="display: none;"><i class="ti ti-receipt-2"></i> Actualizar precio</button>
+
+        </div>
+
         <div class="row main-estados">
             @if($pedido->estado != "Pendiente")
                 <div class="col-6">
