@@ -108,7 +108,7 @@ function nuevoProducto(nombre=null, descripcion=null, precio=null, imagen=null, 
     // Seteamos correctamente el producto
     if(nombre==null && descripcion == null) {
         let form = $('#producto-form').serializeArray();
-        imagen = form[0].value;
+        imagen = form[0].value == null || form[0].value == '' ? '/images/assets/product.png' : form[0].value;
         nombre = form[1].value;
         descripcion = form[2].value;
         precio = form[3].value;
@@ -118,7 +118,8 @@ function nuevoProducto(nombre=null, descripcion=null, precio=null, imagen=null, 
     productoNew.find('.producto-imagen').attr('src', imagen);
     productoNew.find('.producto-titulo').text(nombre);
     productoNew.find('.producto-descripcion').text(descripcion);
-    productoNew.find('.producto-precio').text(precio);
+    productoNew.find('.producto-precio').val(precio);
+    productoNew.find('.producto-precio-text').text(precio + ' €');
     productoNew.find('.id_producto').val(idProducto);
     productoNew.closest('.producto').attr('data-id',idProducto);
 
@@ -162,7 +163,7 @@ function guardarCarta(){
             let arrayProductos = {
                 'titulo': $(this).find('.producto-titulo').text(),
                 'descripcion': $(this).find('.producto-descripcion').text(),
-                'precio': $(this).find('.producto-precio').text(),
+                'precio': $(this).find('.producto-precio').val(),
                 'imagen': $(this).find('img').attr('src'),
                 'id_producto': $(this).find('.id_producto').val()
             };
@@ -249,19 +250,25 @@ function deleteCategory(e){
 
 function deleteProducto(e){
     let idProducto = $(e).parents('.producto').data('id');
-    $('#spinner-loading').fadeIn();
-    $.ajax({
-        url: 'deleteProducto',
-        method: 'POST',
-        data: {
-            id: idProducto
-        },
-    }).done(response => {
-        standardAjaxResponse('¡Borrado!', response.mensaje);
-        $(`.producto[data-id=${idProducto}]`).remove();
-    }).fail(errores => {
-        customFormAjaxResponse(errores);
-    }).always(() => {
-        $('#spinner-loading').fadeOut();
-    })
+
+    if(idProducto != null && idProducto != ''){
+        $('#spinner-loading').fadeIn();
+        $.ajax({
+            url: 'deleteProducto',
+            method: 'POST',
+            data: {
+                id: idProducto
+            },
+        }).done(response => {
+            standardAjaxResponse('¡Borrado!', response.mensaje);
+            $(`.producto[data-id=${idProducto}]`).remove();
+        }).fail(errores => {
+            customFormAjaxResponse(errores);
+        }).always(() => {
+            $('#spinner-loading').fadeOut();
+        })
+    }else{
+        // Es un producto que no se ha guardado en BBDD aún, por lo que únicamente destruimos la fila.
+        $(e).parents('.producto').remove();
+    }
 }

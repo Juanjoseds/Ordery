@@ -29,17 +29,21 @@
     {{-- Nuevo producto --}}
     <li class="list-group-item draggable producto producto-new hidden">
         <input type="hidden" class="id_producto" name="id_producto">
+        <input type="hidden" class="producto-precio" name="id_producto">
         <div class="d-flex">
-            <img src="/images/assets/product.pngphp " class="producto-imagen rounded-circle me-2" alt="img-placeholder" height="50" width="50">
+            <img src="/images/assets/product.png" class="producto-imagen rounded-circle me-2" alt="img-placeholder" height="50" width="50">
             <div class="more-info">
                 <h5 class="producto-titulo">John Doe</h5>
                 <span class="producto-descripcion">Chupa chups tiramisu apple pie biscuit sweet roll bonbon macaroon toffee icing.</span>
             </div>
         </div>
-        <div class="d-flex producto-precio">10€</div>
-        <button type="button" class="btn btn-outline-danger waves-effect btn-delete-producto" onclick="deleteProducto(this)">
-            <i class="fa-solid fa-trash"></i>
-            <span>Eliminar producto</span>
-        </button>
+        <div class="d-flex">
+            <div class="d-flex producto-precio-text align-items-center me-3">10€</div>
+            <button type="button" class="btn btn-outline-danger waves-effect btn-delete-producto" onclick="deleteProducto(this)">
+                <i class="fa-solid fa-trash"></i>
+                <span>Eliminar producto</span>
+            </button>
+        </div>
+
     </li>
 </div>
