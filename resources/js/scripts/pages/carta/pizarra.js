@@ -82,6 +82,8 @@ function nuevaCategoria(id=null, nombre=null, descripcion=null){
         // id = $('.categoria:not(.categoria-new)').length+1;
         nombre = form[0].value;
         descripcion = form[1].value;
+
+        activarGuardado();
     }
 
     // Seteamos la información
@@ -98,7 +100,6 @@ function nuevaCategoria(id=null, nombre=null, descripcion=null){
     canvasModal.offcanvas('hide');
     canvasModal.find('input').val('');
 
-    activarGuardado();
 }
 
 function nuevoProducto(nombre=null, descripcion=null, precio=null, imagen=null, idCategoria=null, idProducto=null){
@@ -114,6 +115,8 @@ function nuevoProducto(nombre=null, descripcion=null, precio=null, imagen=null, 
         descripcion = form[2].value;
         precio = form[3].value;
         idProducto = form[4].value;
+
+        activarGuardado();
     }
 
     productoNew.find('.producto-imagen').attr('src', imagen);
@@ -131,7 +134,7 @@ function nuevoProducto(nombre=null, descripcion=null, precio=null, imagen=null, 
     $(`.categoria[data-id='${idCategoria}']`).find('.lista-productos').append(productoNew);
 
     $('#offcanvas-carta-producto').offcanvas('hide');
-    activarGuardado();
+    // activarGuardado();
 }
 
 function activarGuardado(activo = true){

@@ -92,7 +92,6 @@ class CartaController extends Controller
                 }
             }
         }catch (\Exception $e){
-            dd($e);
             return response('Ha ocurrido un error durante la creación de la carta', 500);
         }
 
