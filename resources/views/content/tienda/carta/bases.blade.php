@@ -1,6 +1,7 @@
 <div class="hidden">
     {{-- Nueva categoría --}}
     <div class="col-12 draggable categoria hidden categoria-new" data-id>
+        <input type="hidden" class="id_categoria" name="id_categoria">
         <div class="card">
             <div class="card-header">
                 <div class="d-flex flex-column">
@@ -23,6 +24,7 @@
 
     {{-- Nuevo producto --}}
     <li class="list-group-item draggable producto producto-new hidden">
+        <input type="hidden" class="id_producto" name="id_producto">
         <div class="d-flex">
             <img src="/images/assets/product.pngphp " class="producto-imagen rounded-circle me-2" alt="img-placeholder" height="50" width="50">
             <div class="more-info">

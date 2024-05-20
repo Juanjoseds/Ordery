@@ -4,7 +4,7 @@
         @if(isset($tiendas) && sizeof($tiendas) > 0)
             <div class="d-flex resultados-title align-items-center mt-2 mb-2">
                 <i class="ti ti-search"></i>
-                <p class="m-0">Hay <b>{{$busqueda}}</b> en estos {{sizeof($tiendas)}} establecimientos</p>
+                <p class="m-0">Hay "<b>{{$busqueda}}</b>" en estos {{$tiendas->total()}} establecimientos</p>
             </div>
 
 
@@ -40,6 +40,11 @@
                                             </h6>
                                             <small>{{$tienda->ciudad}}</small>
                                         </div>
+                                        @if(sizeof($tienda->productos) > 0)
+                                            <div>
+                                                Este establecimiento tiene {{sizeof($tienda->productos)}} productos que coinciden con "<b>{{$busqueda}}</b>".
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
 

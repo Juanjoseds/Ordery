@@ -62,7 +62,7 @@ function abrirOffcanvasNuevaCategoria(){
     $('#offcanvas-carta-categoria').offcanvas('show');
 }
 
-function nuevaCategoria(id, nombre=null, descripcion=null){
+function nuevaCategoria(id=null, nombre=null, descripcion=null){
     let cardnew = $('.categoria-new').clone();
     cardnew.removeClass('hidden').removeClass('categoria-new');
 
@@ -76,6 +76,7 @@ function nuevaCategoria(id, nombre=null, descripcion=null){
 
     // Seteamos la información
     cardnew.find('.categoria-titulo').text(nombre);
+    cardnew.find('.id_categoria').val(id);
     cardnew.find('.categoria-descripcion').text(descripcion);
 
     // Ocultamos el botón de Nuevo producto
@@ -90,7 +91,7 @@ function nuevaCategoria(id, nombre=null, descripcion=null){
     activarGuardado();
 }
 
-function nuevoProducto(nombre=null, descripcion=null, precio=null, imagen=null, idCategoria=null){
+function nuevoProducto(nombre=null, descripcion=null, precio=null, imagen=null, idCategoria=null, idProducto=null){
     let productoNew = $('.producto-new').clone();
     productoNew.removeClass('hidden').removeClass('producto-new');
 
@@ -101,16 +102,18 @@ function nuevoProducto(nombre=null, descripcion=null, precio=null, imagen=null, 
         nombre = form[1].value;
         descripcion = form[2].value;
         precio = form[3].value;
+        idProducto = form[4].value;
     }
 
     productoNew.find('.producto-imagen').attr('src', imagen);
     productoNew.find('.producto-titulo').text(nombre);
     productoNew.find('.producto-descripcion').text(descripcion);
     productoNew.find('.producto-precio').text(precio);
+    productoNew.find('.id_producto').val(idProducto);
 
     if(idCategoria == null){
         idCategoria = $('#categoriaId').val();
-        console.log(idCategoria, $(`.categoria[data-id=${idCategoria}]`));
+        // console.log(idCategoria, $(`.categoria[data-id=${idCategoria}]`));
     }
 
     $(`.categoria[data-id='${idCategoria}']`).find('.lista-productos').append(productoNew);
@@ -140,6 +143,7 @@ function guardarCarta(){
     categorias.each(function (index) {
         console.log($(this));
         let categoriaNombre = $(this).find('.categoria-titulo').text();
+        let idCategoria = $(this).find('.id_categoria').val();
         let categoriaDescripcion = $(this).find('.categoria-descripcion').text();
         let productos = $(this).find('.producto');
         let cartaProductos = [];
@@ -149,12 +153,14 @@ function guardarCarta(){
                 'titulo': $(this).find('.producto-titulo').text(),
                 'descripcion': $(this).find('.producto-descripcion').text(),
                 'precio': $(this).find('.producto-precio').text(),
-                'imagen': $(this).find('img').attr('src')
+                'imagen': $(this).find('img').attr('src'),
+                'id_producto': $(this).find('.id_producto').val()
             };
             cartaProductos.push(arrayProductos);
         });
 
         let categoria = {
+            "id": idCategoria,
             "titulo": categoriaNombre,
             "descripcion": categoriaDescripcion,
             "productos": [
@@ -207,7 +213,7 @@ function loadCategoriesAndProducts(){
         if(value.productos != null && value.productos != []){
             $.each(value.productos, function( index2, value2 ){
                 // console.log(value2.precio);
-                nuevoProducto(value2.nombre, value2.descripcion, value2.precio,value2.imagen, value.id);
+                nuevoProducto(value2.nombre, value2.descripcion, value2.precio,'/images/productos/' + value2.imagen, value.id, value2.id);
             });
         }
 

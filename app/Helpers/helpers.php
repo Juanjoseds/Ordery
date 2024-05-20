@@ -179,10 +179,129 @@ class Helper
         return [$imageName, $extension, $image];
     }
 
+    public static function base64ToFile($base64Image)
+    {
+        try {
+            //set name of the image file
+            $extension = strtolower(explode('/', mime_content_type($base64Image))[1]);
+            $base64Image = trim($base64Image);
+            $base64Image = str_replace('data:image/png;base64,', '', $base64Image);
+            $base64Image = str_replace('data:image/jpg;base64,', '', $base64Image);
+            $base64Image = str_replace('data:image/jpeg;base64,', '', $base64Image);
+            $base64Image = str_replace('data:image/gif;base64,', '', $base64Image);
+            $base64Image = str_replace(' ', '+', $base64Image);
+            // Convertir el base54 en file
+            $imageData = base64_decode($base64Image);
+            // Devolver el fichero y la extensión
+            return [
+                'file' => $imageData,
+                'extension' => $extension,
+            ];
+        } catch (\Throwable $th) {
+            return null;
+            // CAMBIAR ESTO A VALIDACIONES REALES, PENDIENTE!!!!
+        }
+    }
+
+    public static function randomString($length = 5)
+    {
+        return substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length / strlen($x)))), 1, $length);
+    }
+
     public static function getStoredImage($base64){
         $img = base64_encode(Storage::disk('tiendas')->get($base64));
         $mime = Storage::disk('tiendas')->mimeType($base64);
         $img = "data:$mime;base64,$img";
         return $img;
     }
+
+    public function tratarImagenes($request = null, $modelo, $folderName, $sesion)
+    {
+        $files_old = glob(storage_path('app/public/images/' . $folderName . '/' . $modelo->id . '/*')); // obtener imagenes del anuncio
+        $oldImages = [];
+
+        // En caso de que vengan imagenes antiguas, significa que se han eliminado imagenes del anuncio al editarlo
+        if($request->has('oldImages')) {
+            $imageNames = array_map('basename', $files_old); // obtener los nombres de las imagenes actual del anuncio
+            $oldImages = json_decode($request->oldImages); // Obtener las imagenes antiguas que vienen del front
+
+            foreach ($imageNames as $imageName) {
+                // Verificar si el nombre de la imagen antigua no está en la lista de imágenes del servidor
+                $found = false;
+                foreach ($oldImages as $oldImage) {
+                    if ($oldImage->name === $imageName) {
+                        $found = true;
+                        break;
+                    }
+                }
+
+                // Si el nombre de archivo no se encuentra en $oldImages, eliminarlo del sistema
+                if (!$found) {
+                    File::delete(storage_path('app/public/images/' . $folderName . '/' . $modelo->id . '/' . $imageName));
+                }
+            }
+
+        } else {
+            foreach ($files_old as $file) {
+                File::delete($file);
+            }
+        }
+
+        $oldImagesRoutes = implode(',', array_column($oldImages, 'route'));
+
+        $fotos = "";
+        if ($request->has('filesName') && !is_null($request->filesName)) {
+            $imagenes = explode(',', $request->filesName);
+            $errores = [];
+
+            Log::info($request->all());
+            foreach ($imagenes as $index => $foto) {
+                $extension = $request->$foto->getMimeType();
+                //Check Formato
+                $supported_image = array(
+                    'image/jpeg',
+                    'image/pjpeg',
+                    'image/png',
+                    'image/x-png',
+                    'image/gif'
+                );
+                //check imagen
+                if (!in_array($extension, $supported_image)) {
+                    $errores[$foto][] = "Imagen no soportada";
+                }
+
+                //Check Size
+                $size = filesize($request->$foto);
+                $megas = 5;
+                if ($size / 1024 / 1024 > $megas) {
+                    $errores[$foto][] = "Imagen demasiado grande";
+                }
+            }
+
+            if (sizeof($errores) > 0) {
+                throw new \Exception("errores");
+            }
+
+            foreach ($imagenes as $index => $foto) {
+                $extension = $request->$foto->getMimeType();
+                $nombre = explode('/', $foto);
+                $onlyName = $nombre[sizeof($nombre) - 1];
+                $imageName = 'images' . $folderName . '/' . $modelo->id . '/' . $onlyName;
+                $encoded_image = 'data:' . $extension . ';base64,' . base64_encode(file_get_contents($request->$foto));
+                $newName = Helpers::imageInStorage($encoded_image, $imageName);
+                $fotos .= count($imagenes) == $index + 1 ? $newName : $newName . ','; // Guardamos la ruta de la imagen seguido de una "," excepto la ultima imagen
+            }
+        }
+
+        $allImages = array_merge(explode(',', $oldImagesRoutes), explode(',', $fotos)); // Unimos las imagenes antiguas con las nuevas
+        $imagenes = $this->orderImages($allImages, $request->fileOrder);
+
+        if ($oldImagesRoutes != "" || $fotos != "") {
+            $modelo->imagenes = implode(',', $imagenes); // Guardamos las imagenes en el modelo
+            // $modelo->imagenes = $oldImagesRoutes . ($oldImagesRoutes != "" && $fotos != "" ? "," : "") . $fotos;
+        } else {
+            $modelo->imagenes = null;
+        }
+    }
+
 }

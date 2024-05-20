@@ -55,6 +55,7 @@
                         </div>
                     </div>
 
+                    <input type="hidden" id="id_producto" name="id_producto">
                 </div>
                 <div class="botones d-grid">
                     <button type="button" class="btn btn-success waves-effect waves-float waves-light btn-sm-block" onclick="nuevoProducto()">Guardar</button>

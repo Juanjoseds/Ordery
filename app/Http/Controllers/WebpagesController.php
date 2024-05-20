@@ -89,13 +89,20 @@ class WebpagesController extends Controller
         $busqueda = $request->search;
 
         $tiendas = Tienda::query()
-            ->where('nombre', 'LIKE', "%$busqueda%")
-            ->orWhereHas('categorias', function ($q) use ($busqueda) {
-                $q->whereHas('productos', function ($q2) use ($busqueda) {
-                    $q2->where('nombre', 'LIKE', "%$busqueda%");
-                });
+            ->where(function ($query) use ($busqueda) {
+                $query->where('nombre', 'LIKE', "%$busqueda%")
+                    ->orWhereHas('categorias', function ($q) use ($busqueda) {
+                        $q->whereHas('productos', function ($q2) use ($busqueda) {
+                            $q2->where('nombre', 'LIKE', "%$busqueda%");
+                        });
+                    });
             })
-            ->paginate(5);
+            ->where('is_blocked', '=', 0)
+            ->with(['productos'=>function($q) use ($busqueda){
+                $q->where('nombre', 'LIKE', "%$busqueda%")->select('id', 'nombre', 'id_tienda');
+            }])
+
+            ->paginate(8);
 
 
         return view('/web/pages/search/index', [
