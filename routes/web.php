@@ -138,6 +138,8 @@ Route::group(['middleware'=> ['auth']], function () {
             Route::group(['middleware' => ['permission:Carta,Leer']], function () {
                 Route::get('pizarra', [CartaController::class, 'index'])->name('pizarraCarta');
                 Route::post('guardarCarta', [CartaController::class, 'store']);
+                Route::post('deleteCategoria', [CartaController::class, 'deleteCategoria']);
+                Route::post('deleteProducto', [CartaController::class, 'deleteProducto']);
     //            Route::post('json', [UserController::class, 'getDataJson']);
     //            Route::get('show/{id}', [UserController::class, 'show']);
             });

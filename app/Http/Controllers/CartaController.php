@@ -117,6 +117,16 @@ class CartaController extends Controller
 
         return $output_file;
     }
+
+    public function deleteCategoria(Request $request){
+        Categoria::query()->where('id', $request->id)->delete();
+        return response('La categoría se ha eliminado correctamente', 200);
+    }
+
+    public function deleteProducto(Request $request){
+        Producto::query()->where('id', $request->id)->delete();
+        return response('El producto se ha eliminado correctamente', 200);
+    }
 //    public function new() {
 //        $method = 'Nuevo';
 //        $permisos = Permiso::query()

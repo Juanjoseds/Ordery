@@ -14,6 +14,10 @@
                         <i class="fa-solid fa-plus"></i>
                         <span>Nuevo producto</span>
                     </button>
+                    <button type="button" class="btn btn-outline-danger waves-effect btn-delete-categoria" onclick="deleteCategory(this)">
+                        <i class="fa-solid fa-trash"></i>
+                        <span>Eliminar categoría</span>
+                    </button>
                 </div>
             </div>
             <div class="card-body" style="display: none">
@@ -33,5 +37,9 @@
             </div>
         </div>
         <div class="d-flex producto-precio">10€</div>
+        <button type="button" class="btn btn-outline-danger waves-effect btn-delete-producto" onclick="deleteProducto(this)">
+            <i class="fa-solid fa-trash"></i>
+            <span>Eliminar producto</span>
+        </button>
     </li>
 </div>
