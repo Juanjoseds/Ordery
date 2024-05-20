@@ -60,11 +60,25 @@ function destroyAllDraggables(){
     $('.btn-add-producto').fadeOut();
 }
 
-function abrirOffcanvasNuevoProducto(e){
+function abrirOffcanvasNuevoProducto(e, idProducto=null){
+
     $('#offcanvas-carta').offcanvas('show');
+
+    if(idProducto != null){
+        let producto = $(`.producto[data-id=${idProducto}]`);
+
+        $('#producto-form #nombre').val(producto.find('.producto-titulo').text());
+        $('#producto-form #descripcion').val(producto.find('.producto-descripcion').text());
+        $('#producto-form #precio').val(producto.find('.producto-precio').val());
+        $('#producto-form #producto_display_uploaded').attr('src', producto.find('.producto-imagen').attr('src'));
+        $('#producto-form #id_producto').val(idProducto);
+    }else{
+        $('#producto-form #id_producto').val('')
+    }
 
     let idCategoria = $(e).parents('.categoria').data('id');
     $('#categoriaId').val(idCategoria);
+
     initInputFile('producto', 2000);
 }
 
@@ -104,8 +118,7 @@ function nuevaCategoria(id=null, nombre=null, descripcion=null){
 
 function nuevoProducto(nombre=null, descripcion=null, precio=null, imagen=null, idCategoria=null, idProducto=null){
 
-    let productoNew = $('.producto-new').clone();
-    productoNew.removeClass('hidden').removeClass('producto-new');
+
 
     // Seteamos correctamente el producto
     if(nombre==null && descripcion == null) {
@@ -119,19 +132,37 @@ function nuevoProducto(nombre=null, descripcion=null, precio=null, imagen=null, 
         activarGuardado();
     }
 
-    productoNew.find('.producto-imagen').attr('src', imagen);
-    productoNew.find('.producto-titulo').text(nombre);
-    productoNew.find('.producto-descripcion').text(descripcion);
-    productoNew.find('.producto-precio').val(precio);
-    productoNew.find('.producto-precio-text').text(precio + ' €');
-    productoNew.find('.id_producto').val(idProducto);
-    productoNew.closest('.producto').attr('data-id',idProducto);
 
-    if(idCategoria == null){
-        idCategoria = $('#categoriaId').val();
+
+
+
+
+
+    let isEditing = $('#producto-form #id_producto').val();
+    if(isEditing != null && isEditing != '' && isEditing != undefined){
+        let producto = $(`.producto[data-id=${isEditing}]`);
+        producto.find('.producto-titulo').text($('#producto-form #nombre').val());
+        producto.find('.producto-descripcion').text($('#producto-form #descripcion').val());
+        producto.find('.producto-precio-text').text($('#producto-form #precio').val() + ' €');
+        producto.find('.producto-precio').val($('#producto-form #precio').val());
+        producto.find('.producto-imagen').attr('src', $('#producto-form #producto_display_uploaded').attr('src'));
+    }else{
+        let productoNew = $('.producto-new').clone();
+        productoNew.removeClass('hidden').removeClass('producto-new');
+        productoNew.find('.producto-imagen').attr('src', imagen);
+        productoNew.find('.producto-titulo').text(nombre);
+        productoNew.find('.producto-descripcion').text(descripcion);
+        productoNew.find('.producto-precio').val(precio);
+        productoNew.find('.producto-precio-text').text(precio + ' €');
+        productoNew.find('.id_producto').val(idProducto);
+        productoNew.closest('.producto').attr('data-id',idProducto);
+
+        if(idCategoria == null){
+            idCategoria = $('#categoriaId').val();
+        }
+        $(`.categoria[data-id='${idCategoria}']`).find('.lista-productos').append(productoNew);
     }
 
-    $(`.categoria[data-id='${idCategoria}']`).find('.lista-productos').append(productoNew);
 
     $('#offcanvas-carta-producto').offcanvas('hide');
     // activarGuardado();
@@ -275,4 +306,10 @@ function deleteProducto(e){
         // Es un producto que no se ha guardado en BBDD aún, por lo que únicamente destruimos la fila.
         $(e).parents('.producto').remove();
     }
+}
+
+function editProducto(e) {
+    let idProducto = $(e).parents('.producto').data('id');
+
+    abrirOffcanvasNuevoProducto(e, idProducto);
 }

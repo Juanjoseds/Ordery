@@ -39,9 +39,13 @@
         </div>
         <div class="d-flex">
             <div class="d-flex producto-precio-text align-items-center me-3">10€</div>
+            <button type="button" class="btn btn-outline-primary waves-effect btn-edit-producto me-1" onclick="editProducto(this)">
+                <i class="fa-solid fa-edit"></i>
+                <span>Editar</span>
+            </button>
             <button type="button" class="btn btn-outline-danger waves-effect btn-delete-producto" onclick="deleteProducto(this)">
                 <i class="fa-solid fa-trash"></i>
-                <span>Eliminar producto</span>
+                <span>Eliminar</span>
             </button>
         </div>
 
