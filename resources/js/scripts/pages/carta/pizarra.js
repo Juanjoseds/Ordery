@@ -102,6 +102,7 @@ function nuevaCategoria(id=null, nombre=null, descripcion=null){
 }
 
 function nuevoProducto(nombre=null, descripcion=null, precio=null, imagen=null, idCategoria=null, idProducto=null){
+
     let productoNew = $('.producto-new').clone();
     productoNew.removeClass('hidden').removeClass('producto-new');
 

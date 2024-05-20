@@ -25,6 +25,10 @@
 
     {{-- DRAG & DROP --}}
     <script src="{{ asset(mix('vendors/js/extensions/dragula.min.js')) }}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+
 @endsection
 
 @section('modales')
