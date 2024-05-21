@@ -107,6 +107,7 @@ Route::group(['middleware'=> ['auth']], function () {
 
             Route::group(['middleware' => ['permission:Pedidos,Editar']], function () {
                 Route::post('changeState', [PedidoController::class, 'changeState']);
+                Route::post('changeTotal', [PedidoController::class, 'changeTotal']);
             });
 
             Route::group(['middleware' => ['permission:Pedidos,Borrar']], function () {

@@ -164,7 +164,7 @@ class PedidoController extends Controller
 
         $pedido = Pedido::query()->find($request->pedidoId);
         if(!isset($pedido)){
-            return response(['errores' => __('Lo sentimos, no se pudo encontrar el pedido')], 400);
+            return response(['errores' => 'Lo sentimos, no se pudo encontrar el pedido'], 400);
         }
         $pedido->pedido = json_decode($pedido->pedido);
         return view('modales.pedidos.pedidos-content', [
@@ -180,6 +180,16 @@ class PedidoController extends Controller
 
         $pedido->estado = $request->estado;
         $pedido->update();
+    }
+
+    public function changeTotal(Request $request){
+        $pedido = Pedido::query()->where('id', $request->pedidoId)->first();
+        if(!isset($pedido)){
+            return response(['errores' => 'El pedido no existe'], 400);
+        }
+        $pedido->precio = $request->total;
+        $pedido->update();
+        return response('Actualizado!', 200);
     }
 
 }

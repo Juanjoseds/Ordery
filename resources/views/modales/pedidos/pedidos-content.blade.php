@@ -40,17 +40,20 @@
             @endforeach
         </div>
 
-        <h4 class="card-title text-primary mt-2">Total: <b>{{$pedido->pedido->precio}} €</b></h4>
+        <h4 class="card-title text-primary mt-2 mb-0">Total: <b class="precioTotal">{{$pedido->precio}} €</b></h4>
+        @if(isset($pedido->pedido->precio) && ($pedido->pedido->precio != $pedido->precio))
+            <small><i class="ti ti-info-circle me-25"></i>El precio ha sido modificado por la tienda</small>
+        @endif
 
         <div class="main-cambiartotales mb-1">
             <button type="button" class="btn-cambiar-totales btn rounded-pill bg-gradient-warning waves-effect w-100" onclick="showCambiarTotales()">Cambiar total del pedido</button>
 
             <div class="bloque-totales input-group rounded-pill mt-50" style="display: none">
-                <input type="text" class="form-control" placeholder="Username">
+                <input id="nuevoTotal" type="text" class="form-control" placeholder="Nuevo total">
                 <span class="input-group-text">€</span>
             </div>
 
-            <button type="button" class="btn-guardar-total btn rounded-pill bg-gradient-success waves-effect w-100 mt-50" onclick="showCambiarTotales()" style="display: none;"><i class="ti ti-receipt-2"></i> Actualizar precio</button>
+            <button type="button" class="btn-guardar-total btn rounded-pill bg-gradient-success waves-effect w-100 mt-50" onclick='showCambiarTotales("{{$pedido->id}}")' style="display: none;"><i class="ti ti-receipt-2"></i> Actualizar precio</button>
 
         </div>
 

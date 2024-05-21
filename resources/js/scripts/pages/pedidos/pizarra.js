@@ -255,13 +255,37 @@ function changeEstado(idPedido, estado){
     })
 }
 
-function showCambiarTotales(){
-    $('.btn-cambiar-totales').fadeOut(function (){
-        $('.bloque-totales').fadeIn();
-        $('.bloque-totales input').focus();
-    })
+function showCambiarTotales(idPedido=null){
+    let total = $('#nuevoTotal').val();
 
-    $('.bloque-totales input').on('keypress', function (){
-        $('.btn-guardar-total').fadeIn();
-    });
+    if(total != '' && total != undefined){
+
+        $.ajax({
+            url: '/tienda/pedidos/changeTotal',
+            method: 'POST',
+            data: {
+                pedidoId: idPedido,
+                total: total,
+            }
+        }).done(response => {
+            standardAjaxResponse('Estado actualizado', `Se ha actualizado el total del pedido #${idPedido} correctamente`);
+            $('#pedido-productos .precioTotal').text(total + ' €');
+            $('#pedidos-table').DataTable().ajax.reload();
+        }).fail(error => {
+            customFormAjaxResponse(error);
+        }).always(() => {
+            $('#spinner-loading').fadeOut();
+        })
+
+    }else{
+        $('.btn-cambiar-totales').fadeOut(function (){
+            $('.bloque-totales').fadeIn();
+            $('.bloque-totales input').focus();
+        })
+
+        $('.bloque-totales input').on('keypress', function (){
+            $('.btn-guardar-total').show();
+        });
+    }
+
 }
