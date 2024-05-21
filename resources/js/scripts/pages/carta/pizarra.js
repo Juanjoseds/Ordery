@@ -17,11 +17,12 @@ function initCardsDraggable(){
     destroyListsDraggable();
     dragulaCard = dragula([document.getElementById('card-drag-area')]);
 
-    $('#card-drag-area .card-body').fadeOut(function (){
-        $('.btn-add-producto').fadeOut(function (){
+    $('#card-drag-area .card-body, .btn-add-producto').fadeOut(function (){
+        $('.btn-edit-producto, .btn-delete-producto').fadeOut(function (){
             $('.list-group').fadeOut();
             $('.btn-add-categoria').fadeIn();
             $('.btn-delete-categoria').fadeIn();
+            $('.btn-edit-categoria').fadeIn();
         });
     });
 
@@ -32,12 +33,17 @@ function initListsDraggable(){
     destroyCardsDraggable();
     dragulaList = dragula([document.getElementById('lista-productos')]);
 
-    $('.btn-delete-categoria').fadeOut(function (){
+    $('.btn-delete-categoria, .btn-edit-categoria, .btn-add-categoria').fadeOut(function (){
         $('.btn-add-producto').fadeIn();
-        $('.btn-add-categoria').fadeOut();
+        $('.btn-edit-producto').fadeIn();
+        $('.btn-delete-producto').fadeIn();
         $('#card-drag-area .card-body').fadeIn();
         $('.list-group').fadeIn();
     });
+
+    // $('.btn-delete-categoria').fadeOut(function (){
+
+    // });
 }
 
 function destroyCardsDraggable(){
