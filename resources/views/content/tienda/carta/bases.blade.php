@@ -14,9 +14,13 @@
                         <i class="fa-solid fa-plus"></i>
                         <span>Nuevo producto</span>
                     </button>
-                    <button type="button" class="btn btn-outline-danger waves-effect btn-delete-categoria" onclick="deleteCategory(this)">
+                    <button type="button" class="btn btn-outline-primary waves-effect btn-delete-categoria" onclick="editCategory(this)">
+                        <i class="fa-solid fa-edit"></i>
+                        <span>Editar</span>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger waves-effect btn-edit-categoria" onclick="deleteCategory(this)">
                         <i class="fa-solid fa-trash"></i>
-                        <span>Eliminar categoría</span>
+                        <span>Eliminar</span>
                     </button>
                 </div>
             </div>

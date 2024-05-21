@@ -82,7 +82,24 @@ function abrirOffcanvasNuevoProducto(e, idProducto=null){
     initInputFile('producto', 2000);
 }
 
-function abrirOffcanvasNuevaCategoria(){
+function abrirOffcanvasNuevaCategoria(idCategoria=null){
+
+    if(idCategoria != null){
+        // Se está editando
+        let categoria = $(`.categoria[data-id=${idCategoria}]`);
+        let nombre = categoria.find('.categoria-titulo').text();
+        let descripcion = categoria.find('.categoria-descripcion').text();
+
+        console.log(categoria, nombre, descripcion);
+        $('#nueva-categoria-form #nombre').val(nombre);
+        $('#nueva-categoria-form #descripcion').val(descripcion);
+        $('#nueva-categoria-form #idCategoria').val(idCategoria);
+    }else{
+        $('#nueva-categoria-form #nombre').val('');
+        $('#nueva-categoria-form #descripcion').val('');
+        $('#nueva-categoria-form #idCategoria').val('');
+    }
+
     $('#offcanvas-carta-categoria').offcanvas('show');
 }
 
@@ -100,16 +117,25 @@ function nuevaCategoria(id=null, nombre=null, descripcion=null){
         activarGuardado();
     }
 
-    // Seteamos la información
-    cardnew.find('.categoria-titulo').text(nombre);
-    cardnew.find('.id_categoria').val(id);
-    cardnew.find('.categoria-descripcion').text(descripcion);
+    let isEditing = $('#nueva-categoria-form #idCategoria').val();
+    if(isEditing != null && isEditing != ''){
+        // Se está editando
+        let categoria = $(`.categoria[data-id=${isEditing}]`);
+        categoria.find('.categoria-titulo').text($('#nueva-categoria-form #nombre').val());
+        categoria.find('.categoria-descripcion').text($('#nueva-categoria-form #descripcion').val());
+    }else{
+        // Se está creando
+        cardnew.find('.categoria-titulo').text(nombre);
+        cardnew.find('.id_categoria').val(id);
+        cardnew.find('.categoria-descripcion').text(descripcion);
+        // Ocultamos el botón de Nuevo producto
+        cardnew.find('.btn-add-producto').hide();
+        cardnew.closest('.categoria').attr('data-id', id);
 
-    // Ocultamos el botón de Nuevo producto
-    cardnew.find('.btn-add-producto').hide();
+        $('#card-drag-area').append(cardnew);
+    }
 
-    $('#card-drag-area').append(cardnew);
-    $('.categoria:not(.categoria-new):last').attr('data-id',id);
+    // $('.categoria:not(.categoria-new):last').attr('data-id',id);
     let canvasModal =  $('#offcanvas-carta-categoria');
     canvasModal.offcanvas('hide');
     canvasModal.find('input').val('');
@@ -117,8 +143,6 @@ function nuevaCategoria(id=null, nombre=null, descripcion=null){
 }
 
 function nuevoProducto(nombre=null, descripcion=null, precio=null, imagen=null, idCategoria=null, idProducto=null){
-
-
 
     // Seteamos correctamente el producto
     if(nombre==null && descripcion == null) {
@@ -131,12 +155,6 @@ function nuevoProducto(nombre=null, descripcion=null, precio=null, imagen=null, 
 
         activarGuardado();
     }
-
-
-
-
-
-
 
     let isEditing = $('#producto-form #id_producto').val();
     if(isEditing != null && isEditing != '' && isEditing != undefined){
@@ -265,21 +283,27 @@ function loadCategoriesAndProducts(){
 function deleteCategory(e){
     let idCategoria = $(e).parents('.categoria').data('id');
 
-    $('#spinner-loading').fadeIn();
-    $.ajax({
-        url: 'deleteCategoria',
-        method: 'POST',
-        data: {
-            id: idCategoria
-        },
-    }).done(response => {
-        standardAjaxResponse('¡Borrado!', response.mensaje);
-        $(`.categoria[data-id=${idCategoria}]`).remove();
-    }).fail(errores => {
-        customFormAjaxResponse(errores);
-    }).always(() => {
-        $('#spinner-loading').fadeOut();
-    })
+    if(idCategoria != null && idCategoria != '') {
+        $('#spinner-loading').fadeIn();
+        $.ajax({
+            url: 'deleteCategoria',
+            method: 'POST',
+            data: {
+                id: idCategoria
+            },
+        }).done(response => {
+            standardAjaxResponse('¡Borrado!', response.mensaje);
+            $(`.categoria[data-id=${idCategoria}]`).remove();
+        }).fail(errores => {
+            customFormAjaxResponse(errores);
+        }).always(() => {
+            $('#spinner-loading').fadeOut();
+        })
+    }else{
+        $(e).parents('.categoria').remove();
+    }
+
+
 
 }
 
@@ -312,4 +336,11 @@ function editProducto(e) {
     let idProducto = $(e).parents('.producto').data('id');
 
     abrirOffcanvasNuevoProducto(e, idProducto);
+}
+
+function editCategory(e){
+    let idCategoria = $(e).parents('.categoria').data('id');
+
+    abrirOffcanvasNuevaCategoria(idCategoria);
+    console.log(idCategoria)
 }
