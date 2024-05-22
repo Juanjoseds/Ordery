@@ -70,8 +70,11 @@
                 }
                 .card-title{
                     text-align: left;
-                    font-size: 22px;
+                    font-size: 20px;
                     color: black;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
                 .cantidad{
                     font-weight: bold;

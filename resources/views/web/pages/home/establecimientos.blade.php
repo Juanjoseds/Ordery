@@ -10,7 +10,7 @@
                     @foreach ($tiendas as $tienda)
                         <a class="swiper-slide tarjeta-tienda" href="/shops/{{@$tienda->url}}">
 
-                            <div class="card mb-0 w-100">
+                            <div class="card mb-0 w-100 h-100">
                                 <img class="card-img-top" src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/img/elements/2.jpg" alt="Card image cap">
                                 <div class="card-body ps-0 pe-0 pb-0">
                                     <div class="ps-2">
