@@ -1,7 +1,7 @@
 <div id="card-estado" class="card mb-2 bg-{{strtolower($pedido->estado)}}">
     <div class="card-body">
         <p class="card-text">
-            <b>Estado:</b> {{$pedido->estado}}
+            <b>Estado:</b> <span class="pedido-estado">{{$pedido->estado}}</span>
         </p>
     </div>
 </div>

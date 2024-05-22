@@ -248,6 +248,10 @@ function changeEstado(idPedido, estado){
     }).done(response => {
         standardAjaxResponse('Estado actualizado', `Se ha actualizado el estado del pedido #${idPedido} correctamente`);
         $('#pedidos-table').DataTable().ajax.reload();
+
+        $('#card-estado').removeClass('bg-preparado').removeClass('bg-pendiente').removeClass('bg-finalizado').removeClass('bg-cancelado').removeClass('bg-preparacion')
+        $('#card-estado').addClass('bg-' + estado.toLowerCase())
+        $('#card-estado .pedido-estado').text(estado)
     }).fail(error => {
         customFormAjaxResponse(error);
     }).always(() => {
