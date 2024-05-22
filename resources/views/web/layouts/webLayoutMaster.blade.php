@@ -41,7 +41,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&family=Fauna+One&family=Fira+Mono:wght@400;500;700&family=Indie+Flower&display=swap" rel="stylesheet">
 
     {{-- TABLER --}}
-    <link rel="stylesheet" href="fonts/tabler/tabler-icons.min.css">
+    <link rel="stylesheet" href="/fonts/tabler/tabler-icons.min.css">
 
     @yield('page-style')
     @stack('extra-css')

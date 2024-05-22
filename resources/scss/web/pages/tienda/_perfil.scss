@@ -22,69 +22,32 @@
             }
         }
 
-        .profile-header-nav {
+        .main-perfil {
             .navbar {
                 padding: 0.8rem 1rem;
+            }
 
-                // navbar toggle button
-                .navbar-toggler {
-                    line-height: 0;
-                }
-                .profile-tabs {
-                    .nav-item {
-                        i,
-                        svg {
-                            margin-right: 0;
-                        }
-                    }
-                }
+            .perfil-nombre{
+                font-size: 20px;
+                font-weight: bold;
+                color: black;
+                margin-bottom: 3px!important;
+            }
+
+            .perfil-direccion{
+                font-size: 15px;
+                color: black;
+                margin-bottom: 3px!important;
+            }
+
+            .perfil-descripcion{
+                font-size: 15px;
+                color: #4E4E4E;
             }
         }
     }
 
-    #profile-info {
-        // profile star icons
-        .profile-star {
-            color: $gray-100;
 
-            i,
-            svg {
-                // filled star icons
-                &.profile-favorite {
-                    fill: $warning;
-                    stroke: $warning;
-                }
-            }
-        }
-
-        .profile-likes {
-            fill: $danger;
-            stroke: $danger;
-        }
-
-        .profile-polls-info {
-            .progress {
-                height: 0.42rem;
-            }
-        }
-    }
-
-    .profile-latest-img {
-        transition: all 0.2s ease-in-out;
-        &:hover {
-            transform: translateY(-4px) scale(1.2);
-            z-index: 10;
-        }
-        img {
-            margin-top: 1.28rem;
-        }
-    }
-
-    .block-element {
-        .spinner-border {
-            border-width: 0.14rem;
-        }
-    }
 }
 
 @include media-breakpoint-down(lg) {
@@ -99,7 +62,7 @@
 
 @include media-breakpoint-up(md) {
     // navbar tabs pills
-    .profile-header-nav {
+    .main-perfil {
         .profile-tabs {
             width: 100%;
             margin-left: 13.2rem;

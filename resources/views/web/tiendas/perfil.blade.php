@@ -11,15 +11,15 @@
         </div>
     </div>
 
-    <div class="profile-header-nav">
+    <div class="main-perfil">
 
         <nav class="navbar navbar-expand-md navbar-light justify-content-end justify-content-md-between w-100">
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse">
                 <div class="profile-tabs d-flex flex-column mt-1 mt-md-0">
-                    <p class="fw-bolder mb-0">{{$tienda->nombre}}</p>
-                    <p class="mb-0">{{$tienda->direccion}}</p>
-                    <p class="mb-0">{{$tienda->descripcion}}</p>
+                    <p class="perfil-nombre">{{$tienda->nombre}}</p>
+                    <p class="perfil-direccion"><i class="ti ti-map-pin-filled me-25"></i>{{$tienda->direccion}}</p>
+                    <p class="perfil-descripcion mb-0">{{$tienda->descripcion}}</p>
                 </div>
 
             </div>
