@@ -1,0 +1,50 @@
+#main-carta{
+
+    .carta-titulo{
+        font-weight: bold;
+        color: black;
+        font-size: 18px;
+    }
+
+    #carta{
+        border: 1px solid #ECECEC;
+        border-radius: 7px;
+        padding: 1rem;
+
+        .categoria{
+            .categoria-titulo{
+                color: #0093FF;
+                font-weight: bold;
+                font-size: 22px;
+            }
+        }
+
+
+        .producto{
+            .producto-imagen{
+                width: 100%;
+                border-radius: 1rem;
+                object-fit: cover;
+            }
+            .producto-titulo{
+                font-weight: bold;
+                font-size: 22px;
+            }
+            .producto-precio{
+                font-size: 18px;
+            }
+
+            .producto-descripcion{
+                color: #4E4E4E;
+            }
+
+            .producto-precio, .producto-descripcion{
+                font-family: "Fauna One", serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+
+        }
+
+    }
+}

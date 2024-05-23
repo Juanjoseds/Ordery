@@ -25,11 +25,11 @@
         <section id="profile-info">
             <div class="row">
 
-                <div class="col-lg-6 col-12 order-2 order-lg-1">
+                <div class="col-lg-4 col-12 order-2 order-lg-1">
                     @include('web.tiendas.carta')
                 </div>
 
-                <div class="col-lg-6 col-12 order-3">
+                <div class="col-lg-8 col-12 order-3">
                     @include('web.tiendas.notas-compra')
                 </div>
             </div>
