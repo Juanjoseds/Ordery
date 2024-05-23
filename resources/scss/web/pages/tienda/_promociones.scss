@@ -1,3 +1,19 @@
 #promociones{
+    .main-title{
+        .valoraciones-title{
+            font-weight: bold;
+            font-size: 22px;
+        }
+        & img{
+            opacity: 0.3;
+            margin-left: -1rem;
+            margin-top: -20px;
+        }
+    }
 
+    .productos-promociones{
+        border: 1px solid #ECECEC;
+        border-radius: 7px;
+        padding: 1rem;
+    }
 }
