@@ -22,3 +22,11 @@
         }
     }
 }
+
+@media only screen and (max-width: 600px){
+    #footer{
+        clip-path: none;
+        text-align: center;
+        padding-top: 1rem;
+    }
+}
