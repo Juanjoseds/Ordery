@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset(mix('css/core.css')) }}"/>
     <link href="{{ asset(mix('css/web/pages/tienda/tienda.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet">
     <link href="{{ asset(mix('css/web/pages/header.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 @endsection
 
 @section('content')
@@ -31,6 +32,9 @@
 
                 <div class="col-lg-8 col-12 order-3">
                     @include('web.tiendas.notas-compra')
+                    @include('web.tiendas.texto-compra')
+                    @include('web.tiendas.promociones')
+                    @include('web.tiendas.valoraciones')
                 </div>
             </div>
 
@@ -43,4 +47,5 @@
 @section('page-script')
     <script async defer src="{{ asset('js/web/pages/tienda.js') }}"></script>
     <script async defer src="{{ asset('js/web/pages/buscador.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 @endsection
