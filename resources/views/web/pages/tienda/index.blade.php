@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset(mix('css/core.css')) }}"/>
     <link href="{{ asset(mix('css/web/pages/tienda/tienda.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet">
     <link href="{{ asset(mix('css/web/pages/header.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet">
+    <link href="{{ asset(mix('css/web/pages/partials/footer.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 @endsection
 
@@ -30,17 +31,24 @@
                     @include('web.tiendas.carta')
                 </div>
 
-                <div class="col-lg-8 col-12 order-3">
+                <div class="col-lg-4 col-12 order-1 order-lg-1">
                     @include('web.tiendas.notas-compra')
                     @include('web.tiendas.texto-compra')
-                    @include('web.tiendas.promociones')
                     @include('web.tiendas.valoraciones')
                 </div>
+
+                <div class="col-lg-4 col-12 order-3 order-lg-1">
+                    @include('web.tiendas.promociones')
+                </div>
+
+
             </div>
 
 
         </section>
+
     </div>
+    @include('web.pages.home.footer')
 
 @endsection
 
