@@ -1,5 +1,5 @@
 <div id="footer" class="mt-3">
-    <div class="row mt-2">
+    <div class="row mt-2 mx-0">
         <div class="col-12 col-lg-8"></div>
         <div class="col-12 col-lg-2">
             <p class="footer-title">Échale un ojo</p>
@@ -11,7 +11,7 @@
             <p>POLÍTICA DE COOKIES</p>
         </div>
     </div>
-    <div class="row">
+    <div class="row mx-0">
         <div class="col-12">
             <p class="text-center">ORDERY © 2024</p>
 

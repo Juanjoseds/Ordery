@@ -31,13 +31,13 @@
                     @include('web.tiendas.carta')
                 </div>
 
-                <div class="col-lg-4 col-12 order-1 order-lg-1">
+                <div class="col-lg-4 col-12 order-1 order-lg-2">
                     @include('web.tiendas.notas-compra')
                     @include('web.tiendas.texto-compra')
                     @include('web.tiendas.valoraciones')
                 </div>
 
-                <div class="col-lg-4 col-12 order-3 order-lg-1">
+                <div class="col-lg-4 col-12 order-3 order-lg-3">
                     @include('web.tiendas.promociones')
                 </div>
 
