@@ -16,6 +16,10 @@
                 font-weight: bold;
                 font-size: 22px;
             }
+
+            &:not(:first-child){
+                margin-top: 1rem;
+            }
         }
 
     }

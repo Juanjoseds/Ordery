@@ -1,9 +1,10 @@
 .producto{
     .producto-imagen{
-        width: 100%;
-        max-width: 5rem;
-        border-radius: 1rem;
-        object-fit: cover;
+        width: 5rem;
+        border-radius: 2rem;
+        height: 5rem;
+        -o-object-fit: cover;
+        object-fit: contain;
     }
     .producto-titulo{
         font-weight: bold;

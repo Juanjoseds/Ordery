@@ -4,13 +4,19 @@
         <p>Buscador</p>
 
         <div id="carta">
-            <div class="categoria">
-                <p class="categoria-titulo">PANADERIA</p>
-            </div>
+            @foreach($tienda->categorias as $categoria)
+                <div class="categoria">
+                    <p class="categoria-titulo">{{$categoria->nombre}}</p>
+                </div>
 
-            @foreach(range(1,4) as $producto)
-                @include('web.tiendas.producto')
+                @foreach($categoria->productos as $producto)
+                    @include('web.tiendas.producto')
+                @endforeach
+
             @endforeach
+
+
+
 
         </div>
     </div>
