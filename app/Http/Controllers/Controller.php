@@ -27,7 +27,7 @@ class Controller extends BaseController
         // Usuario logueado en todos los controladores y vistas
         $this->middleware(function ($request, $next) use ($lang) {
             $this->user = Auth::user();
-
+//            $this->user->tienda = $this->user->tienda;
 
             view()->share('user_auth', $this->user);
             view()->share('lang', $lang);  // Idioma actual

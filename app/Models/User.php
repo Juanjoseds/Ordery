@@ -72,4 +72,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
          return (isset($this->permisos_usuario[strtolower($modulo)]) && $this->permisos_usuario[strtolower($modulo)][strtolower($permiso)] == 1);
     }
+
+    public function tienda(){
+        return $this->hasOne(Tienda::class, 'id', 'tienda_id');
+    }
 }

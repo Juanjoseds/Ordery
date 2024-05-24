@@ -24,7 +24,7 @@
                                 </li>
                             </ul>
 
-                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
                                 <li class="nav-item">
                                     @if(!isset($user_auth))
                                     <a class="nav-link" href="/login"><i class="ti ti-user ti-md"></i></a>
@@ -32,9 +32,13 @@
                                         <a class="nav-link dropdown-toggle d-flex" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                             <div class="user-nav d-sm-flex d-none flex-column text-end me-1">
                                               <span class="user-name fw-bolder">
-                                                  {{$user_auth->nombre . ' ' . $user_auth->apellidos}}
+                                                  {{$user_auth->nombre}}
                                               </span>
-                                                <span class="user-status">{{$user_auth->tipo}}</span>
+                                                @if($user_auth->tipo == 'tienda')
+                                                    <span class="user-status">{{$user_auth->tienda->nombre}}</span>
+                                                @else
+                                                    <span class="user-status">Cliente</span>
+                                                @endif
                                             </div>
                                             <span class="avatar">
                                                 <img class="round" src="@if(isset($user_auth->avatar)){{$user_auth->avatar}} @else {{Avatar::create($user_auth->nombre)->toBase64()}} @endif" alt="avatar" height="40" width="40">
@@ -50,9 +54,93 @@
                                         </div>
                                     @endif
                                 </li>
-                                <li class="nav-item ms-2">
+                                <li class="nav-item ms-2 d-flex align-items-center">
                                     <a class="nav-link" href="/login"><i class="ti ti-heart ti-md"></i></a>
                                 </li>
+
+                                @if(isset($user_auth))
+                                    <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1 ms-1">
+                                        <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                            <i class="ti ti-shopping-cart ti-md"></i>
+                                            <span class="badge bg-danger rounded-pill badge-notifications"><span class="carrito-cantidad">0</span></span>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end py-0">
+                                            <li class="dropdown-menu-header border-bottom">
+                                                <div class="dropdown-header d-flex align-items-center py-1">
+                                                    <h5 class="text-body mb-0 me-auto cart-title">Tu carrito (<span class="carrito-cantidad">0</span>)</h5>
+                                                </div>
+                                            </li>
+
+
+                                            <li class="dropdown-notifications-list scrollable-container">
+                                                <ul class="list-group list-group-flush">
+
+                                                    {{-- ITEMS --}}
+
+                                                    <li class="list-group-item list-group-item-action dropdown-notifications-item producto-linea">
+                                                        <div class="d-flex">
+                                                            <div class="avatar">
+                                                                <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="h-auto rounded-circle">
+                                                            </div>
+                                                            <div class="producto ms-1 d-flex align-items-center justify-content-between w-100">
+                                                                <p class="m-0 producto-nombre">Pan</p>
+                                                                <div class="main-precios">
+                                                                    <div class="d-flex">
+                                                                        <div class="producto-precio">2.99</div>€
+                                                                        <i class="ti ti-trash ti-md text-danger producto-remove ms-1"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </li>
+
+{{--                                                    <li class="list-group-item list-group-item-action dropdown-notifications-item">--}}
+{{--                                                        <div class="d-flex">--}}
+{{--                                                            <div class="flex-shrink-0 me-3">--}}
+{{--                                                                <div class="avatar">--}}
+{{--                                                                    <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="h-auto rounded-circle">--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                            <div class="flex-grow-1">--}}
+{{--                                                                <h6 class="mb-1">Congratulation Lettie 🎉</h6>--}}
+{{--                                                                <p class="mb-0">Won the monthly best seller gold badge</p>--}}
+{{--                                                                <small class="text-muted">1h ago</small>--}}
+{{--                                                            </div>--}}
+{{--                                                            <div class="flex-shrink-0 dropdown-notifications-actions">--}}
+{{--                                                                <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>--}}
+{{--                                                                <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="ti ti-x"></span></a>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </li>--}}
+
+{{--                                                    <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">--}}
+{{--                                                        <div class="d-flex">--}}
+{{--                                                            <div class="flex-shrink-0 me-3">--}}
+{{--                                                                <div class="avatar">--}}
+{{--                                                                    <img src="{{ asset('assets/img/avatars/5.png') }}" alt class="h-auto rounded-circle">--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                            <div class="flex-grow-1">--}}
+{{--                                                                <h6 class="mb-1">Send connection request</h6>--}}
+{{--                                                                <p class="mb-0">Peter sent you connection request</p>--}}
+{{--                                                                <small class="text-muted">4 days ago</small>--}}
+{{--                                                            </div>--}}
+{{--                                                            <div class="flex-shrink-0 dropdown-notifications-actions">--}}
+{{--                                                                <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>--}}
+{{--                                                                <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="ti ti-x"></span></a>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </li>--}}
+
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-menu-footer border-top p-1">
+                                                <button class="form-control btn btn-success">¡Realizar el pedido!</button>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                @endif
                             </ul>
                         </div>
 
