@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="col-2 d-flex justify-content-center align-items-center">
-            <button type="button" class="btn rounded-pill btn-icon btn-primary waves-effect waves-light btn-add-carrito box-shadow-1" onclick="addProductCart(`{{@$producto}}`)">
+            <button type="button" class="btn rounded-pill btn-icon btn-primary waves-effect waves-light btn-add-carrito box-shadow-1" onclick="addProductCart(`{{@$producto}}`, `{{@$tienda->id}}`)">
                 <span class="ti ti-plus"></span>
             </button>
         </div>

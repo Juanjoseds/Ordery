@@ -16,6 +16,7 @@ Route::get('/maintenance', [WebpagesController::class, 'maintenance'])->name('ma
 Route::get('/', [WebpagesController::class, 'home'])->name('home');
 Route::get('/shops/{url}', [TiendaController::class, 'tienda'])->name('tienda');
 Route::get('/shops', [WebpagesController::class, 'search'])->name('search');
+Route::get('/checkout', [WebpagesController::class, 'search'])->name('search');
 Route::get('/busqueda', [WebpagesController::class, 'busqueda'])->name('buscador');
 Route::get('/logout', function (Request $request) {
     Auth::logout();

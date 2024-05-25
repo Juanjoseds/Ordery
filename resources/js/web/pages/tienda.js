@@ -11,21 +11,31 @@ function initRankingEstrellas(){
     });
 }
 
-function addProductCart(producto){
+function addProductCart(producto, tiendaId){
     producto = JSON.parse(producto);
     let productos = localStorage.getItem('productos') ? JSON.parse(localStorage.getItem('productos')) : [];
 
-    let productoJson = {
+    let productoNew = {
         id: producto.id,
         nombre: producto.nombre,
         descripcion: producto.descripcion,
         precio: producto.precio,
         imagen: producto.imagen,
+        id_tienda: tiendaId,
     }
 
-    productos.push(productoJson);
-    localStorage.setItem('productos', JSON.stringify(productos));
+    console.log(productos, Object.hasOwn(productos, 'id_tienda'))
+    if(!Object.hasOwn(productos, 'id_tienda') || (Object.hasOwn(productos, 'id_tienda') && productos.id_tienda != tiendaId)){
+        productos = {
+            id_tienda: tiendaId,
+            productos: [productoNew]
+        };
+    }else{
+        productos.productos.push(productoNew);
+    }
 
+
+    localStorage.setItem('productos', JSON.stringify(productos));
     addCartLine(producto);
 }
 
@@ -61,8 +71,8 @@ function addCartLine(producto){
 function loadCartProducts(){
     let productos = JSON.parse(localStorage.getItem('productos'));
 
-    if(productos != null && productos != undefined && productos != []){
-        productos.forEach((producto, index)=>{
+    if(Object.hasOwn(productos, 'productos') && typeof(productos.productos) == 'object' && productos.productos.length > 0){
+        productos.productos.forEach((producto, index)=>{
             addCartLine(producto)
         })
     }
@@ -71,12 +81,10 @@ function loadCartProducts(){
 function deleteProductCart(id){
     let productos = JSON.parse(localStorage.getItem('productos'));
 
-    if(productos != null && productos != undefined && productos != []){
-        productos.forEach((producto, index)=>{
+    if(Object.hasOwn(productos, 'productos') && typeof(productos.productos) == 'object' && productos.productos.length > 0){
+        productos.productos.forEach((producto, index)=>{
             if(producto.id == id){
-                console.log('BORRANDO', id);
-                productos.splice(index, 1);
-                console.log(productos);
+                productos.productos.splice(index, 1);
                 localStorage.setItem('productos', JSON.stringify(productos));
                 deleteCartLine(id);
             }
