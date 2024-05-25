@@ -120,7 +120,7 @@
                                                 </ul>
                                             </li>
                                             <li class="dropdown-menu-footer border-top p-1">
-                                                <button class="form-control btn btn-success">¡Realizar el pedido!</button>
+                                                <button class="form-control btn btn-success" onclick="window.location.href='/checkout/{{$tienda->id}}'">¡Realizar el pedido!</button>
                                             </li>
                                         </ul>
                                     </li>

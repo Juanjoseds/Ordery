@@ -1,0 +1,74 @@
+#detalles{
+    .main-title{
+        .detalles-title{
+            font-weight: bold;
+            font-size: 22px;
+        }
+        & img{
+            opacity: 0.3;
+            margin-left: -1rem;
+            margin-top: -20px;
+        }
+    }
+
+    table{
+        font-family: "Source Sans Pro", sans-serif;
+        font-style: normal;
+        font-size: 18px;
+
+        thead{
+            border-top: 1px solid #ebe9f1;
+            border-bottom: 1px solid #ebe9f1;
+
+            th{
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                font-weight: 400;
+
+                &:not(:first-child){
+                    text-align: center;
+                }
+            }
+        }
+
+        tbody{
+            margin-top: 1rem;
+            td{
+                padding-top: 1rem;
+                &:not(:first-child){
+                    text-align: center;
+                }
+            }
+        }
+
+        .producto-nombre{
+            font-weight: bold;
+        }
+
+        .detalles-resumen{
+            text-align: right;
+
+        }
+
+        .resumen-subtotal{
+
+            td{
+                padding-top: 2rem;
+            }
+        }
+
+        .resumen-total{
+            border-top: 1px solid #ebe9f1;
+
+            .precio-total{
+                font-weight: bold;
+            }
+        }
+
+        .resumen-impuestos{
+            td{
+                padding-bottom: 1rem;
+            }
+        }
+    }
+}

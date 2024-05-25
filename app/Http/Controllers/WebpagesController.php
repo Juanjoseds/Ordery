@@ -38,15 +38,6 @@ class WebpagesController extends Controller
             })
             ->paginate(5);
 
-        dd($tiendas);
-
-
-//        $tiendas = Tienda::query()
-//            ->when($request->busqueda,function ($query, $busqueda) {
-//                return $query->where('nombre', 'LIKE', "%$busqueda%");
-//            })
-//            ->paginate(5);
-
         $pageConfigs = [
             'contentLayout' => "content-detached-left-sidebar",
             'pageClass' => 'ecommerce-application',
@@ -111,6 +102,15 @@ class WebpagesController extends Controller
         ]);
     }
 
+    public function checkout(Request $request, $id){
+        $tienda = Tienda::query()->where('id', $id)->first();
+        $direccion = $tienda->direccion . ' ' . $tienda->ciudad . ', ' . $tienda->provincia . ', ' . $tienda->pais . ', ' . $tienda->codigo_postal;
+
+        return view('/web/pages/checkout/index', [
+            'tienda' => $tienda,
+            'urlEncode' => urlEncode($direccion),
+        ]);
+    }
 
 
     // APPEND VIEW PARA SEO
