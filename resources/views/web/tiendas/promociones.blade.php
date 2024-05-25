@@ -7,9 +7,16 @@
             </div>
 
             <div class="productos-promociones">
-                @foreach(range(1,4) as $producto)
-                    @include('web.tiendas.producto')
-                @endforeach
+                @if(isset($promociones) && sizeof($promociones) > 0)
+                    @foreach(range(1,4) as $producto)
+                        @include('web.tiendas.producto')
+                    @endforeach
+                @else
+                    <div class="alerta">
+                        <i class="ti ti-shopping-bag-exclamation"></i> No hay promociones actualmente
+                    </div>
+
+                @endif
             </div>
 
         </div>
