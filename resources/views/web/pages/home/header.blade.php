@@ -73,27 +73,11 @@
 
 
                                             <li class="dropdown-notifications-list scrollable-container">
-                                                <ul class="list-group list-group-flush">
+                                                <ul class="list-group list-group-flush" id="main-carrito-productos">
 
                                                     {{-- ITEMS --}}
 
-                                                    <li class="list-group-item list-group-item-action dropdown-notifications-item producto-linea">
-                                                        <div class="d-flex">
-                                                            <div class="avatar">
-                                                                <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="h-auto rounded-circle">
-                                                            </div>
-                                                            <div class="producto ms-1 d-flex align-items-center justify-content-between w-100">
-                                                                <p class="m-0 producto-nombre">Pan</p>
-                                                                <div class="main-precios">
-                                                                    <div class="d-flex">
-                                                                        <div class="producto-precio">2.99</div>€
-                                                                        <i class="ti ti-trash ti-md text-danger producto-remove ms-1"></i>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
 
-                                                    </li>
 
 {{--                                                    <li class="list-group-item list-group-item-action dropdown-notifications-item">--}}
 {{--                                                        <div class="d-flex">--}}
