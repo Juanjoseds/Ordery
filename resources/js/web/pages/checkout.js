@@ -1,4 +1,10 @@
 $(() =>{
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     loadCartProducts();
     initCheckTerminos();
 });
@@ -147,5 +153,28 @@ function initCheckTerminos() {
         }else{
             $('#btn-realizarpedido').prop('disabled', true);
         }
+    })
+}
+
+
+function createOrder(){
+    let tiendaId = $('#id_tienda').val();
+    let productos = JSON.parse(localStorage.getItem('productos'));
+
+    $.ajax({
+        url: 'pedido',
+        method: 'POST',
+        data: {
+            productos: productos,
+            tiendaId: tiendaId
+        },
+    }).done(response => {
+        if(response.hasOwnProperty('pedidoDoc')){
+            window.location.href=`/checkout/pedido-finalizado/${response.pedidoDoc}`
+        }
+    }).fail(errores => {
+        customFormAjaxResponse(errores);
+    }).always(() => {
+        $('#spinner-loading').fadeOut();
     })
 }

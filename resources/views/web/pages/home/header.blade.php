@@ -58,7 +58,7 @@
                                     <a class="nav-link" href="/login"><i class="ti ti-heart ti-md"></i></a>
                                 </li>
 
-                                @if(isset($user_auth) && isset($tienda))
+
                                     <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1 ms-1">
                                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                                             <i class="ti ti-shopping-cart ti-md"></i>
@@ -73,58 +73,20 @@
 
 
                                             <li class="dropdown-notifications-list scrollable-container">
-                                                <ul class="list-group list-group-flush" id="main-carrito-productos">
-
-                                                    {{-- ITEMS --}}
-
-
-
-{{--                                                    <li class="list-group-item list-group-item-action dropdown-notifications-item">--}}
-{{--                                                        <div class="d-flex">--}}
-{{--                                                            <div class="flex-shrink-0 me-3">--}}
-{{--                                                                <div class="avatar">--}}
-{{--                                                                    <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="h-auto rounded-circle">--}}
-{{--                                                                </div>--}}
-{{--                                                            </div>--}}
-{{--                                                            <div class="flex-grow-1">--}}
-{{--                                                                <h6 class="mb-1">Congratulation Lettie 🎉</h6>--}}
-{{--                                                                <p class="mb-0">Won the monthly best seller gold badge</p>--}}
-{{--                                                                <small class="text-muted">1h ago</small>--}}
-{{--                                                            </div>--}}
-{{--                                                            <div class="flex-shrink-0 dropdown-notifications-actions">--}}
-{{--                                                                <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>--}}
-{{--                                                                <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="ti ti-x"></span></a>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                    </li>--}}
-
-{{--                                                    <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">--}}
-{{--                                                        <div class="d-flex">--}}
-{{--                                                            <div class="flex-shrink-0 me-3">--}}
-{{--                                                                <div class="avatar">--}}
-{{--                                                                    <img src="{{ asset('assets/img/avatars/5.png') }}" alt class="h-auto rounded-circle">--}}
-{{--                                                                </div>--}}
-{{--                                                            </div>--}}
-{{--                                                            <div class="flex-grow-1">--}}
-{{--                                                                <h6 class="mb-1">Send connection request</h6>--}}
-{{--                                                                <p class="mb-0">Peter sent you connection request</p>--}}
-{{--                                                                <small class="text-muted">4 days ago</small>--}}
-{{--                                                            </div>--}}
-{{--                                                            <div class="flex-shrink-0 dropdown-notifications-actions">--}}
-{{--                                                                <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>--}}
-{{--                                                                <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="ti ti-x"></span></a>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                    </li>--}}
-
-                                                </ul>
+                                                <ul class="list-group list-group-flush" id="main-carrito-productos"></ul>
                                             </li>
+                                            @if(isset($user_auth) && isset($tienda))
                                             <li class="dropdown-menu-footer border-top p-1">
                                                 <button class="form-control btn btn-success" onclick="window.location.href='/checkout/{{$tienda->id}}'">¡Realizar el pedido!</button>
                                             </li>
+                                            @else
+                                                <li class="dropdown-menu-footer border-top p-1">
+                                                    <button class="form-control btn btn-primary" onclick="window.location.href='/login'"><i class="ti ti-login me-50"></i>Inicia sesión para pedir</button>
+                                                </li>
+                                            @endif
+
                                         </ul>
                                     </li>
-                                @endif
                             </ul>
                         </div>
 

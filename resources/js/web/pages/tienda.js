@@ -20,6 +20,7 @@ function addProductCart(producto, tiendaId){
         nombre: producto.nombre,
         descripcion: producto.descripcion,
         precio: producto.precio,
+        cantidad: 1,
         imagen: producto.imagen,
         id_tienda: tiendaId,
     }

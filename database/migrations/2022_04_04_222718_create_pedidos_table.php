@@ -20,7 +20,7 @@ class CreatePedidosTable extends Migration
             $table->longText('pedido');
             $table->float('precio');
             $table->longText('observaciones');
-            $table->dateTime('fecha_entrega');
+            $table->dateTime('fecha_entrega')->nullable();
             $table->string('estado');
             $table->timestamps();
 

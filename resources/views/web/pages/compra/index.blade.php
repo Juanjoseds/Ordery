@@ -1,6 +1,6 @@
 @extends('web/layouts/webLayoutMaster')
 
-@section('title', 'Ordery | Checkout | Haz tu pedido y recógelo')
+@section('title', 'Pedido realizado ✅ | Haz tu pedido y recógelo')
 
 @section('meta-description', 'Gestiona pedidos de tus clientes o realiza tu pedido a tu tienda favorita de una forma rápida y eficaz.')
 
@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/vendors.min.css')) }}" />
     <link rel="stylesheet" href="{{ asset(mix('css/overrides.css')) }}" />
     <link href="{{ asset(mix('css/web/pages/partials/footer.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet">
-    <link href="{{ asset(mix('css/web/pages/checkout/checkout.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
     <link href="{{ asset(mix('css/web/pages/header.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
+    <link href="{{ asset(mix('css/web/pages/compra/compra.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
 
@@ -20,32 +20,12 @@
 
 @section('content')
     @include('web.pages.home.header')
-    <input type="hidden" name="id_tienda" id="id_tienda" value="{{$tienda->id}}">
-    <div id="user-profile" class="m-2">
-        <section id="profile-info">
-            <div class="row">
+    <div class="container-fluid">
+        @include('web.pages.compra.mensaje')
 
-                <div class="col-lg-4 col-12 order-1 order-lg-1">
-                    @include('web.pages.checkout.detalles')
-                    @include('web.pages.checkout.instrucciones')
-                </div>
-                <div class="col-lg-4 col-12 order-2 order-lg-2">
-                    @include('web.pages.checkout.ubicacion')
-                </div>
-
-                <div class="col-lg-4 col-12 order-1 order-lg-2">
-                    @include('web.pages.checkout.tusdatos')
-                    @include('web.pages.checkout.tiempopreparacion')
-                    @include('web.pages.checkout.finalizarpedido')
-                </div>
-
-
-            </div>
-
-
-        </section>
     </div>
 
+{{--    @include('web.pages.home.establecimientos')--}}
     @include('web.pages.home.footer')
 @endsection
 
@@ -56,7 +36,5 @@
     {{-- Sweet Alert --}}
     <script src="{{ asset(mix('vendors/js/extensions/sweetalert2.all.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/extensions/polyfill.min.js')) }}"></script>
-{{--    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>--}}
-
 
 @endsection

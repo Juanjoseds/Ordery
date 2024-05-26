@@ -9,7 +9,7 @@
                     </label>
                 </div>
             </div>
-            <button id="btn-realizarpedido" class="btn btn-success btn-lg w-100 mt-1" disabled>Realizar el pedido</button>
+            <button id="btn-realizarpedido" class="btn btn-success btn-lg w-100 mt-1" disabled onclick="createOrder()">Realizar el pedido</button>
         </div>
     </div>
 </div>

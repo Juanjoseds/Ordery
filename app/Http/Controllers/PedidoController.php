@@ -57,6 +57,33 @@ class PedidoController extends Controller
 
     }
 
+    public function store(Request $request) {
+
+        try {
+            DB::beginTransaction();
+            $userId = $this->user->id;
+
+            $pedido = new Pedido();
+            $pedido->doc = uniqid($request->tiendaId . '-' . $userId . '-');
+            $pedido->info_pago = "Sin pago";
+            $pedido->pedido = json_encode($request->productos);
+            $pedido->precio = 37;
+            $pedido->observaciones = '';
+            $pedido->estado = 'Pendiente';
+            $pedido->id_user = $this->user->id;
+            $pedido->id_tienda = $request->tiendaId;
+            $pedido->save();
+
+            DB::commit();
+            return response(['pedidoDoc' => $pedido->doc], 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response(['errors' => ['errores' => ['No se ha podido generar el pedido.']]], 500);
+        }
+    }
+
+
+
 //    public function store(TiendaRequest $request, $id = null) {
 //        try {
 //            DB::beginTransaction();
@@ -152,7 +179,10 @@ class PedidoController extends Controller
                 return $model->cliente->nombre . ' ' . (isset($model->cliente->apellidos) ? $model->cliente->apellidos : '');
             })
             ->editColumn('fecha_entrega', function ($model){
-                return Carbon::createFromFormat('Y-m-d H:i:s', $model->fecha_entrega)->format('d/m/Y H:i');
+                if(isset($model->fecha_entrega)){
+                    return Carbon::createFromFormat('Y-m-d H:i:s', $model->fecha_entrega)->format('d/m/Y H:i');
+                }
+                return '-';
             })
             ->editColumn('created_at', function ($model){
                 return Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y H:i');
@@ -190,6 +220,12 @@ class PedidoController extends Controller
         $pedido->precio = $request->total;
         $pedido->update();
         return response('Actualizado!', 200);
+    }
+
+    public function finalizado(Request $request, $doc){
+        return view('/web/pages/compra/index', [
+            'doc' => $doc,
+        ]);
     }
 
 }
