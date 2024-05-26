@@ -27,33 +27,60 @@
                             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
                                 <li class="nav-item">
                                     @if(!isset($user_auth))
-                                    <a class="nav-link" href="/login"><i class="ti ti-user ti-md"></i></a>
+                                        <a class="nav-link" href="/login"><i class="ti ti-user ti-md"></i></a>
                                     @else
-                                        <a class="nav-link dropdown-toggle d-flex" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                            <div class="user-nav d-sm-flex d-none flex-column text-end me-1">
-                                              <span class="user-name fw-bolder">
-                                                  {{$user_auth->nombre}}
-                                              </span>
-                                                @if($user_auth->tipo == 'tienda')
-                                                    <span class="user-status">{{$user_auth->tienda->nombre}}</span>
-                                                @else
-                                                    <span class="user-status">Cliente</span>
-                                                @endif
+                                        <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <div class="avatar avatar-online">
+                                                <img src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/img/avatars/1.png" alt="" class="h-auto rounded-circle">
                                             </div>
-                                            <span class="avatar">
-                                                <img class="round" src="@if(isset($user_auth->avatar)){{$user_auth->avatar}} @else {{Avatar::create($user_auth->nombre)->toBase64()}} @endif" alt="avatar" height="40" width="40">
-                                              <span class="avatar-status-online"></span>
-                                            </span>
                                         </a>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="/{{$user_auth->tipo}}/dashboard">Ir al panel</a>
-                                            <a class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" href="{{route('logout')}}">Cerrar sesión</a>
-                                            <form method="POST" id="logout-form" action="{{ route('logout') }}">
-                                                @csrf
-                                            </form>
-                                        </div>
+                                        <ul class="dropdown-menu" style="margin-left: -9rem !important;padding: 0.25rem !important;">
+                                            <li>
+                                                <a class="dropdown-item" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/profile-user">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="flex-shrink-0 me-3">
+                                                            <div class="avatar avatar-online">
+                                                                <img src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/img/avatars/1.png" alt="" class="h-auto rounded-circle">
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <span class="fw-medium d-block">{{$user_auth->nombre}}</span>
+                                                            <small class="text-muted">
+                                                                @if($user_auth->tipo == 'tienda')
+                                                                    {{$user_auth->tienda->nombre}}
+                                                                @elseif($user_auth->tipo == 'admin')
+                                                                   Admin
+                                                                @else
+                                                                    Cliente
+                                                                @endif
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <div class="dropdown-divider"></div>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item d-flex align-items-center" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/profile-user">
+                                                    <i class="ti ti-user-check me-50 ti-sm"></i>
+                                                    <span class="align-middle">Mi perfil</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <div class="dropdown-divider"></div>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item d-flex align-items-center" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" href="{{route('logout')}}"><i class="ti ti-logout me-50 ti-sm"></i> Cerrar sesión</a>
+                                                <form method="POST" id="logout-form" action="{{ route('logout') }}">
+                                                    @csrf
+                                                </form>
+                                            </li>
+                                        </ul>
                                     @endif
                                 </li>
+
+
                                 <li class="nav-item ms-2 d-flex align-items-center">
                                     <a class="nav-link" href="/login"><i class="ti ti-heart ti-md"></i></a>
                                 </li>
