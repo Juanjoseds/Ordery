@@ -12,7 +12,7 @@
                     <span>{{$tienda->direccion}}</span>
                 </div>
                 <p class="mt-25 mb-25">{{$tienda->ciudad}}</p>
-                <p class="mt-25 mb-25">{{$tienda->provincia}}</p>
+{{--                <p class="mt-25 mb-25">{{$tienda->provincia}}</p>--}}
                 <p class="mt-25 mb-25">{{$tienda->codigo_postal}}</p>
                 <div class="d-flex align-items-center mt-25">
                     <i class="ti ti-phone me-50"></i>

@@ -58,7 +58,7 @@
                                     <a class="nav-link" href="/login"><i class="ti ti-heart ti-md"></i></a>
                                 </li>
 
-                                @if(isset($user_auth))
+                                @if(isset($user_auth) && isset($tienda))
                                     <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1 ms-1">
                                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                                             <i class="ti ti-shopping-cart ti-md"></i>

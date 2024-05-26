@@ -7,7 +7,7 @@
             </div>
 
 
-            <table class="w-100">
+            <table class="w-100" id="tabla-pedido">
                 <thead>
                     <tr>
                         <th>Producto</th>
@@ -17,48 +17,7 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    <tr class="detalle-producto">
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <div class="avatar">
-                                    <img src="/images/productos/5-bGR9k.jpeg" alt="Pan">
-                                </div>
-                                <p class="producto-nombre m-0 ms-1">Pan</p>
-                            </div>
-                        </td>
-                        <td>1</td>
-                        <td>5.99 €</td>
-                        <td><i class="ti ti-trash ti-md text-danger producto-remove cursor-pointer" onclick="deleteProductCart('${producto.id}')"></i></td>
-                    </tr>
-
-                    <tr class="detalles-resumen resumen-subtotal">
-                        <td colspan="2">
-                            Subtotal
-                        </td>
-                        <td colspan="1">
-                            2 €
-                        </td>
-                    </tr>
-
-                    <tr class="detalles-resumen resumen-impuestos">
-                        <td colspan="2">
-                            Impuestos (7%)
-                        </td>
-                        <td colspan="1">
-                            0.14 €
-                        </td>
-                    </tr>
-
-                    <tr class="detalles-resumen resumen-total">
-                        <td colspan="2">
-                            TOTAL
-                        </td>
-                        <td class="precio-total" colspan="1">
-                            2.14 €
-                        </td>
-                    </tr>
-
+                    {{-- Los productos y resumen del pedido se cargarán por JS --}}
                 </tbody>
 
             </table>
