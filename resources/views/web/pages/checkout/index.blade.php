@@ -26,14 +26,16 @@
 
                 <div class="col-lg-4 col-12 order-1 order-lg-1">
                     @include('web.pages.checkout.detalles')
+                    @include('web.pages.checkout.instrucciones')
                 </div>
                 <div class="col-lg-3 col-12 order-2 order-lg-2">
                     @include('web.pages.checkout.ubicacion')
-                    @include('web.pages.checkout.tusdatos')
                 </div>
 
                 <div class="col-lg-4 col-12 order-1 order-lg-2">
+                    @include('web.pages.checkout.tusdatos')
                     @include('web.pages.checkout.tiempopreparacion')
+                    @include('web.pages.checkout.finalizarpedido')
     {{--                @include('web.tiendas.texto-compra')--}}
     {{--                @include('web.tiendas.valoraciones')--}}
                 </div>
