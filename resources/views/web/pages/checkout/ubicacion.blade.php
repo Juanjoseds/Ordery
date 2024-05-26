@@ -7,6 +7,7 @@
             </div>
 
             <div class="main-direccion ps-2">
+                <p class="mt-25 mb-25">{{$tienda->nombre}}</p>
                 <div class="d-flex align-items-center">
                     <i class="ti ti-map-pin-filled me-50"></i>
                     <span>{{$tienda->direccion}}</span>

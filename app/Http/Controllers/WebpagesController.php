@@ -104,7 +104,7 @@ class WebpagesController extends Controller
 
     public function checkout(Request $request, $id){
         $tienda = Tienda::query()->where('id', $id)->first();
-        $direccion = $tienda->direccion . ' ' . $tienda->ciudad . ', ' . $tienda->provincia . ', ' . $tienda->pais . ', ' . $tienda->codigo_postal;
+        $direccion = $tienda->nombre . ', ' . $tienda->direccion . ' ' . $tienda->ciudad . ', ' . $tienda->pais . ', ' . $tienda->codigo_postal;
 
         return view('/web/pages/checkout/index', [
             'tienda' => $tienda,
