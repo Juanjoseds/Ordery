@@ -32,11 +32,11 @@
                     @include('web.pages.checkout.tusdatos')
                 </div>
 
-    {{--            <div class="col-lg-4 col-12 order-1 order-lg-2">--}}
-    {{--                @include('web.tiendas.notas-compra')--}}
+                <div class="col-lg-4 col-12 order-1 order-lg-2">
+                    @include('web.pages.checkout.tiempopreparacion')
     {{--                @include('web.tiendas.texto-compra')--}}
     {{--                @include('web.tiendas.valoraciones')--}}
-    {{--            </div>--}}
+                </div>
 
     {{--            <div class="col-lg-4 col-12 order-3 order-lg-3">--}}
     {{--                @include('web.tiendas.promociones')--}}
