@@ -122,11 +122,21 @@ class WebpagesController extends Controller
             ->orderBy('created_at', 'desc')
             ->first();
 
+        $pedidos = Pedido::query()
+           ->where('id', '!=', $ultimoPedido->id)
+            ->with('tienda')
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);
+
+        $tiendas = Tienda::query()->inRandomOrder()->limit(10)->get();
+
         $direccion = $ultimoPedido->tienda->nombre . ', ' . $ultimoPedido->tienda->direccion . ' ' . $ultimoPedido->tienda->ciudad . ', ' . $ultimoPedido->tienda->pais . ', ' . $ultimoPedido->tienda->codigo_postal;
 
         return view('/web/pages/perfil/index', [
             'user' => $user,
             'ultimoPedido' => $ultimoPedido,
+            'pedidos' => $pedidos,
+            'tiendas' => $tiendas,
             'urlEncode' => urlEncode($direccion),
         ]);
     }

@@ -5,14 +5,18 @@
                 <p class="ultimopedido-title m-0">Tu último pedido</p>
             </div>
 
-            <div class="main-direccion ps-2">
+            <div class="main-datospedido mt-1 p-1">
+                <p class="mb-25">Nº pedido: #{{$ultimoPedido->doc}}</p>
+                <p class="mb-0">Estado: {{$ultimoPedido->estado}}</p>
+            </div>
+
+            <div class="main-direccion">
                 <p class="mt-25 mb-25">{{$ultimoPedido->tienda->nombre}}</p>
                 <div class="d-flex align-items-center">
                     <i class="ti ti-map-pin-filled me-50"></i>
                     <span>{{$ultimoPedido->tienda->direccion}}</span>
                 </div>
                 <p class="mt-25 mb-25">{{$ultimoPedido->tienda->ciudad}}</p>
-                {{--                <p class="mt-25 mb-25">{{$tienda->provincia}}</p>--}}
                 <p class="mt-25 mb-25">{{$ultimoPedido->tienda->codigo_postal}}</p>
                 <div class="d-flex align-items-center mt-25">
                     <i class="ti ti-phone me-50"></i>

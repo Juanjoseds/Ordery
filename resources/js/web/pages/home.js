@@ -18,6 +18,5 @@ function initSwiperTiendas(){
             navigationVerticalAlign: 'center'
         },
     });
-    console.log('INIT SWIPER');
 }
 

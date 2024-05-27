@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/vendors.min.css')) }}" />
     <link rel="stylesheet" href="{{ asset(mix('css/overrides.css')) }}" />
     <link href="{{ asset(mix('css/web/pages/partials/footer.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet">
-    <link href="{{ asset(mix('css/web/pages/checkout/checkout.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
-    <link href="{{ asset(mix('css/web/pages/header.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
+    <link href="{{ asset(mix('css/web/pages/checkout/checkout.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet">
+    <link href="{{ asset(mix('css/web/pages/header.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet">
     <link href="{{ asset(mix('css/web/pages/partials/tusdatos.css')) . '?v=' . $APP_VERSION }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>

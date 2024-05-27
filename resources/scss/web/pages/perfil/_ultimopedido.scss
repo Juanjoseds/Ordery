@@ -1,4 +1,7 @@
 #ultimopedido{
+    font-family: "Source Sans Pro", sans-serif;
+    font-style: normal;
+    font-size: 18px;
     .main-title{
         .ti{
             font-size: 30px;
@@ -9,6 +12,11 @@
             font-weight: bold;
             font-size: 22px;
         }
+    }
+
+    .main-datospedido{
+        border-top: 1px solid #c5c5c5;
+        border-bottom: 1px solid #c5c5c5;
     }
 
     .main-direccion{
