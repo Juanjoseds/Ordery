@@ -1,0 +1,32 @@
+#ultimopedido{
+    .main-title{
+        .ti{
+            font-size: 30px;
+            margin-right: 0.75rem;
+            opacity: 0.25;
+        }
+        .ultimopedido-title{
+            font-weight: bold;
+            font-size: 22px;
+        }
+    }
+
+    .main-direccion{
+        font-family: "Source Sans Pro", sans-serif;
+        font-style: normal;
+        font-size: 18px;
+        color: black;
+
+
+    }
+
+    .main-map{
+        iframe{
+            border-radius: 0.5rem;
+            width: 100%;
+            border: 0;
+            padding-bottom: 0;
+            margin-bottom: -5px;
+        }
+    }
+}

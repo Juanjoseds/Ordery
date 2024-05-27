@@ -28,6 +28,7 @@ Route::group(['middleware'=> ['auth']], function () {
     Route::get('/checkout/{id}', [WebpagesController::class, 'checkout'])->name('checkout');
     Route::post('/checkout/pedido', [PedidoController::class, 'store']);
     Route::get('/checkout/pedido-finalizado/{doc}', [PedidoController::class, 'finalizado']);
+    Route::get('/perfil', [WebpagesController::class, 'perfil']);
 
     Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware'=> ['rol:admin']], function () {
         Route::get('dashboard', [DashboardController::class, 'indexAdmin'])->name('dashboard');

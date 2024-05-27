@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\propiedades;
 use App\Models\Cabecera;
 use App\Models\Noticia;
+use App\Models\Pedido;
 use App\Models\Servicio;
 use App\Models\Tienda;
 use Illuminate\Http\Request;
@@ -108,6 +109,24 @@ class WebpagesController extends Controller
 
         return view('/web/pages/checkout/index', [
             'tienda' => $tienda,
+            'urlEncode' => urlEncode($direccion),
+        ]);
+    }
+
+    public function perfil(Request $request){
+        $user = $this->user;
+
+        $ultimoPedido = Pedido::query()
+            ->where('id_user', $user->id)
+            ->with('tienda')
+            ->orderBy('created_at', 'desc')
+            ->first();
+
+        $direccion = $ultimoPedido->tienda->nombre . ', ' . $ultimoPedido->tienda->direccion . ' ' . $ultimoPedido->tienda->ciudad . ', ' . $ultimoPedido->tienda->pais . ', ' . $ultimoPedido->tienda->codigo_postal;
+
+        return view('/web/pages/perfil/index', [
+            'user' => $user,
+            'ultimoPedido' => $ultimoPedido,
             'urlEncode' => urlEncode($direccion),
         ]);
     }

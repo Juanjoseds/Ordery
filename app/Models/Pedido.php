@@ -26,4 +26,9 @@ class Pedido extends Model
     {
         return $this->hasOne(User::class, 'id', 'id_user');
     }
+
+    public function tienda()
+    {
+        return $this->hasOne(Tienda::class, 'id', 'id_tienda');
+    }
 }

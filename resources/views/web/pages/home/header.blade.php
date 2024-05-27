@@ -31,16 +31,16 @@
                                     @else
                                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">
                                             <div class="avatar avatar-online">
-                                                <img src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/img/avatars/1.png" alt="" class="h-auto rounded-circle">
+                                                <img src="@if(isset($user_auth->avatar)){{$user_auth->avatar}} @else {{Avatar::create($user_auth->nombre)->toBase64()}} @endif" alt="" class="h-auto rounded-circle">
                                             </div>
                                         </a>
                                         <ul class="dropdown-menu" style="margin-left: -9rem !important;padding: 0.25rem !important;">
                                             <li>
-                                                <a class="dropdown-item" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/profile-user">
+                                                <a class="dropdown-item" href="/perfil">
                                                     <div class="d-flex align-items-center">
                                                         <div class="flex-shrink-0 me-3">
                                                             <div class="avatar avatar-online">
-                                                                <img src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/img/avatars/1.png" alt="" class="h-auto rounded-circle">
+                                                                <img src="@if(isset($user_auth->avatar)){{$user_auth->avatar}} @else {{Avatar::create($user_auth->nombre)->toBase64()}} @endif" alt="" class="h-auto rounded-circle">
                                                             </div>
                                                         </div>
                                                         <div class="flex-grow-1">
@@ -62,7 +62,7 @@
                                                 <div class="dropdown-divider"></div>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item d-flex align-items-center" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/profile-user">
+                                                <a class="dropdown-item d-flex align-items-center" href="/perfil">
                                                     <i class="ti ti-user-check me-50 ti-sm"></i>
                                                     <span class="align-middle">Mi perfil</span>
                                                 </a>
