@@ -65,8 +65,8 @@
                         <button type="submit" class="btn btn-primary w-100" tabindex="4">Entrar</button>
                     </form>
                     <p class="text-center mt-2">
-                        <span>¿Eres nuevo?</span>
-                        <a href="{{url('auth/register-cover')}}"><span>&nbsp;Crea una cuenta</span></a>
+                        <span>¿Primera vez?</span>
+                        <a href="{{url('/register')}}"><span>&nbsp;Crea una cuenta</span></a>
                     </p>
                     <div class="divider my-2">
                         <div class="divider-text">síguenos</div>

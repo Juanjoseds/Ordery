@@ -23,6 +23,8 @@ Route::get('/logout', function (Request $request) {
 
     return redirect('/login');
 });
+Route::get('/register', [UserController::class, 'register'])->name('register');
+Route::post('/user/register', [UserController::class, 'createUser']);
 
 Route::group(['middleware'=> ['auth']], function () {
     Route::get('/checkout/{id}', [WebpagesController::class, 'checkout'])->name('checkout');

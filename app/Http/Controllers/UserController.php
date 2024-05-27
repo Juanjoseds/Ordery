@@ -366,4 +366,30 @@ class UserController extends Controller
     public function perfil(Request $request){
         return view('/content/perfil/page-profile');
     }
+
+    public function register(Request $request){
+        return view('/auth/register');
+    }
+
+    public function createUser(Request $request){
+        try{
+            DB::beginTransaction();
+
+            $user = new User();
+            $user->nombre = $request->nombre;
+            $user->apellidos = $request->apellidos;
+            $user->dni = $request->dni;
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->telefono = bcrypt($request->telefono);
+            $user->save();
+
+            DB::commit();
+
+            return redirect()->route('home');
+        }catch (\Exception $e){
+            DB::rollBack();
+            dd($e);
+        }
+    }
 }
