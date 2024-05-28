@@ -9,6 +9,8 @@
     {{-- Page Css files --}}
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('css/base/pages/authentication.css')) }}">
+    {{-- TABLER --}}
+    <link rel="stylesheet" href="{{asset(mix('fonts/tabler/tabler-icons.min.css'))}}">
 @endsection
 
 @section('content')
@@ -35,7 +37,19 @@
 
             <!-- Login-->
             <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
+
                 <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
+                    @if(Session::get('mensaje') != null)
+                        <div class="alert alert-success d-flex align-items-center p-1" role="alert">
+                          <span class="alert-icon text-success me-2">
+                            <i class="ti ti-check ti-xs"></i>
+                          </span>
+                            {{Session::get('mensaje')}}
+                        </div>
+{{--                        <div class="alert alert-success p-1" role="alert">--}}
+{{--                            {{Session::get('mensaje')}}--}}
+{{--                        </div>--}}
+                    @endif
                     <h2 class="card-title fw-bold mb-1">Bienvenido a Ordery! 👋</h2>
                     <p class="card-text mb-2">Accede al panel para disfrutar de todas las ventajas</p>
                     <form class="auth-login-form mt-2" action="{{ route('login') }}" method="POST">

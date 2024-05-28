@@ -55,6 +55,9 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
+        if($user->tipo == 'admin' || $user->tipo == 'tienda'){
             return redirect()->route("$user->tipo.dashboard");
+        }
+        return redirect()->route("home");
     }
 }

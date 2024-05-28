@@ -20,9 +20,9 @@ Route::get('/shops', [WebpagesController::class, 'search'])->name('search');
 Route::get('/busqueda', [WebpagesController::class, 'busqueda'])->name('buscador');
 Route::get('/logout', function (Request $request) {
     Auth::logout();
-
-    return redirect('/login');
+    return redirect()->route('home');
 });
+
 Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::post('/user/register', [UserController::class, 'createUser']);
 

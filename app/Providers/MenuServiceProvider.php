@@ -29,7 +29,7 @@ class MenuServiceProvider extends ServiceProvider
             $verticalMenuData = $horizontalMenuData = [];
             $user = Auth::user();
 
-            if(isset($user)){
+            if(isset($user) && $user->tipo != 'cliente'){
                 // Menús
                 $verticalMenuData = json_decode(file_get_contents(base_path("resources/data/menu-data/$user->tipo/verticalMenu.json")));
                 $horizontalMenuData = json_decode(file_get_contents(base_path("resources/data/menu-data/$user->tipo/horizontalMenu.json")));

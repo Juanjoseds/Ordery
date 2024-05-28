@@ -380,16 +380,16 @@ class UserController extends Controller
             $user->apellidos = $request->apellidos;
             $user->dni = $request->dni;
             $user->email = $request->email;
+            $user->tipo = 'cliente';
             $user->password = bcrypt($request->password);
             $user->telefono = bcrypt($request->telefono);
             $user->save();
 
             DB::commit();
 
-            return redirect()->route('home');
+            return redirect()->route('login')->with(["mensaje" => 'Te has registrado correctamente. ¡Inicia sesión!']);
         }catch (\Exception $e){
             DB::rollBack();
-            dd($e);
         }
     }
 }
