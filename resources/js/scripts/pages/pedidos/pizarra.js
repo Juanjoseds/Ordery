@@ -177,7 +177,7 @@ $(function () {
 
         },
         addButton: {
-            active: true,
+            active: false,
         },
         domOptions: {
             domRows: true,

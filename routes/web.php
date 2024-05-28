@@ -25,6 +25,8 @@ Route::get('/logout', function (Request $request) {
 
 Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::post('/user/register', [UserController::class, 'createUser']);
+Route::get('/tienda/register', [TiendaController::class, 'register'])->name('tienda.register');
+Route::post('/tienda/register', [TiendaController::class, 'createTienda']);
 
 Route::group(['middleware'=> ['auth']], function () {
     Route::get('/checkout/{id}', [WebpagesController::class, 'checkout'])->name('checkout');

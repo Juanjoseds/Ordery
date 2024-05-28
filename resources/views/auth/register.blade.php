@@ -100,7 +100,7 @@
 
                         <div class="d-flex justify-content-center w-100 flex-column align-items-center">
                                 <span class="mb-50">¿Eres una tienda?</span>
-                                <a href="{{url('/login')}}">
+                                <a href="{{url('/tienda/register')}}">
                                     <button class="btn btn-success">¡Registrate y empieza a vender!</button>
                                 </a>
                         </div>

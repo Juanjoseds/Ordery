@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Helper;
 use App\Http\Requests\TiendaRequest;
 use App\Models\Permiso;
+use App\Models\PermisoUser;
 use App\Models\Tienda;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -174,6 +175,65 @@ class TiendaController extends Controller
             abort(404);
         }
         return view('/web/pages/tienda/index', ['tienda' => $tienda]);
+    }
+
+    public function register(Request $request){
+        return view('/auth/registertienda');
+    }
+
+    public function createTienda(Request $request){
+//        dd($request->all());
+        try{
+            DB::beginTransaction();
+
+            // Creamos la tienda
+            $tienda = new Tienda();
+            $tienda->nombre = $request->nombretienda;
+            $tienda->nombre_legal = $request->nombretiendalegal;
+            $tienda->cif = $request->cif;
+            $tienda->telefono = $request->telefono;
+            $tienda->email = $request->email;
+            $tienda->direccion = $request->direccion;
+            $tienda->codigo_postal = $request->codigo_postal;
+            $tienda->ciudad = $request->ciudad;
+            $tienda->provincia = $request->provincia;
+            $tienda->descripcion = $request->descripcion;
+            $tienda->nombre_contacto = $request->nombre_contacto;
+            $tienda->url = $request->url;
+            $tienda->save();
+
+            // Creamos el usuario
+            $user = new User();
+            $user->nombre = $request->nombre;
+            $user->apellidos = $request->apellidos;
+            $user->dni = $request->dni;
+            $user->email = $request->email;
+            $user->tipo = 'tienda';
+            $user->password = bcrypt($request->password);
+            $user->telefono = $request->telefono;
+            $user->tienda_id = $tienda->id;
+            $user->save();
+
+            // Le asignamos permisos porque es el admin
+            $permisos = Permiso::query()->where('rol', 'tienda')->pluck('id');
+
+            foreach ($permisos as $index=>$permiso){
+                $permisoUser = new PermisoUser();
+                $permisoUser->users_id = $user->id;
+                $permisoUser->permisos_id = $permiso;
+                $permisoUser->leer = 1;
+                $permisoUser->editar = 1;
+                $permisoUser->borrar = 1;
+                $permisoUser->save();
+            }
+
+            DB::commit();
+
+            return redirect()->route('login')->with(["mensaje" => 'Te has registrado correctamente. ¡Inicia sesión 🎉!']);
+        }catch (\Exception $e){
+            DB::rollBack();
+            dd($e);
+        }
     }
 
 //    public function block(Request $request, $id){

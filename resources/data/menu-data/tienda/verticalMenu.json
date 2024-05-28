@@ -46,15 +46,6 @@
                     "slug": "tienda.pizarraPedidos",
                     "permiso_nombre": "Leer",
                     "permiso_modulo": "Pedidos"
-                },
-                {
-                    "routeName": "",
-                    "url": "",
-                    "name": "Nuevo pedido",
-                    "icon": "circle",
-                    "slug": "",
-                    "permiso_nombre": "Editar",
-                    "permiso_modulo": "Pedidos"
                 }
             ]
         },

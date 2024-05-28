@@ -382,7 +382,7 @@ class UserController extends Controller
             $user->email = $request->email;
             $user->tipo = 'cliente';
             $user->password = bcrypt($request->password);
-            $user->telefono = bcrypt($request->telefono);
+            $user->telefono = $request->telefono;
             $user->save();
 
             DB::commit();
