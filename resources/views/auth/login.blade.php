@@ -17,9 +17,9 @@
     <div class="auth-wrapper auth-cover">
         <div class="auth-inner row m-0">
             <!-- Brand logo-->
-            <a class="brand-logo" href="#">
-                <img src="{{asset('/images/logo/logo.png')}}" alt="Logo" height="30px">
-                <h2 class="brand-text text-primary ms-1">Ordery</h2>
+            <a class="brand-logo" href="/">
+                <img src="{{asset('/images/logo/logo.png')}}" alt="Logo" height="150px">
+{{--                <h2 class="brand-text text-primary ms-1">Ordery</h2>--}}
             </a>
             <!-- /Brand logo-->
 

@@ -46,7 +46,8 @@
                                         </div>
                                         <div class="row mt-1">
                                             <div class="col-2">
-                                                <img class="contacto-avatar" src="/images/assets/profile.svg" alt="avatar">
+{{--                                                <img class="contacto-avatar" src="/images/assets/profile.svg" alt="avatar">--}}
+                                                <i class="ti ti-address-book" style="font-size: 40px;color: #d5d5d5;"></i>
                                             </div>
                                             <div class="col-10  ps-0">
                                                 <p class="contacto-nombre mb-0">{{@$tienda->nombre_contacto}}</p>

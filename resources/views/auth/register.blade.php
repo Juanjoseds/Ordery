@@ -25,15 +25,17 @@
                 <!-- Register Card -->
                 <div class="card">
                     <div class="card-body">
-                        <!-- Logo -->
-                        <div class="app-brand justify-content-center mb-1 mt-1">
-                            <a href="{{url('/')}}" class="app-brand-link gap-2">
-                                <span class="app-brand-logo demo"></span>
-                                <span class="app-brand-text demo text-body fw-bold ms-1">{{config('variables.templateName')}}</span>
-                            </a>
-                        </div>
+{{--                        <!-- Logo -->--}}
+{{--                        <div class="app-brand justify-content-center mb-1 mt-1">--}}
+{{--                            <a href="{{url('/')}}" class="app-brand-link gap-2">--}}
+{{--                                <span class="app-brand-logo demo">--}}
+{{--                                    <img src="/images/logo/logorec.png" alt="ordery logo">--}}
+{{--                                </span>--}}
+{{--                                <span class="app-brand-text demo text-body fw-bold ms-1">{{config('variables.templateName')}}</span>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
                         <!-- /Logo -->
-                        <h4 class="mb-50 pt-2">Es hora de llenar tu despensa 🍇</h4>
+                        <h4 class="mb-50 pt-1">Es hora de llenar tu despensa 🍇</h4>
                         <p class="mb-2">Haz tu pedido y recógelo sin esperas</p>
 
                         <form id="formAuthentication" class="mb-2" action="{{url('/user/register')}}" method="POST">

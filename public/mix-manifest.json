@@ -1424,10 +1424,14 @@
     "/images/illustration/verify-email-illustration-dark.svg": "/images/illustration/verify-email-illustration-dark.svg",
     "/images/illustration/verify-email-illustration.svg": "/images/illustration/verify-email-illustration.svg",
     "/images/logo/favicon.ico": "/images/logo/favicon.ico",
+    "/images/logo/favicon.png": "/images/logo/favicon.png",
+    "/images/logo/logo-original.png": "/images/logo/logo-original.png",
     "/images/logo/logo.png": "/images/logo/logo.png",
+    "/images/logo/logo2.png": "/images/logo/logo2.png",
     "/images/logo/logo256.png": "/images/logo/logo256.png",
     "/images/logo/logo32.png": "/images/logo/logo32.png",
     "/images/logo/logo48.png": "/images/logo/logo48.png",
+    "/images/logo/logorec.png": "/images/logo/logorec.png",
     "/images/pages/arrow-down.png": "/images/pages/arrow-down.png",
     "/images/pages/auth-v1-bottom-bg.png": "/images/pages/auth-v1-bottom-bg.png",
     "/images/pages/auth-v1-top-bg.png": "/images/pages/auth-v1-top-bg.png",
@@ -1522,6 +1526,8 @@
     "/images/productos/8-h6Lfk.jpeg": "/images/productos/8-h6Lfk.jpeg",
     "/images/tiendas/22-B5QWd.jpeg": "/images/tiendas/22-B5QWd.jpeg",
     "/images/tiendas/23-2iOZ5.jpeg": "/images/tiendas/23-2iOZ5.jpeg",
+    "/images/tiendas/24-emQEU.jpeg": "/images/tiendas/24-emQEU.jpeg",
+    "/images/tiendas/24-KeOso.png": "/images/tiendas/24-KeOso.png",
     "/images/web/background/background.svg": "/images/web/background/background.svg",
     "/images/web/background/header-perfil.svg": "/images/web/background/header-perfil.svg",
     "/images/web/background/home.svg": "/images/web/background/home.svg",
@@ -1590,7 +1596,5 @@
     "/js/web/core/scrollMagic/TimelineLite.min.js": "/js/web/core/scrollMagic/TimelineLite.min.js",
     "/js/web/core/scrollMagic/TweenLite.min.js": "/js/web/core/scrollMagic/TweenLite.min.js",
     "/js/web/core/scrollMagic/TweenMax.min.js": "/js/web/core/scrollMagic/TweenMax.min.js",
-    "/js/web/core/select2.min.js": "/js/web/core/select2.min.js",
-    "/images/tiendas/24-emQEU.jpeg": "/images/tiendas/24-emQEU.jpeg",
-    "/images/tiendas/24-KeOso.png": "/images/tiendas/24-KeOso.png"
+    "/js/web/core/select2.min.js": "/js/web/core/select2.min.js"
 }
