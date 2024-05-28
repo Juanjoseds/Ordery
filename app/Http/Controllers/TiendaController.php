@@ -202,6 +202,39 @@ class TiendaController extends Controller
             $tienda->url = $request->url;
             $tienda->save();
 
+            $path = public_path('/images/tiendas/');
+            if (str_contains($request->imagen,'data:image') && $request->imagen != '' && $request->imagen != null && $request->imagen != $tienda->imagenes) {
+
+                if (!(file_exists($path) && is_dir($path))) {
+                    mkdir($path, 777, true);
+                }
+
+                $file = Helper::base64ToFile($request->imagen);
+
+                $filename = $tienda->id . '-' . Helper::randomString() . '.' . $file['extension'];
+
+                $this->base64_to_image($request->imagen,$path.$filename);
+
+                $tienda->imagenes = $filename;
+                $tienda->save();
+            }
+
+            if (str_contains($request->imagen_logo,'data:image') && $request->imagen_logo != '' && $request->imagen_logo != null && $request->imagen_logo != $tienda->imagen_logo) {
+
+                if (!(file_exists($path) && is_dir($path))) {
+                    mkdir($path, 777, true);
+                }
+
+                $file = Helper::base64ToFile($request->imagen_logo);
+
+                $filename = $tienda->id . '-' . Helper::randomString() . '.' . $file['extension'];
+
+                $this->base64_to_image($request->imagen_logo,$path.$filename);
+
+                $tienda->imagen_logo = $filename;
+                $tienda->save();
+            }
+
             // Creamos el usuario
             $user = new User();
             $user->nombre = $request->nombre;
@@ -234,6 +267,24 @@ class TiendaController extends Controller
             DB::rollBack();
             dd($e);
         }
+    }
+
+    public function base64_to_image($base64_string, $output_file) {
+        // open the output file for writing
+        $ifp = fopen($output_file , 'a');
+        // dd($output_file);
+        // split the string on commas
+        // $data[ 0 ] == "data:image/png;base64"
+        // $data[ 1 ] == <actual base64 string>
+        $data = explode( ',', $base64_string );
+
+        // we could add validation here with ensuring count( $data ) > 1
+        fwrite( $ifp, base64_decode( $data[ 1 ] ) );
+
+        // clean up the file resource
+        fclose( $ifp );
+
+        return $output_file;
     }
 
 //    public function block(Request $request, $id){

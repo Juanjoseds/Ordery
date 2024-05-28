@@ -87,6 +87,40 @@
                             <h5 class="card-header ps-0"><i class="ti ti-building-store me-1"></i> Información sobre tu tienda</h5>
 
                             <div class="row">
+                                <div class="col-lg-4 col-12">
+                                    <div class="form-group col-12">
+                                        <label class="form-label">Imagen de la tienda</label>
+                                        <div class="w-100 text-center">
+                                            <img id="display_uploaded" class="img-fluid cursor-pointer"
+                                                 style="width: 7em;"
+                                                 alt="Imagen tienda"
+                                                 src="{{asset('images/assets/upload.svg')}}"
+                                            >
+                                            <br>
+                                            <small class="w-100"><i class="me-50" data-feather="info"></i>Recomendado: 1920 x 350 px</small>
+                                        </div>
+                                        <input type="text" id="image_uploaded" name="imagen" style="position: absolute;z-index: -1;">
+                                        <input type="file" hidden id="image_upload" accept="image/*">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-12">
+                                    <div class="form-group col-12">
+                                        <label class="form-label">Logo de la tienda</label>
+                                        <div class="w-100 text-center">
+                                            <img id="logo_display_uploaded" class="img-fluid cursor-pointer"
+                                                 style="width: 7em;"
+                                                 alt="Logo tienda"
+                                                 src="{{asset('images/assets/upload.svg')}}"
+                                            >
+                                            <br>
+                                            <small class="w-100"><i class="me-50" data-feather="info"></i>Recomendado: 115 x 115 px</small>
+                                        </div>
+                                        <input type="text" id="logo_image_uploaded" name="imagen_logo" style="position: absolute;z-index: -1;">
+                                        <input type="file" hidden id="logo_image_upload" accept="image/*">
+                                    </div>
+                                </div>
+
                                 <div class="col-4">
                                     <div class="mb-1">
                                         <label for="nombretienda" class="form-label">Nombre de la tienda</label>
@@ -198,4 +232,12 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset(mix('vendors/js/vendors.min.js')) }}"></script>
+    <script src="{{ asset(mix('js/scripts/custom/custom-form.js')). '?v='.$APP_VERSION }}"></script>
+    <script>
+
+        initImageUpload('display_uploaded','image_uploaded','image_upload');
+        initImageUpload('logo_display_uploaded','logo_image_uploaded','logo_image_upload');
+    </script>
 @endsection
+

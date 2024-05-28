@@ -1520,6 +1520,8 @@
     "/images/productos/7-BwS0G.jpeg": "/images/productos/7-BwS0G.jpeg",
     "/images/productos/70-eqSVR.jpeg": "/images/productos/70-eqSVR.jpeg",
     "/images/productos/8-h6Lfk.jpeg": "/images/productos/8-h6Lfk.jpeg",
+    "/images/tiendas/22-B5QWd.jpeg": "/images/tiendas/22-B5QWd.jpeg",
+    "/images/tiendas/23-2iOZ5.jpeg": "/images/tiendas/23-2iOZ5.jpeg",
     "/images/web/background/background.svg": "/images/web/background/background.svg",
     "/images/web/background/header-perfil.svg": "/images/web/background/header-perfil.svg",
     "/images/web/background/home.svg": "/images/web/background/home.svg",
@@ -1527,6 +1529,7 @@
     "/images/web/home/food.png": "/images/web/home/food.png",
     "/images/web/home/header.jpg": "/images/web/home/header.jpg",
     "/images/web/home/shopbag.png": "/images/web/home/shopbag.png",
+    "/images/web/tiendas/default.jpg": "/images/web/tiendas/default.jpg",
     "/data/ajax.php": "/data/ajax.php",
     "/data/fullcalendar/json/events.json": "/data/fullcalendar/json/events.json",
     "/data/fullcalendar/php/get-events.php": "/data/fullcalendar/php/get-events.php",
@@ -1587,5 +1590,7 @@
     "/js/web/core/scrollMagic/TimelineLite.min.js": "/js/web/core/scrollMagic/TimelineLite.min.js",
     "/js/web/core/scrollMagic/TweenLite.min.js": "/js/web/core/scrollMagic/TweenLite.min.js",
     "/js/web/core/scrollMagic/TweenMax.min.js": "/js/web/core/scrollMagic/TweenMax.min.js",
-    "/js/web/core/select2.min.js": "/js/web/core/select2.min.js"
+    "/js/web/core/select2.min.js": "/js/web/core/select2.min.js",
+    "/images/tiendas/24-emQEU.jpeg": "/images/tiendas/24-emQEU.jpeg",
+    "/images/tiendas/24-KeOso.png": "/images/tiendas/24-KeOso.png"
 }

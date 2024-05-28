@@ -14,17 +14,17 @@
 
                             <div class="card card-developer-meetup cursor-pointer" onclick="window.open('/shops/{{$tienda->url}}', '_self')">
                                 <div class="bg-light-primary rounded-top text-center">
-                                    <img src="/images/illustration/api.svg" alt="Meeting Pic" height="170" class="">
+                                    <img class="imagen-tienda" src="@if(isset($tienda->imagenes)) /images/tiendas/{{$tienda->imagenes}} @else /images/web/tiendas/default.jpg @endif" alt="{{$tienda->nombre}}" height="170" class="">
                                 </div>
                                 <div class="card-body">
-                                    <div class="meetup-header d-flex align-items-center">
+                                    <div class="meetup-header d-flex align-items-center mb-1">
 
                                         <div class="my-auto">
                                             <h4 class="card-title mb-25">{{$tienda->nombre}}</h4>
                                             <p class="tienda-descripcion card-text mb-0">{{$tienda->descripcion}}</p>
                                         </div>
                                     </div>
-                                    <div class="media d-flex">
+                                    <div class="media d-flex mb-1">
                                         <div class="media-aside me-1 align-self-start">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px"
                                                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -40,12 +40,13 @@
                                             </h6>
                                             <small>{{$tienda->ciudad}}</small>
                                         </div>
-                                        @if(sizeof($tienda->productos) > 0)
-                                            <div>
-                                                Este establecimiento tiene {{sizeof($tienda->productos)}} productos que coinciden con "<b>{{$busqueda}}</b>".
-                                            </div>
-                                        @endif
+
                                     </div>
+                                    @if(sizeof($tienda->productos) > 0)
+                                        <div class="establecimientos-hayproducto">
+                                            Este establecimiento tiene {{sizeof($tienda->productos)}} productos que coinciden con "<b>{{$busqueda}}</b>".
+                                        </div>
+                                    @endif
                                 </div>
 
                             </div>

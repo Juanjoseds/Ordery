@@ -22,6 +22,7 @@ class CreateTiendasTable extends Migration
             $table->string('email');
             $table->longText('carta')->nullable();
             $table->longText('imagenes')->nullable();
+            $table->longText('imagen_logo')->nullable();
             $table->longText('direccion');
             $table->longText('codigo_postal');
             $table->longText('ciudad');

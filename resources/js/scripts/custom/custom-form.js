@@ -381,7 +381,7 @@ function deleteFile(id, nameCrud) {
 function initImageUpload(idImg, idInputHidden, idFileUploaded, maxSize = 1) {
     // CARGA DE IMÁGENES
     $(`#${idImg}`).click(function () {
-        $('#image_upload').click();
+        $(`#${idFileUploaded}`).click();
     });
 
     $(`#${idFileUploaded}`).on('change', function () {
