@@ -1,6 +1,7 @@
 $(() =>{
     initRankingEstrellas();
     loadCartProducts();
+    initImageUpload('display_uploaded','image_uploaded','image_upload');
 });
 
 function initRankingEstrellas(){

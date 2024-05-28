@@ -55,5 +55,6 @@
 @section('page-script')
     <script async defer src="{{ asset('js/web/pages/tienda.js') }}"></script>
     <script async defer src="{{ asset('js/web/pages/buscador.js') }}"></script>
+    <script src="{{ asset(mix('js/scripts/custom/custom-form.js')). '?v='.$APP_VERSION }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 @endsection
