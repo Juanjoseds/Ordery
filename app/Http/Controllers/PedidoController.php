@@ -90,7 +90,8 @@ class PedidoController extends Controller
                 $total += (floatval($producto['precio']) * intval($producto['cantidad']));
             }
         }
-        return $total;
+        $impuesto = 1.07;
+        return $total * $impuesto;
     }
 
 

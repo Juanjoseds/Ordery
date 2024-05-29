@@ -45,6 +45,9 @@ class CartaController extends Controller
             foreach ($carta as $index => $categoria) {
                 if(isset($categoria->id) && $categoria->id != ''){
                     $newCategoria = Categoria::query()->find($categoria->id);
+                    if(!isset($newCategoria)){
+                        $newCategoria = new Categoria();
+                    }
                 }else{
                     $newCategoria = new Categoria();
                 }
@@ -60,6 +63,9 @@ class CartaController extends Controller
                     //TODO: Controlar ID para no haer new
                     if(isset($producto->id_producto) && $producto->id_producto != ''){
                         $newProducto = Producto::query()->where('id', $producto->id_producto)->first();
+                        if(!isset($newProducto)){
+                            $newProducto = new Producto();
+                        }
                     }else{
                         $newProducto = new Producto();
                     }
