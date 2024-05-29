@@ -12,6 +12,8 @@
     @if(isset($pedido->pedido) && isset($pedido->pedido->productos) && sizeof($pedido->pedido->productos) > 0)
         <div class="accordion accordion-margin" id="accordionMargin" data-toggle-hover="true">
             @foreach($pedido->pedido->productos as $i=>$producto)
+                @if(isset($producto->precio))
+                    {{--Es un producto normal guardado en la BBDD--}}
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingMarginOne">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionMargin{{$i}}" aria-expanded="false" aria-controls="accordionMargin{{$i}}">
@@ -20,7 +22,7 @@
                                     {{$producto->nombre}}
                                 </div>
                                 <div>
-                                    {{$producto->cantidad}}x <b>{{$producto->precio}} €</b>
+                                    {{$producto->cantidad}}x <b>{{$producto->precio}}€</b>
                                 </div>
                             </div>
 
@@ -37,6 +39,35 @@
                         </div>
                     </div>
                 </div>
+                @else
+                    {{--Es un una imagen--}}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingMarginOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionMargin{{$i}}" aria-expanded="false" aria-controls="accordionMargin{{$i}}">
+                                <div class="d-flex justify-content-between w-100 me-1">
+                                    <div>
+                                        Imagen subida por el usuario
+                                    </div>
+                                    <div>
+                                        <b>0€</b>
+                                    </div>
+                                </div>
+
+                            </button>
+                        </h2>
+                        <div id="accordionMargin{{$i}}" class="accordion-collapse collapse" aria-labelledby="headingMargin{{$i}}" data-bs-parent="#accordionMargin" style="">
+                            <div class="accordion-body">
+                                <div>
+                                    <a href="javascript:;" onclick='openImagen("{{$producto->imagen}}")'><img src="{{$producto->imagen}}" alt="imagen" style="width: 100%" ></a>
+                                    <div class="mt-25">Recuerda actualizar el total del pedido acorde a lo solicitado por el cliente</div>
+{{--                                    <div><b>Precio unidad: </b> {{$producto->precio}} €</div>--}}
+{{--                                    <div><b>Observaciones: </b> {{$pedido->observaciones}}</div>--}}
+{{--                                    <div class="text-primary font-medium-3"><b>Total: </b> {{$producto->precio * $producto->cantidad}} €</div>--}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             @endforeach
         </div>
 

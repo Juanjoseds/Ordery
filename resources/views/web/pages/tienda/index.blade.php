@@ -17,6 +17,7 @@
 @section('content')
     @include('web.pages.home.header')
 
+    <input type="hidden" id="id_tienda" value="{{@$tienda->id}}">
     <div id="user-profile" class="m-2">
         <div class="row">
             <div class="col-12">

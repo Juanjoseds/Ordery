@@ -12,18 +12,41 @@ $(() =>{
 
 function addCartLine(producto){
     let mainCarrito = $('#main-carrito-productos');
+    let html = ``;
 
-    let html = `
-    <li class="list-group-item list-group-item-action dropdown-notifications-item producto-linea" data-id="${producto.id}">
+    if(producto.hasOwnProperty('precio')){
+        let imagen = producto.imagen == null || producto.imagen == '' ? '/images/assets/product.png' : '/images/productos/' + producto.imagen;
+        html = `
+        <li class="list-group-item list-group-item-action dropdown-notifications-item producto-linea" data-id="${producto.id}">
+            <div class="d-flex">
+                <div class="avatar">
+                    <img src="${imagen}" alt class="h-auto rounded-circle">
+                </div>
+                <div class="producto ms-1 d-flex align-items-center justify-content-between w-100">
+                    <p class="m-0 producto-nombre">${producto.nombre}</p>
+                    <div class="main-precios">
+                        <div class="d-flex align-content-center">
+                            <div class="producto-precio">${producto.precio} €</div>
+                            <i class="ti ti-trash ti-md text-danger producto-remove ms-1 mt-25" onclick="deleteProductCart('${producto.id}')"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </li>
+        `;
+    }else{
+        html = `
+        <li class="list-group-item list-group-item-action dropdown-notifications-item producto-linea" data-id="${producto.id}">
         <div class="d-flex">
             <div class="avatar">
-                <img src="/images/productos/${producto.imagen}" alt class="h-auto rounded-circle">
+                <img src="${producto.imagen}" alt class="h-auto rounded-circle">
             </div>
             <div class="producto ms-1 d-flex align-items-center justify-content-between w-100">
-                <p class="m-0 producto-nombre">${producto.nombre}</p>
+                <p class="m-0 producto-nombre">Imagen subida por tí</p>
                 <div class="main-precios">
                     <div class="d-flex align-content-center">
-                        <div class="producto-precio">${producto.precio} €</div>
+                        <div class="producto-precio"></div>
                         <i class="ti ti-trash ti-md text-danger producto-remove ms-1 mt-25" onclick="deleteProductCart('${producto.id}')"></i>
                     </div>
                 </div>
@@ -31,7 +54,9 @@ function addCartLine(producto){
         </div>
 
     </li>
-    `;
+        `;
+    }
+
 
     let totalProductos = parseInt($('.dropdown-header .carrito-cantidad').text(), 10) + 1;
     $('.carrito-cantidad').text(totalProductos);
@@ -41,22 +66,43 @@ function addCartLine(producto){
 
 function addDetallesLine(producto){
     let mainCarrito = $('#tabla-pedido tbody');
+    let html = '';
 
-    let html = `
-    <tr class="producto-linea" data-id="${producto.id}">
-        <td>
-            <div class="d-flex align-items-center">
-                <div class="avatar">
-                    <img src="/images/productos/${producto.imagen}" alt="${producto.nombre}">
+    if(producto.hasOwnProperty('precio')){
+        let imagen = producto.imagen == null || producto.imagen == '' ? '/images/assets/product.png' : '/images/productos/' + producto.imagen;
+        html = `
+        <tr class="producto-linea" data-id="${producto.id}">
+            <td>
+                <div class="d-flex align-items-center">
+                    <div class="avatar">
+                        <img src="${imagen}" alt="${producto.nombre}">
+                    </div>
+                    <p class="producto-nombre m-0 ms-1">${producto.nombre}</p>
                 </div>
-                <p class="producto-nombre m-0 ms-1">${producto.nombre}</p>
-            </div>
-        </td>
-        <td>1</td>
-        <td>${producto.precio} €</td>
-        <td><i class="ti ti-trash ti-md text-danger producto-remove cursor-pointer" onclick="deleteProductCart('${producto.id}')"></i></td>
-    </tr>
-    `;
+            </td>
+            <td>1</td>
+            <td>${producto.precio} €</td>
+            <td><i class="ti ti-trash ti-md text-danger producto-remove cursor-pointer" onclick="deleteProductCart('${producto.id}')"></i></td>
+        </tr>
+        `;
+    }else{
+        html = `
+        <tr class="producto-linea" data-id="${producto.id}">
+            <td>
+                <div class="d-flex align-items-center">
+                    <div class="avatar">
+                        <img src="${producto.imagen}" alt="Imagen subida por el usuario">
+                    </div>
+                    <p class="producto-nombre m-0 ms-1">Imagen subida por tí</p>
+                </div>
+            </td>
+            <td>1</td>
+            <td>0 €</td>
+            <td><i class="ti ti-trash ti-md text-danger producto-remove cursor-pointer" onclick="deleteProductCart('${producto.id}')"></i></td>
+        </tr>
+        `;
+    }
+
 
     mainCarrito.append(html);
 }
@@ -69,7 +115,7 @@ function loadCartProducts(){
 
     if(Object.hasOwn(productos, 'productos') && typeof(productos.productos) == 'object' && productos.productos.length > 0){
         productos.productos.forEach((producto, index)=>{
-            subtotal += producto.precio;
+            subtotal += producto.hasOwnProperty('precio') ? producto.precio : 0;
             addCartLine(producto)
             addDetallesLine(producto)
         })
@@ -81,7 +127,6 @@ function loadCartProducts(){
 }
 
 function calcularTotal(){
-    console.log('calculando...');
     $('.detalles-resumen').remove();
     let html = `
     <tr class="detalles-resumen resumen-subtotal">

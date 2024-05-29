@@ -293,3 +293,9 @@ function showCambiarTotales(idPedido=null){
     }
 
 }
+
+function openImagen(imagenb64){
+    console.log(imagenb64);
+    $('#imgUsuarioModal').prop('src', imagenb64);
+    $('#modalUsuarioImagen').modal('show');
+}

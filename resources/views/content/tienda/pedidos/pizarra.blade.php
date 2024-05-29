@@ -28,4 +28,26 @@
 
 @section('modales')
     @include('modales.pedidos.offcanvas-pedidos')
+
+    <div class="modal fade" id="modalUsuarioImagen" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">Imagen del cliente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <img src="" alt="imgUsuarioModal" id="imgUsuarioModal">
+                    </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-label-secondary" data-bs-dismiss="modal">Close</button>
+{{--                    <button type="button" class="btn btn-primary">Save changes</button>--}}
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

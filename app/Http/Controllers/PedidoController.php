@@ -63,11 +63,12 @@ class PedidoController extends Controller
             DB::beginTransaction();
             $userId = $this->user->id;
 
+            $precioTotal = $this->calcularPrecioTotal($request->productos['productos']);
             $pedido = new Pedido();
             $pedido->doc = uniqid($request->tiendaId . '-' . $userId . '-');
             $pedido->info_pago = "Sin pago";
             $pedido->pedido = json_encode($request->productos);
-            $pedido->precio = 37;
+            $pedido->precio = $precioTotal;
             $pedido->observaciones = '';
             $pedido->estado = 'Pendiente';
             $pedido->id_user = $this->user->id;
@@ -82,6 +83,15 @@ class PedidoController extends Controller
         }
     }
 
+    public function calcularPrecioTotal($productos) {
+        $total = 0;
+        foreach ($productos as $producto) {
+            if(isset($producto['precio'])){
+                $total += (floatval($producto['precio']) * intval($producto['cantidad']));
+            }
+        }
+        return $total;
+    }
 
 
 //    public function store(TiendaRequest $request, $id = null) {
