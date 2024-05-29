@@ -10,7 +10,7 @@
                 <p class="mensaje-doc mt-3">Nº pedido: #{{$doc}}</p>
             </div>
             <div class="col-12">
-                <button class="btn btn-primary btn-lg mt-2">Ir al panel</button>
+                <a class="btn btn-primary btn-lg mt-2" href="/perfil">Ir al panel</a>
 {{--                <button class="btn btn-secondary btn-lg mt-2">¡Seguir comprando!</button>--}}
             </div>
 
