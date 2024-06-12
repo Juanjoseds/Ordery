@@ -29,7 +29,7 @@
                     @if($configData['theme'] === 'dark')
                         <img class="img-fluid" src="{{asset('images/pages/login-v2-dark.svg')}}" alt="Login V2" />
                     @else
-                        <img class="img-fluid" src="{{asset('images/pages/login-v2.svg')}}" alt="Login V2" />
+                        <img class="img-fluid" src="{{asset('images/pages/supermarket.jpg')}}" style="border-radius:2rem" alt="Login V2" />
                     @endif
                 </div>
             </div>
@@ -50,7 +50,7 @@
 {{--                            {{Session::get('mensaje')}}--}}
 {{--                        </div>--}}
                     @endif
-                    <h2 class="card-title fw-bold mb-1">Bienvenido a Ordery! 👋</h2>
+                    <h2 class="card-title fw-bold mb-1">¡Bienvenido a Ordery! 👋</h2>
                     <p class="card-text mb-2">Accede al panel para disfrutar de todas las ventajas</p>
                     <form class="auth-login-form mt-2" action="{{ route('login') }}" method="POST">
                         @csrf
@@ -86,10 +86,10 @@
                         <div class="divider-text">síguenos</div>
                     </div>
                     <div class="auth-footer-btn d-flex justify-content-center">
+                        <a class="btn btn-instagram" href="#"><i data-feather="instagram"></i></a>
                         <a class="btn btn-facebook" href="#"><i data-feather="facebook"></i></a>
-                        <a class="btn btn-twitter white" href="#"><i data-feather="twitter"></i></a>
+                        <a class="btn btn-dark white" href="#"><i class="ti ti-brand-x"></i></a>
                         <a class="btn btn-google" href="#"><i data-feather="mail"></i></a>
-                        <a class="btn btn-github" href="#"><i data-feather="github"></i></a>
                     </div>
                 </div>
             </div>
