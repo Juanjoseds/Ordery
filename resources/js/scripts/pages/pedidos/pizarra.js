@@ -299,3 +299,12 @@ function openImagen(imagenb64){
     $('#imgUsuarioModal').prop('src', imagenb64);
     $('#modalUsuarioImagen').modal('show');
 }
+
+function changeTotalProducto(productoId, pedidoId){
+    console.log(productoId, pedidoId);
+    let maindiv = $(`.campo_${productoId}_${pedidoId}`);
+    $(`#editar_${productoId}_${pedidoId}`).fadeOut(function (){
+        maindiv.fadeIn();
+        maindiv.find('input').focus();
+    });
+}
