@@ -308,3 +308,23 @@ function changeTotalProducto(productoId, pedidoId){
         maindiv.find('input').focus();
     });
 }
+
+function storeNewPrice(productoId, pedidoId){
+    let total = $(`.main_editar_${productoId}_${pedidoId} #precio_${productoId}`).val();
+    console.log(total);
+    $.ajax({
+        url: '/tienda/pedidos/changeTotalProducto',
+        method: 'POST',
+        data: {
+            pedidoId: pedidoId,
+            productoId: productoId,
+            total: total,
+        }
+    }).done(response => {
+        standardAjaxResponse('Estado actualizado', `Se ha actualizado el total del pedido #${pedidoId} correctamente`);
+        $('#pedido-productos .precioTotal').text(total + ' €');
+        $('#pedidos-table').DataTable().ajax.reload();
+    }).fail(error => {
+        customFormAjaxResponse(error);
+    })
+}

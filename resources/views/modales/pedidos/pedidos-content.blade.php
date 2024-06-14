@@ -19,10 +19,10 @@
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionMargin{{$i}}" aria-expanded="false" aria-controls="accordionMargin{{$i}}">
                             <div class="d-flex justify-content-between w-100 me-1">
                                 <div>
-                                    {{$producto->nombre}}
+                                    {{@$producto->nombre}}
                                 </div>
                                 <div>
-                                    {{$producto->cantidad}}x <b>{{$producto->precio}}€</b>
+                                    {{@$producto->cantidad}}x <b>{{@$producto->precio}}€</b>
                                 </div>
                             </div>
 
@@ -31,12 +31,12 @@
                     <div id="accordionMargin{{$i}}" class="accordion-collapse collapse" aria-labelledby="headingMargin{{$i}}" data-bs-parent="#accordionMargin" style="">
                         <div class="accordion-body">
                             <div>
-                                <div><b>Unidades: </b> {{$producto->cantidad}} uds.</div>
+                                <div><b>Unidades: </b> {{@$producto->cantidad}} uds.</div>
                                 <div><b>Precio unidad: </b> {{$producto->precio}} €</div>
-                                <div><b>Observaciones: </b> {{$pedido->observaciones}}</div>
-                                <div class="text-primary font-medium-3"><b>Total: </b> {{$producto->precio * $producto->cantidad}} €</div>
+                                <div><b>Observaciones: </b> {{@$pedido->observaciones}}</div>
+                                <div class="text-primary font-medium-3"><b>Total: </b> {{@$producto->precio * @$producto->cantidad}} €</div>
                             </div>
-                            <div class="main-editar">
+                            <div class="main_editar_{{$producto->id}}_{{$pedido->id}}">
                                 <button class="btn btn-outline-primary mt-1" id="editar_{{$producto->id}}_{{$pedido->id}}" onclick="changeTotalProducto(`{{$producto->id}}`,`{{$pedido->id}}`)"><i class="ti ti-edit me-25"></i>Editar</button>
 
                                 <div class="campo_{{$producto->id}}_{{$pedido->id}} mt-1" style="display: none">
@@ -44,7 +44,7 @@
                                         <input class="form-control form-control-sm" type="number" name="precio_{{$producto->id}}" id="precio_{{$producto->id}}">
                                         <p class="ms-1 mb-0 p-0">€</p>
                                     </div>
-                                    <button class="btn btn-success mt-1" onclick="changeTotalProducto(`{{$producto->id}}`,`{{$pedido->id}}`)"><i class="ti ti-device-floppy me-25"></i>Actualizar</button>
+                                    <button class="btn btn-success mt-1" onclick="storeNewPrice(`{{$producto->id}}`,`{{$pedido->id}}`)"><i class="ti ti-device-floppy me-25"></i>Actualizar</button>
                                 </div>
                             </div>
                         </div>
@@ -74,6 +74,17 @@
 {{--                                    <div><b>Precio unidad: </b> {{$producto->precio}} €</div>--}}
 {{--                                    <div><b>Observaciones: </b> {{$pedido->observaciones}}</div>--}}
 {{--                                    <div class="text-primary font-medium-3"><b>Total: </b> {{$producto->precio * $producto->cantidad}} €</div>--}}
+                                </div>
+                                <div class="main_editar_{{$producto->id}}_{{$pedido->id}}">
+                                    <button class="btn btn-outline-primary mt-1" id="editar_{{$producto->id}}_{{$pedido->id}}" onclick="changeTotalProducto(`{{$producto->id}}`,`{{$pedido->id}}`)"><i class="ti ti-edit me-25"></i>Editar</button>
+
+                                    <div class="campo_{{$producto->id}}_{{$pedido->id}} mt-1" style="display: none">
+                                        <div class="d-flex align-items-center">
+                                            <input class="form-control form-control-sm" type="number" name="precio_{{$producto->id}}" id="precio_{{$producto->id}}">
+                                            <p class="ms-1 mb-0 p-0">€</p>
+                                        </div>
+                                        <button class="btn btn-success mt-1" onclick="storeNewPrice(`{{$producto->id}}`,`{{$pedido->id}}`)"><i class="ti ti-device-floppy me-25"></i>Actualizar</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

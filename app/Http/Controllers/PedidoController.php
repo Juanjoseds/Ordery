@@ -239,4 +239,26 @@ class PedidoController extends Controller
         ]);
     }
 
+    public function changeTotalProducto(Request $request){
+        $pedido = Pedido::query()->where('id', $request->pedidoId)->first();
+        if(!isset($pedido)){
+            return response(['errores' => 'El pedido no existe'], 400);
+        }
+        $pedido->pedido = json_decode($pedido->pedido);
+        $sumaTotal = 0;
+        foreach ($pedido->pedido->productos as $producto) {
+            if($producto->id == $request->productoId){
+                $producto->precio = $request->total;
+            }
+            if(isset($producto->precio)){
+                $sumaTotal += intval($producto->precio);
+            }
+
+        }
+
+        $pedido->pedido = json_encode($pedido->pedido);
+        $pedido->precio = $sumaTotal * 1.07; // Con impuestos IGIC
+        $pedido->update();
+    }
+
 }

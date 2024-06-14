@@ -1,3 +1,4 @@
+@if(isset($pedidos) && $pedidos != [])
 <div class="col-xl-8 col-lg-7 col-12">
     <div class="card h-100">
         <div class="card-header">
@@ -47,3 +48,4 @@
         </div>
     </div>
 </div>
+@endif

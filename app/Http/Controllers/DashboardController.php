@@ -40,7 +40,7 @@ class DashboardController extends Controller
       $haceSeisMeses = Carbon::now()->subMonths(6)->startOfMonth();
 
       $pedido = Pedido::query()
-          ->where('estado', 'Finalizado')
+//          ->where('estado', 'Finalizado')
           ->where('id_tienda', $this->user->tienda_id)
           ->whereDate('created_at', '>=', $haceSeisMeses)
           ->selectRaw('year(created_at) year, month(created_at) month, count(*) totalPedidos, SUM(precio) totalPrecio')
@@ -49,6 +49,7 @@ class DashboardController extends Controller
           ->get()
           ->toArray();
 
-        return $pedido[0];
+      if(isset($pedido[0])) return $pedido[0];
+        return $pedido;
     }
 }
