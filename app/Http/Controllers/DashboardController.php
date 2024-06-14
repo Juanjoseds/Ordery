@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
+use App\Models\Producto;
 use App\Models\Tienda;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -14,16 +15,23 @@ class DashboardController extends Controller
   public function indexAdmin()
   {
     $numeroTiendas = Tienda::query()->count();
+    $numeroPedidos = Pedido::query()->count();
+    $pedidosHoy = Pedido::query()->where('created_at', '>', Carbon::today())->count();
+    $totalPedidosHoy = Pedido::query()->where('created_at', '>', Carbon::today())->sum('precio');
     return view('/content/dashboard/admin/dashboard', [
-        'numeroTiendas' => $numeroTiendas
+        'numeroTiendas' => $numeroTiendas,
+        'numeroPedidos' => $numeroPedidos,
+        'pedidosHoy' => $pedidosHoy,
+        'totalPedidosHoy' => $totalPedidosHoy
     ]);
   }
 
     public function indexTienda()
     {
         $pedidos = $this->getPedidosSeisMeses();
-
-        return view('/content/dashboard/tienda/dashboard', compact('pedidos'));
+        $productos = Producto::query()->where('id_tienda', $this->user->tienda_id)->count();
+        $ultimoPedido = Pedido::query()->where('id_tienda', $this->user->tienda_id)->orderBy('created_at', 'desc')->first();
+        return view('/content/dashboard/tienda/dashboard', compact('pedidos', 'productos', 'ultimoPedido'));
     }
 
     // Obtener la cantidad de pedidos finalizados de los últimos 6 meses
@@ -41,6 +49,6 @@ class DashboardController extends Controller
           ->get()
           ->toArray();
 
-        return $pedido;
+        return $pedido[0];
     }
 }

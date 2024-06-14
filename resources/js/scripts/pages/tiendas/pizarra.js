@@ -59,7 +59,7 @@ $(function () {
             responsivePriority: 3,
             render: function (data, type, full, meta) {
                 if (data != null) {
-                    return `<img height="80px" width="auto" src="${data}" alt="Imagen empleado"/>`
+                    return `<img height="80px" width="auto" src="/images/tiendas/${data}" alt="Imagen tienda"/>`
                 } else {
                     return `Sin imagen`;
                 }

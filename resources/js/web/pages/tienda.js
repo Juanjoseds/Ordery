@@ -78,6 +78,32 @@ function addImageCart(){
     addCartLine(productoNew);
 }
 
+function addTextCart(){
+    let texto = $('#textoPedido').val();
+    let tiendaId = $('#id_tienda').val();
+
+    let productos = localStorage.getItem('productos') ? JSON.parse(localStorage.getItem('productos')) : [];
+
+    let productoNew = {
+        id: getRandomNumberBetween(200,100000),
+        texto: texto
+    }
+
+    // console.log(productos, Object.hasOwn(productos, 'id_tienda'))
+    if(!Object.hasOwn(productos, 'id_tienda') || (Object.hasOwn(productos, 'id_tienda') && productos.id_tienda != tiendaId)){
+        productos = {
+            id_tienda: tiendaId,
+            productos: [productoNew]
+        };
+    }else{
+        productos.productos.push(productoNew);
+    }
+
+
+    localStorage.setItem('productos', JSON.stringify(productos));
+    addCartLine(productoNew);
+}
+
 function getRandomNumberBetween(min,max){
     return Math.floor(Math.random()*(max-min+1)+min);
 }
@@ -107,7 +133,7 @@ function addCartLine(producto){
 
     </li>
     `;
-    }else{
+    }else if(producto.hasOwnProperty('imagen')){
         html = `
         <li class="list-group-item list-group-item-action dropdown-notifications-item producto-linea" data-id="${producto.id}">
         <div class="d-flex">
@@ -116,6 +142,26 @@ function addCartLine(producto){
             </div>
             <div class="producto ms-1 d-flex align-items-center justify-content-between w-100">
                 <p class="m-0 producto-nombre">Imagen subida por tí</p>
+                <div class="main-precios">
+                    <div class="d-flex align-content-center">
+                        <div class="producto-precio"></div>
+                        <i class="ti ti-trash ti-md text-danger producto-remove ms-1 mt-25" onclick="deleteProductCart('${producto.id}')"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </li>
+        `;
+    }else if(producto.hasOwnProperty('texto')){
+        html = `
+        <li class="list-group-item list-group-item-action dropdown-notifications-item producto-linea" data-id="${producto.id}">
+        <div class="d-flex">
+            <div class="avatar">
+                <img src="/images/web/tiendas/notas.jpg" alt class="h-auto rounded-circle">
+            </div>
+            <div class="producto ms-1 d-flex align-items-center justify-content-between w-100">
+                <p class="m-0 producto-nombre">Texto subido por tí</p>
                 <div class="main-precios">
                     <div class="d-flex align-content-center">
                         <div class="producto-precio"></div>
@@ -137,13 +183,20 @@ function addCartLine(producto){
 }
 
 function loadCartProducts(){
-    let productos = JSON.parse(localStorage.getItem('productos'));
+    if(localStorage.getItem('productos') != null){
+        let productos = JSON.parse(localStorage.getItem('productos'));
 
-    if(Object.hasOwn(productos, 'productos') && typeof(productos.productos) == 'object' && productos.productos.length > 0){
-        productos.productos.forEach((producto, index)=>{
-            addCartLine(producto)
-        })
+        if(Object.hasOwn(productos, 'productos') && typeof(productos.productos) == 'object' && productos.productos.length > 0){
+            productos.productos.forEach((producto, index)=>{
+                addCartLine(producto)
+            })
+        }
     }
+
+}
+
+function showTextArea(){
+    $('.main-textarea').fadeIn();
 }
 
 function deleteProductCart(id){

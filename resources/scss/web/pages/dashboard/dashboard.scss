@@ -1,0 +1,31 @@
+.bg-label-hover-primary, .bg-label-primary {
+    background-color: #eae8fd !important;
+    color: #7367f0 !important;
+}
+
+.rounded-pill {
+    border-radius: 50rem !important;
+}
+
+.badge {
+    --bs-badge-padding-x: 1em;
+    --bs-badge-padding-y: 0.49em;
+    --bs-badge-font-size: 0.81em;
+    --bs-badge-font-weight: 500;
+    --bs-badge-color: #fff;
+    --bs-badge-border-radius: 0.25rem;
+    border-radius: var(--bs-badge-border-radius);
+    color: var(--bs-badge-color);
+    display: inline-block;
+    font-size: var(--bs-badge-font-size);
+    font-weight: var(--bs-badge-font-weight);
+    line-height: 1;
+    padding: var(--bs-badge-padding-y) var(--bs-badge-padding-x);
+    text-align: center;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+
+.ti-sm {
+    font-size: 1.376rem !important;
+}

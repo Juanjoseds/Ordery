@@ -203,7 +203,7 @@ class UserController extends Controller
         // Traemos todos los usuarios admins
         $empleados = User::query()
             ->when($this->user->tipo === 'admin', function ($query) {
-                $query->where('rol', 'admin');
+                $query->where('tipo', 'admin');
             })
             ->when($this->user->tipo === 'tienda', function ($query) {
                 $query->where('tienda_id', $this->user->tienda_id);

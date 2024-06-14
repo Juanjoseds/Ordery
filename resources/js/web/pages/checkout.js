@@ -35,7 +35,7 @@ function addCartLine(producto){
 
         </li>
         `;
-    }else{
+    }else if(producto.hasOwnProperty('imagen')){
         html = `
         <li class="list-group-item list-group-item-action dropdown-notifications-item producto-linea" data-id="${producto.id}">
         <div class="d-flex">
@@ -44,6 +44,26 @@ function addCartLine(producto){
             </div>
             <div class="producto ms-1 d-flex align-items-center justify-content-between w-100">
                 <p class="m-0 producto-nombre">Imagen subida por tí</p>
+                <div class="main-precios">
+                    <div class="d-flex align-content-center">
+                        <div class="producto-precio"></div>
+                        <i class="ti ti-trash ti-md text-danger producto-remove ms-1 mt-25" onclick="deleteProductCart('${producto.id}')"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </li>
+        `;
+    }else if(producto.hasOwnProperty('texto')){
+        html = `
+        <li class="list-group-item list-group-item-action dropdown-notifications-item producto-linea" data-id="${producto.id}">
+        <div class="d-flex">
+            <div class="avatar">
+                <img src="/images/web/tiendas/notas.jpg" alt class="h-auto rounded-circle">
+            </div>
+            <div class="producto ms-1 d-flex align-items-center justify-content-between w-100">
+                <p class="m-0 producto-nombre">Texto subido por tí</p>
                 <div class="main-precios">
                     <div class="d-flex align-content-center">
                         <div class="producto-precio"></div>
@@ -85,7 +105,7 @@ function addDetallesLine(producto){
             <td><i class="ti ti-trash ti-md text-danger producto-remove cursor-pointer" onclick="deleteProductCart('${producto.id}')"></i></td>
         </tr>
         `;
-    }else{
+    }else if(producto.hasOwnProperty('imagen')){
         html = `
         <tr class="producto-linea" data-id="${producto.id}">
             <td>
@@ -97,7 +117,23 @@ function addDetallesLine(producto){
                 </div>
             </td>
             <td>1</td>
-            <td>0 €</td>
+            <td>0 € *</td>
+            <td><i class="ti ti-trash ti-md text-danger producto-remove cursor-pointer" onclick="deleteProductCart('${producto.id}')"></i></td>
+        </tr>
+        `;
+    }else if(producto.hasOwnProperty('texto')){
+        html = `
+        <tr class="producto-linea" data-id="${producto.id}">
+            <td>
+                <div class="d-flex align-items-center">
+                    <div class="avatar">
+                        <img src="/images/web/tiendas/notas.jpg" alt="Texto subido por el usuario">
+                    </div>
+                    <p class="producto-nombre m-0 ms-1">Texto subido por tí</p>
+                </div>
+            </td>
+            <td>1</td>
+            <td>0 € *</td>
             <td><i class="ti ti-trash ti-md text-danger producto-remove cursor-pointer" onclick="deleteProductCart('${producto.id}')"></i></td>
         </tr>
         `;
@@ -111,19 +147,21 @@ subtotal = 0;
 impuestos = 0;
 total = 0;
 function loadCartProducts(){
-    let productos = JSON.parse(localStorage.getItem('productos'));
+    if(localStorage.getItem('productos') != null) {
+        let productos = JSON.parse(localStorage.getItem('productos'));
 
-    if(Object.hasOwn(productos, 'productos') && typeof(productos.productos) == 'object' && productos.productos.length > 0){
-        productos.productos.forEach((producto, index)=>{
-            subtotal += producto.hasOwnProperty('precio') ? producto.precio : 0;
-            addCartLine(producto)
-            addDetallesLine(producto)
-        })
+        if (Object.hasOwn(productos, 'productos') && typeof (productos.productos) == 'object' && productos.productos.length > 0) {
+            productos.productos.forEach((producto, index) => {
+                subtotal += producto.hasOwnProperty('precio') ? producto.precio : 0;
+                addCartLine(producto)
+                addDetallesLine(producto)
+            })
 
-        total = (subtotal * 1.07).toFixed(2);
-        impuestos = (total - subtotal).toFixed(2);
+            total = (subtotal * 1.07).toFixed(2);
+            impuestos = (total - subtotal).toFixed(2);
+        }
+        calcularTotal();
     }
-    calcularTotal();
 }
 
 function calcularTotal(){

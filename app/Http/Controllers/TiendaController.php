@@ -156,7 +156,7 @@ class TiendaController extends Controller
             })
             ->editColumn('imagen', function ($model){
                 if(isset($model->imagenes)){
-                    return Helper::getStoredImage($model->imagenes);
+                    return $model->imagenes;
                 }
                 return null;
             })
