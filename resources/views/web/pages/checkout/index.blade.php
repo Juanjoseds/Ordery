@@ -51,8 +51,9 @@
 @endsection
 
 @section('page-script')
-    <script async defer src="{{ asset('js/web/pages/checkout.js') . '?v='.$APP_VERSION }}"></script>
-    <script async defer src="{{ asset('js/web/pages/buscador.js') . '?v='.$APP_VERSION }}"></script>
+    <script src="{{ asset('js/web/pages/checkout.js') . '?v='.$APP_VERSION }}"></script>
+    <script src="{{ asset('js/web/pages/buscador.js') . '?v='.$APP_VERSION }}"></script>
+    <script src="{{ asset('js/web/pages/partials/carrito.js') . '?v='.$APP_VERSION }}"></script>
     <script src="{{ asset(mix('js/scripts/custom/custom-form-ajax-response.js')). '?v='.$APP_VERSION }}"></script>
     {{-- Sweet Alert --}}
     <script src="{{ asset(mix('vendors/js/extensions/sweetalert2.all.min.js')) }}"></script>

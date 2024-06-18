@@ -12,7 +12,7 @@
     @if(isset($pedido->pedido) && isset($pedido->pedido->productos) && sizeof($pedido->pedido->productos) > 0)
         <div class="accordion accordion-margin" id="accordionMargin" data-toggle-hover="true">
             @foreach($pedido->pedido->productos as $i=>$producto)
-                @if(isset($producto->precio))
+                @if($producto->tipo == 'producto')
                     {{--Es un producto normal guardado en la BBDD--}}
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingMarginOne">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                 </div>
-                @else
+                @elseif($producto->tipo == 'imagen')
                     {{--Es un una imagen--}}
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingMarginOne">
@@ -60,7 +60,7 @@
                                         Imagen subida por el usuario
                                     </div>
                                     <div>
-                                        <b>0€</b>
+                                        <b>{{$producto->precio}}€</b>
                                     </div>
                                 </div>
 
@@ -70,10 +70,51 @@
                             <div class="accordion-body">
                                 <div>
                                     <a href="javascript:;" onclick='openImagen("{{$producto->imagen}}")'><img src="{{$producto->imagen}}" alt="imagen" style="width: 100%" ></a>
-                                    <div class="mt-25">Recuerda actualizar el total del pedido acorde a lo solicitado por el cliente</div>
+                                    <div class="mt-25">Recuerda actualizar el total del pedido</div>
 {{--                                    <div><b>Precio unidad: </b> {{$producto->precio}} €</div>--}}
 {{--                                    <div><b>Observaciones: </b> {{$pedido->observaciones}}</div>--}}
 {{--                                    <div class="text-primary font-medium-3"><b>Total: </b> {{$producto->precio * $producto->cantidad}} €</div>--}}
+                                </div>
+                                <div class="main_editar_{{$producto->id}}_{{$pedido->id}}">
+                                    <button class="btn btn-outline-primary mt-1" id="editar_{{$producto->id}}_{{$pedido->id}}" onclick="changeTotalProducto(`{{$producto->id}}`,`{{$pedido->id}}`)"><i class="ti ti-edit me-25"></i>Editar</button>
+
+                                    <div class="campo_{{$producto->id}}_{{$pedido->id}} mt-1" style="display: none">
+                                        <div class="d-flex align-items-center">
+                                            <input class="form-control form-control-sm" type="number" name="precio_{{$producto->id}}" id="precio_{{$producto->id}}">
+                                            <p class="ms-1 mb-0 p-0">€</p>
+                                        </div>
+                                        <button class="btn btn-success mt-1" onclick="storeNewPrice(`{{$producto->id}}`,`{{$pedido->id}}`)"><i class="ti ti-device-floppy me-25"></i>Actualizar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @elseif($producto->tipo == 'texto')
+                    {{--Es un texto--}}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingMarginOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionMargin{{$i}}" aria-expanded="false" aria-controls="accordionMargin{{$i}}">
+                                <div class="d-flex justify-content-between w-100 me-1">
+                                    <div>
+                                        Texto subido por el usuario
+                                    </div>
+                                    <div>
+                                        <b>{{$producto->precio}}€</b>
+                                    </div>
+                                </div>
+
+                            </button>
+                        </h2>
+                        <div id="accordionMargin{{$i}}" class="accordion-collapse collapse" aria-labelledby="headingMargin{{$i}}" data-bs-parent="#accordionMargin" style="">
+                            <div class="accordion-body">
+                                <div>
+{{--                                    <a href="javascript:;" onclick='openImagen("/images/web/tiendas/letrat.jpg")'>--}}
+{{--                                        --}}
+{{--                                    </a>--}}
+                                    <div class="user-texto" style="background-color: #f3f3f3; padding: 0.5rem; border-radius: 5px;">
+                                        {{$producto->texto}}
+                                    </div>
+                                    <div class="mt-25">Recuerda actualizar el total del pedido</div>
                                 </div>
                                 <div class="main_editar_{{$producto->id}}_{{$pedido->id}}">
                                     <button class="btn btn-outline-primary mt-1" id="editar_{{$producto->id}}_{{$pedido->id}}" onclick="changeTotalProducto(`{{$producto->id}}`,`{{$pedido->id}}`)"><i class="ti ti-edit me-25"></i>Editar</button>

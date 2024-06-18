@@ -119,6 +119,7 @@ mixAssetsDir('scss/web/core/**/**/!(_)*.scss', (src, dest) =>
 
 // script js
 mixAssetsDir('js/web/pages/*.js', (src, dest) => mix.scripts(src, dest))
+mixAssetsDir('js/web/pages/partials/*.js', (src, dest) => mix.scripts(src, dest))
 mixAssetsDir('js/web/layout/*.js', (src, dest) => mix.scripts(src, dest))
 
 mix.copyDirectory('resources/js/web/core', 'public/js/web/core')

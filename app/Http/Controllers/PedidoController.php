@@ -78,6 +78,7 @@ class PedidoController extends Controller
             DB::commit();
             return response(['pedidoDoc' => $pedido->doc], 200);
         } catch (\Exception $e) {
+            dd($e);
             DB::rollBack();
             return response(['errors' => ['errores' => ['No se ha podido generar el pedido.']]], 500);
         }
@@ -86,7 +87,7 @@ class PedidoController extends Controller
     public function calcularPrecioTotal($productos) {
         $total = 0;
         foreach ($productos as $producto) {
-            if(isset($producto['precio'])){
+            if($producto['tipo'] == 'producto'){
                 $total += (floatval($producto['precio']) * intval($producto['cantidad']));
             }
         }

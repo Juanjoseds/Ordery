@@ -24,6 +24,7 @@ function addProductCart(producto, tiendaId){
         precio: producto.precio,
         cantidad: 1,
         imagen: producto.imagen,
+        tipo: 'producto',
         id_tienda: tiendaId,
     }
 
@@ -60,7 +61,9 @@ function addImageCart(){
 
     let productoNew = {
         id: getRandomNumberBetween(200,100000),
-        imagen: img
+        imagen: img,
+        precio: 0,
+        tipo: 'imagen'
     }
 
     // console.log(productos, Object.hasOwn(productos, 'id_tienda'))
@@ -86,7 +89,9 @@ function addTextCart(){
 
     let productoNew = {
         id: getRandomNumberBetween(200,100000),
-        texto: texto
+        texto: texto,
+        precio: 0,
+        tipo: 'texto'
     }
 
     // console.log(productos, Object.hasOwn(productos, 'id_tienda'))
@@ -108,79 +113,7 @@ function getRandomNumberBetween(min,max){
     return Math.floor(Math.random()*(max-min+1)+min);
 }
 
-function addCartLine(producto){
-    let mainCarrito = $('#main-carrito-productos');
-    let html = ``;
 
-    if(producto.hasOwnProperty('precio')){
-        let imagen = producto.imagen == null || producto.imagen == '' ? '/images/assets/product.png' : '/images/productos/' + producto.imagen;
-        html = `
-    <li class="list-group-item list-group-item-action dropdown-notifications-item producto-linea" data-id="${producto.id}">
-        <div class="d-flex">
-            <div class="avatar">
-                <img src="${imagen}" alt class="h-auto rounded-circle">
-            </div>
-            <div class="producto ms-1 d-flex align-items-center justify-content-between w-100">
-                <p class="m-0 producto-nombre">${producto.nombre}</p>
-                <div class="main-precios">
-                    <div class="d-flex align-content-center">
-                        <div class="producto-precio">${producto.precio} €</div>
-                        <i class="ti ti-trash ti-md text-danger producto-remove ms-1 mt-25" onclick="deleteProductCart('${producto.id}')"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </li>
-    `;
-    }else if(producto.hasOwnProperty('imagen')){
-        html = `
-        <li class="list-group-item list-group-item-action dropdown-notifications-item producto-linea" data-id="${producto.id}">
-        <div class="d-flex">
-            <div class="avatar">
-                <img src="${producto.imagen}" alt class="h-auto rounded-circle">
-            </div>
-            <div class="producto ms-1 d-flex align-items-center justify-content-between w-100">
-                <p class="m-0 producto-nombre">Imagen subida por tí</p>
-                <div class="main-precios">
-                    <div class="d-flex align-content-center">
-                        <div class="producto-precio"></div>
-                        <i class="ti ti-trash ti-md text-danger producto-remove ms-1 mt-25" onclick="deleteProductCart('${producto.id}')"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </li>
-        `;
-    }else if(producto.hasOwnProperty('texto')){
-        html = `
-        <li class="list-group-item list-group-item-action dropdown-notifications-item producto-linea" data-id="${producto.id}">
-        <div class="d-flex">
-            <div class="avatar">
-                <img src="/images/web/tiendas/notas.jpg" alt class="h-auto rounded-circle">
-            </div>
-            <div class="producto ms-1 d-flex align-items-center justify-content-between w-100">
-                <p class="m-0 producto-nombre">Texto subido por tí</p>
-                <div class="main-precios">
-                    <div class="d-flex align-content-center">
-                        <div class="producto-precio"></div>
-                        <i class="ti ti-trash ti-md text-danger producto-remove ms-1 mt-25" onclick="deleteProductCart('${producto.id}')"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </li>
-        `;
-    }
-
-
-    let totalProductos = parseInt($('.dropdown-header .carrito-cantidad').text(), 10) + 1;
-    $('.carrito-cantidad').text(totalProductos);
-    mainCarrito.append(html);
-
-}
 
 function loadCartProducts(){
     if(localStorage.getItem('productos') != null){
