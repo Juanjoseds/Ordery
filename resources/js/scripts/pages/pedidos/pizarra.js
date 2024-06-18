@@ -321,7 +321,7 @@ function storeNewPrice(productoId, pedidoId){
             total: total,
         }
     }).done(response => {
-        standardAjaxResponse('Estado actualizado', `Se ha actualizado el total del pedido #${pedidoId} correctamente`);
+        standardAjaxResponse('Pedido actualizado', `Se ha actualizado el total del pedido #${pedidoId} correctamente`);
         $('#pedido-productos .precioTotal').text(total + ' €');
         $('#pedidos-table').DataTable().ajax.reload();
     }).fail(error => {
