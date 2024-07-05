@@ -56,6 +56,7 @@ $(function () {
             // Imagen
             targets: 2,
             orderable: false,
+            searchable: false,
             responsivePriority: 3,
             render: function (data, type, full, meta) {
                 if (data != null) {

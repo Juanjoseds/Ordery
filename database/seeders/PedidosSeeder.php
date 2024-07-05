@@ -31,6 +31,7 @@ class PedidosSeeder extends Seeder
                 Pedido::query()->create([
                     'doc' => "test$i",
                     'info_pago' => '',
+                    'tipo' => 'producto',
                     'pedido' => $pedido,
                     'precio' => 37.5,
                     'observaciones' => '¡El dulce que sea de hoy!',

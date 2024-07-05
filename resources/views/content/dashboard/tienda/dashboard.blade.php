@@ -6,7 +6,7 @@
 @section('vendor-style')
   {{-- vendor css files --}}
   <link rel="stylesheet" href="{{asset(mix('fonts/tabler/tabler-icons.min.css'))}}">
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/charts/apexcharts.css')) }}">
+{{--  <link rel="stylesheet" href="{{ asset(mix('vendors/css/charts/apexcharts.css')) }}">--}}
   <link rel="stylesheet" href="{{ asset(mix('css/web/pages/dashboard/dashboard.css')) }}">
 {{--  <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.min.css')) }}">--}}
 @endsection
