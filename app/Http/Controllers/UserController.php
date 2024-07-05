@@ -101,7 +101,7 @@ class UserController extends Controller
             //$fields = $request->only($user->getFillable());
             $user->is_blocked = isset($request->is_blocked) ? 1 : 0;
             $user->tipo = $this->user->tipo;
-            $user->rol = is_null($request->tipo) ? 'empleado' : $request->tipo;
+//            $user->rol = is_null($request->tipo) ? 'empleado' : $request->tipo;
 
             if(!is_null($request->password)){
                 $user->password = bcrypt($request->password);
