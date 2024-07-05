@@ -12,8 +12,8 @@ $(function () {
 
     const columns = [
         // columns according to JSON RESPONSE
-        {data: 'id'},//Este sólo aparece en la vista movil
-        {data: 'id'},//Este es para el checkbox
+        {data: 'id'},// vista movil
+        {data: 'id'},// checkbox
         {data: 'doc'},
         {data: 'user_id'},
         {data: 'pedido'},
@@ -21,7 +21,7 @@ $(function () {
         {data: 'fecha_entrega'},
         {data: 'created_at'},
         {data: 'estado'},
-        {data: 'id', className: 'not-export-col'},//Este es para las acciones
+        {data: 'id', className: 'not-export-col'},// Acciones
     ];
 
     const columnDefs = [

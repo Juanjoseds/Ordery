@@ -60,7 +60,6 @@ class CartaController extends Controller
 
                 foreach ($categoria->productos as $index => $producto) {
 
-                    //TODO: Controlar ID para no haer new
                     if(isset($producto->id_producto) && $producto->id_producto != ''){
                         $newProducto = Producto::query()->where('id', $producto->id_producto)->first();
                         if(!isset($newProducto)){
@@ -79,7 +78,8 @@ class CartaController extends Controller
                     $newProducto->save();
 
                     $path = public_path('/images/productos/');
-                    if (str_contains($producto->imagen,'data:image') && $producto->imagen != '' && $producto->imagen != null && $producto->imagen != $newProducto->imagen) {
+                    if (str_contains($producto->imagen,'data:image') && $producto->imagen != '' &&
+                        $producto->imagen != null && $producto->imagen != $newProducto->imagen) {
 
                         if (!(file_exists($path) && is_dir($path))) {
                             mkdir($path, 777, true);

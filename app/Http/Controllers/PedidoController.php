@@ -69,7 +69,7 @@ class PedidoController extends Controller
             $pedido->info_pago = "Sin pago";
             $pedido->pedido = json_encode($request->productos);
             $pedido->precio = $precioTotal;
-            $pedido->observaciones = '';
+            $pedido->observaciones = $request->observaciones;
             $pedido->estado = 'Pendiente';
             $pedido->id_user = $this->user->id;
             $pedido->id_tienda = $request->tiendaId;
@@ -78,7 +78,6 @@ class PedidoController extends Controller
             DB::commit();
             return response(['pedidoDoc' => $pedido->doc], 200);
         } catch (\Exception $e) {
-            dd($e);
             DB::rollBack();
             return response(['errors' => ['errores' => ['No se ha podido generar el pedido.']]], 500);
         }
@@ -140,11 +139,6 @@ class PedidoController extends Controller
             if ($pedido === null) {
                 return response(['errores' => __('No se pudo encontrar el pedido')], 400);
             }
-
-            // Borramos la imagen si tenía una
-//            if(isset($tienda->imagenes)){
-//                Storage::disk('tiendas')->delete($tienda->imagenes);
-//            }
 
             $pedido->delete();
             DB::commit();

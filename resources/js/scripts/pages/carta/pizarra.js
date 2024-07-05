@@ -244,8 +244,6 @@ function guardarCarta(){
         carta[index] = categoria;
     });
 
-    // Aquí debería validar que todo está bien
-
     // Se guarda
     $('#spinner-loading').fadeIn();
 
